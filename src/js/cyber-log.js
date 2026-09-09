@@ -30,7 +30,38 @@
  */
 
 const cyberLogEntries = [
-  // Add new entries here.
+  {
+    date: '2026-09-10',
+    type: 'Portfolio Development',
+    title: 'Refining the portfolio (and breaking the boot screen)',
+    summary: 'More work on the portfolio today: refining the landing page, adding content and polishing the terminal-style interface. Also managed to create my first proper self-inflicted debugging session.',
+    tags: ['portfolio', 'html', 'ui', 'debugging'],
+    learned: [
+      'Small changes can have surprisingly large knock-on effects when markup or scripts are removed.',
+      'When something suddenly stops working, retracing the most recent changes is usually a good place to start.'
+    ],
+    did: [
+      'Built the landing-page terminal with hover effects and a flashing pipe-style cursor ready for the cd interaction.',
+      'Added more information, photos and formatting across the portfolio.',
+      'Added the first Cyber Log entries.'
+    ],
+    stuck: 'I accidentally deleted the closing script for the boot screen while removing a redundant contact form, then spent about 30 minutes hunting down what I had broken. Whoops!'
+  },
+  {
+    date: '2026-09-09',
+    type: 'Portfolio Development',
+    title: 'Started my first GitHub project',
+    summary: 'Created a GitHub account and started development of my first project: this portfolio.',
+    tags: ['github', 'portfolio', 'html'],
+    learned: [
+      'A single-page template can be restructured into a multi-page site while keeping everything inside one repository.',
+      'A portfolio is clearer when irrelevant or duplicated sections are removed instead of filling space for the sake of it.'
+    ],
+    did: [
+      'Changed the original single index.html template into one repository containing separate HTML files for each page.',
+      'Removed clutter and irrelevant information tabs to make the site more focused and concise.'
+    ]
+  }
 ];
 
 // Everything below this line builds the page automatically.
