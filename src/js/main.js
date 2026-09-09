@@ -16,11 +16,24 @@ document.addEventListener('DOMContentLoaded', () => {
         bootScreen.addEventListener('click', hideBoot, { once: true });
     }
 
+    // Keep Feedback available in the shared toolbar even on older page markup.
+    const navLinksContainer = document.getElementById('navLinks');
+    if (navLinksContainer && !navLinksContainer.querySelector('a[href="feedback.html"]')) {
+        const feedbackLink = document.createElement('a');
+        feedbackLink.href = 'feedback.html';
+        feedbackLink.textContent = 'Feedback';
+        const contactLink = navLinksContainer.querySelector('a[href="contact.html"]');
+        navLinksContainer.insertBefore(feedbackLink, contactLink || null);
+    }
+
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+
     // Keep the top navigation consistent with the terminal/directory theme.
     document.querySelectorAll('.nav-links a').forEach(link => {
         const href = link.getAttribute('href') || '';
         const page = href.split('/').pop().replace('.html', '').replace(/^#/, '');
         if (page) link.textContent = `>/${page.toLowerCase()}`;
+        if (href.split('/').pop() === currentPage) link.classList.add('active');
     });
 
     document.querySelectorAll('a[href^="#"]').forEach(link => {
