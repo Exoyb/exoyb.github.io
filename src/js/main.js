@@ -16,8 +16,17 @@ document.addEventListener('DOMContentLoaded', () => {
         bootScreen.addEventListener('click', hideBoot, { once: true });
     }
 
-    // Keep Feedback available in the shared toolbar even on older page markup.
     const navLinksContainer = document.getElementById('navLinks');
+
+    // Migrate the old Blog item to Cyber Log on pages created before the rename.
+    if (navLinksContainer) {
+        navLinksContainer.querySelectorAll('a[href="blog.html"]').forEach(link => {
+            link.href = 'cyber-log.html';
+            link.textContent = 'Cyber Log';
+        });
+    }
+
+    // Keep Feedback available in the shared toolbar even on older page markup.
     if (navLinksContainer && !navLinksContainer.querySelector('a[href="feedback.html"]')) {
         const feedbackLink = document.createElement('a');
         feedbackLink.href = 'feedback.html';
