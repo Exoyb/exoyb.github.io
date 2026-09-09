@@ -18,21 +18,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const navLinksContainer = document.getElementById('navLinks');
 
-    // Migrate the old Blog item to Cyber Log on pages created before the rename.
     if (navLinksContainer) {
-        navLinksContainer.querySelectorAll('a[href="blog.html"]').forEach(link => {
-            link.href = 'cyber-log.html';
-            link.textContent = 'Cyber Log';
-        });
-    }
+        // Blog has been retired. Remove any legacy Blog links from older page markup.
+        navLinksContainer.querySelectorAll('a[href="blog.html"]').forEach(link => link.remove());
 
-    // Keep Feedback available in the shared toolbar even on older page markup.
-    if (navLinksContainer && !navLinksContainer.querySelector('a[href="feedback.html"]')) {
-        const feedbackLink = document.createElement('a');
-        feedbackLink.href = 'feedback.html';
-        feedbackLink.textContent = 'Feedback';
-        const contactLink = navLinksContainer.querySelector('a[href="contact.html"]');
-        navLinksContainer.insertBefore(feedbackLink, contactLink || null);
+        // Keep Cyber Log available exactly once across every page.
+        if (!navLinksContainer.querySelector('a[href="cyber-log.html"]')) {
+            const cyberLogLink = document.createElement('a');
+            cyberLogLink.href = 'cyber-log.html';
+            cyberLogLink.textContent = 'Cyber Log';
+            const feedbackLink = navLinksContainer.querySelector('a[href="feedback.html"]');
+            const contactLink = navLinksContainer.querySelector('a[href="contact.html"]');
+            navLinksContainer.insertBefore(cyberLogLink, feedbackLink || contactLink || null);
+        }
+
+        // Keep Feedback available in the shared toolbar even on older page markup.
+        if (!navLinksContainer.querySelector('a[href="feedback.html"]')) {
+            const feedbackLink = document.createElement('a');
+            feedbackLink.href = 'feedback.html';
+            feedbackLink.textContent = 'Feedback';
+            const contactLink = navLinksContainer.querySelector('a[href="contact.html"]');
+            navLinksContainer.insertBefore(feedbackLink, contactLink || null);
+        }
     }
 
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
