@@ -10,8 +10,9 @@
 /* Homepage: identity first, interactive shell immediately after it. */
 .home-hero {
   min-height: 100vh;
-  padding-top: 7rem;
-  padding-bottom: 3rem;
+  align-items: flex-start;
+  padding-top: 5.75rem;
+  padding-bottom: 1.5rem;
 }
 
 .home-hero-content {
@@ -20,11 +21,11 @@
 }
 
 .home-hero-content .tag {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.15rem;
 }
 
 .home-hero-content h1 {
-  margin-bottom: 2rem;
+  margin-bottom: 1.4rem;
 }
 
 .home-hero-content .directory-shell {
@@ -39,9 +40,9 @@
   flex-wrap: nowrap;
   align-items: center;
   gap: .5rem;
-  min-height: 42px;
+  min-height: 40px;
   margin: 0;
-  padding: .8rem 1rem;
+  padding: .7rem 1rem;
   background: #1b1b1b;
   border-bottom: 1px solid #333;
 }
@@ -65,7 +66,7 @@
 }
 
 .directory-shell-body {
-  padding: 1.5rem;
+  padding: 1.2rem 1.5rem 1.15rem;
 }
 
 .shell-line {
@@ -74,18 +75,18 @@
   flex-wrap: wrap;
   gap: 0;
   margin: 0;
-  line-height: 1.7;
+  line-height: 1.6;
 }
 
 .shell-output {
-  margin: .3rem 0 1.15rem;
+  margin: .2rem 0 .85rem;
 }
 
 .shell-directory-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: .8rem;
-  margin: 0 0 1.6rem;
+  gap: .65rem .8rem;
+  margin: 0 0 1.05rem;
 }
 
 .shell-directory-grid .directory-link {
@@ -97,9 +98,9 @@
   flex-flow: row nowrap;
   align-items: center;
   width: 100%;
-  min-height: 2.4rem;
-  margin-top: .4rem;
-  padding-top: 1.15rem;
+  min-height: 2rem;
+  margin-top: .2rem;
+  padding-top: .75rem;
   border-top: 1px dashed #2b2b2b;
   white-space: nowrap;
   overflow-x: auto;
@@ -133,13 +134,13 @@
 }
 
 .shell-hint {
-  margin: .65rem 0 0;
-  line-height: 1.4;
+  margin: .45rem 0 0;
+  line-height: 1.3;
 }
 
 @media (max-width: 900px) {
   .home-hero {
-    padding-top: 6rem;
+    padding-top: 5.5rem;
   }
 
   .shell-directory-grid {
@@ -154,7 +155,7 @@
   }
 
   .home-hero-content h1 {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1.25rem;
   }
 
   .directory-shell-body {
