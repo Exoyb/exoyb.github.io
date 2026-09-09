@@ -179,6 +179,70 @@
 
 .home-directory {
     margin-top: 3rem;
+    margin-bottom: 5rem;
+}
+
+.directory-shell {
+    overflow: hidden;
+    border: 1px solid #333;
+    border-radius: 8px;
+    background: rgba(10, 10, 10, 0.95);
+    box-shadow: 0 12px 50px rgba(0, 0, 0, .35), 0 0 35px rgba(0, 255, 140, .05);
+}
+
+.directory-shell-header {
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .8rem 1rem;
+    background: #1b1b1b;
+    border-bottom: 1px solid #333;
+}
+
+.directory-shell-title {
+    margin-left: .55rem;
+    color: #777;
+    font-size: .82rem;
+}
+
+.directory-shell-body {
+    padding: 1.5rem;
+}
+
+.shell-line,
+.live-shell-prompt {
+    font-size: 1rem;
+    line-height: 1.7;
+    white-space: normal;
+}
+
+.shell-user {
+    color: #00FF8C;
+    font-weight: 700;
+}
+
+.shell-separator,
+.shell-prompt {
+    color: #e8e8e8;
+}
+
+.shell-path {
+    color: #00D9FF;
+}
+
+.shell-prompt {
+    margin-right: .55rem;
+}
+
+.shell-command,
+.shell-target {
+    color: #f0f0f0;
+}
+
+.shell-output {
+    margin-top: .3rem;
+    margin-bottom: 1.1rem;
+    color: #8f8f8f;
 }
 
 .directory-grid {
@@ -187,32 +251,73 @@
     gap: 1rem;
 }
 
+.shell-directory-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .7rem;
+    margin: 1rem 0 1.5rem;
+}
+
 .directory-link {
     display: block;
     color: #fff;
     text-decoration: none;
-    border: 1px solid #333;
-    background: rgba(26, 26, 26, .72);
-    padding: 1.2rem;
-    border-radius: 8px;
-    transition: .25s ease;
+    border: 1px solid #292929;
+    background: rgba(22, 22, 22, .82);
+    padding: 1rem 1.1rem;
+    border-radius: 6px;
+    transition: transform .2s ease, border-color .2s ease, background .2s ease, box-shadow .2s ease;
 }
 
-.directory-link:hover {
+.directory-link:hover,
+.directory-link:focus-visible {
+    outline: none;
     border-color: #00FF8C;
-    transform: translateY(-3px);
+    background: rgba(0, 255, 140, .055);
+    transform: translateX(4px);
+    box-shadow: -3px 0 0 #00FF8C;
 }
 
 .directory-command {
     color: #00FF8C;
     display: block;
-    margin-bottom: .4rem;
+    margin-bottom: .35rem;
 }
 
 .directory-description {
-    color: #aaa;
+    color: #8f8f8f;
     line-height: 1.5;
-    font-size: .92rem;
+    font-size: .9rem;
+}
+
+.live-shell-prompt {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    min-height: 1.75rem;
+    padding-top: 1rem;
+    border-top: 1px dashed #2b2b2b;
+}
+
+.shell-cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.15em;
+    margin-left: 3px;
+    background: #00FF8C;
+    vertical-align: -0.18em;
+    box-shadow: 0 0 7px rgba(0, 255, 140, .65);
+    animation: shellCursorBlink .9s steps(1, end) infinite;
+}
+
+@keyframes shellCursorBlink {
+    0%, 45% { opacity: 1; }
+    46%, 100% { opacity: 0; }
+}
+
+.shell-hint {
+    margin-top: .55rem;
+    color: #555;
+    font-size: .78rem;
 }
 
 .site-footer {
@@ -228,12 +333,20 @@
     .page-shell {
         padding-top: 7rem;
     }
+
+    .shell-directory-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 @media (max-width: 600px) {
     .page-shell {
         padding-left: 1rem;
         padding-right: 1rem;
+    }
+
+    .directory-shell-body {
+        padding: 1rem;
     }
 
     .site-footer {
