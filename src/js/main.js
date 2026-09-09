@@ -19,12 +19,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const navLinksContainer = document.getElementById('navLinks');
 
     if (navLinksContainer) {
-        // Blog has been retired. Remove any legacy Blog links from older page markup.
-        navLinksContainer.querySelectorAll('a[href="blog.html"]').forEach(link => link.remove());
+        // Retired pages: keep them out of the visible navigation.
+        navLinksContainer.querySelectorAll(
+            'a[href="blog.html"], a[href="education.html"], a[href="certifications.html"], a[href="skills.html"], a[href="experience.html"], a[href="contact.html"]'
+        ).forEach(link => link.remove());
 
-        // Education and Certifications are now one focused Training page.
-        navLinksContainer.querySelectorAll('a[href="education.html"], a[href="certifications.html"]').forEach(link => link.remove());
-
+        // Training replaces Education + Certifications.
         if (!navLinksContainer.querySelector('a[href="training.html"]')) {
             const trainingLink = document.createElement('a');
             trainingLink.href = 'training.html';
@@ -33,25 +33,45 @@ document.addEventListener('DOMContentLoaded', () => {
             navLinksContainer.insertBefore(trainingLink, projectsLink || null);
         }
 
-        // Keep Cyber Log available exactly once across every page.
+        // Cyber Log replaces Blog.
         if (!navLinksContainer.querySelector('a[href="cyber-log.html"]')) {
             const cyberLogLink = document.createElement('a');
             cyberLogLink.href = 'cyber-log.html';
             cyberLogLink.textContent = 'Cyber Log';
             const feedbackLink = navLinksContainer.querySelector('a[href="feedback.html"]');
-            const contactLink = navLinksContainer.querySelector('a[href="contact.html"]');
-            navLinksContainer.insertBefore(cyberLogLink, feedbackLink || contactLink || null);
+            navLinksContainer.insertBefore(cyberLogLink, feedbackLink || null);
         }
 
-        // Keep Feedback available in the shared toolbar even on older page markup.
         if (!navLinksContainer.querySelector('a[href="feedback.html"]')) {
             const feedbackLink = document.createElement('a');
             feedbackLink.href = 'feedback.html';
             feedbackLink.textContent = 'Feedback';
-            const contactLink = navLinksContainer.querySelector('a[href="contact.html"]');
-            navLinksContainer.insertBefore(feedbackLink, contactLink || null);
+            navLinksContainer.appendChild(feedbackLink);
         }
     }
+
+    // Repair links left in older page actions without needing to maintain duplicate pages.
+    document.querySelectorAll('a[href="blog.html"]').forEach(link => {
+        link.href = 'cyber-log.html';
+        if (link.textContent.includes('/blog')) link.textContent = link.textContent.replace('/blog', '/cyber-log');
+    });
+
+    document.querySelectorAll('a[href="education.html"], a[href="certifications.html"]').forEach(link => {
+        link.href = 'training.html';
+        if (link.textContent.includes('/education')) link.textContent = link.textContent.replace('/education', '/training');
+        if (link.textContent.includes('/certifications')) link.textContent = link.textContent.replace('/certifications', '/training');
+    });
+
+    document.querySelectorAll('a[href="skills.html"], a[href="experience.html"]').forEach(link => {
+        link.href = 'about.html';
+        if (link.textContent.includes('/skills')) link.textContent = link.textContent.replace('/skills', '/about');
+        if (link.textContent.includes('/experience')) link.textContent = link.textContent.replace('/experience', '/about');
+    });
+
+    document.querySelectorAll('a[href="contact.html"]').forEach(link => {
+        link.href = 'about.html#contact';
+        if (link.textContent.includes('/contact')) link.textContent = link.textContent.replace('/contact', '/about#contact');
+    });
 
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
