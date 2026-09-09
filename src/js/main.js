@@ -22,6 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
         // Blog has been retired. Remove any legacy Blog links from older page markup.
         navLinksContainer.querySelectorAll('a[href="blog.html"]').forEach(link => link.remove());
 
+        // Education and Certifications are now one focused Training page.
+        navLinksContainer.querySelectorAll('a[href="education.html"], a[href="certifications.html"]').forEach(link => link.remove());
+
+        if (!navLinksContainer.querySelector('a[href="training.html"]')) {
+            const trainingLink = document.createElement('a');
+            trainingLink.href = 'training.html';
+            trainingLink.textContent = 'Training';
+            const projectsLink = navLinksContainer.querySelector('a[href="projects.html"]');
+            navLinksContainer.insertBefore(trainingLink, projectsLink || null);
+        }
+
         // Keep Cyber Log available exactly once across every page.
         if (!navLinksContainer.querySelector('a[href="cyber-log.html"]')) {
             const cyberLogLink = document.createElement('a');
