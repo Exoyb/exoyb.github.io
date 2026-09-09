@@ -1,0 +1,149 @@
+/* Training & Certifications */
+.training-page {
+  display: grid;
+  gap: 3rem;
+}
+
+.training-hero {
+  margin-bottom: 0;
+}
+
+.training-terminal {
+  margin: 0;
+}
+
+.training-section {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.training-section-head {
+  max-width: 820px;
+}
+
+.training-section-head h2 {
+  color: #00FF8C;
+  font-size: clamp(1.7rem, 3vw, 2.1rem);
+  margin-bottom: .45rem;
+}
+
+.training-section-head p {
+  color: #969696;
+  line-height: 1.7;
+}
+
+.training-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.training-card,
+.education-feature,
+.credential-empty {
+  border: 1px solid #303030;
+  border-radius: 10px;
+  background: rgba(18,18,18,.82);
+  transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease;
+}
+
+.training-card {
+  padding: 1.35rem 1.4rem;
+}
+
+.training-card:hover,
+.education-feature:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0,255,140,.7);
+  box-shadow: 0 0 26px rgba(0,255,140,.08);
+}
+
+.training-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: .8rem;
+  margin-bottom: .9rem;
+}
+
+.training-provider {
+  color: #00D9FF;
+  font-size: .82rem;
+}
+
+.training-card h3 {
+  color: #00FF8C;
+  font-size: 1.2rem;
+  margin-bottom: .7rem;
+}
+
+.training-card p,
+.education-feature p {
+  color: #c8c8c8;
+  line-height: 1.75;
+}
+
+.training-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin-top: 1rem;
+}
+
+.training-tags span {
+  padding: .25rem .55rem;
+  border: 1px solid #333;
+  border-radius: 999px;
+  color: #8f8f8f;
+  font-size: .76rem;
+  background: #111;
+}
+
+.education-feature {
+  display: grid;
+  grid-template-columns: minmax(180px, .42fr) 1fr;
+  gap: 1.5rem;
+  padding: 1.4rem 1.5rem;
+  border-left: 3px solid #00FF8C;
+}
+
+.education-label {
+  display: block;
+  color: #00FF8C;
+  font-size: 1.12rem;
+  font-weight: 700;
+  margin-bottom: .35rem;
+}
+
+.education-date {
+  color: #00D9FF;
+  font-size: .84rem;
+}
+
+.credential-empty {
+  display: grid;
+  gap: .45rem;
+  padding: 1.4rem 1.5rem;
+  border-style: dashed;
+}
+
+.credential-command {
+  color: #00D9FF;
+}
+
+.credential-output {
+  color: #00FF8C;
+}
+
+.credential-note {
+  color: #7f7f7f;
+  line-height: 1.6;
+  font-size: .86rem;
+}
+
+@media (max-width: 800px) {
+  .training-grid,
+  .education-feature {
+    grid-template-columns: 1fr;
+  }
+}
