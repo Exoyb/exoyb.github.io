@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exoyb | Cyber Log</title>
+  <link rel="stylesheet" href="src/css/main.css">
+  <link rel="stylesheet" href="src/css/animations.css">
+  <link rel="stylesheet" href="src/css/pages.css?v=20260909-3">
+  <link rel="stylesheet" href="src/css/cyber-log.css?v=20260910-1">
+</head>
+<body>
+<nav>
+  <div class="nav-content">
+    <div class="logo"><a href="index.html">#!/bin/bash Exoyb.sh</a></div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="experience.html">Experience</a>
+      <a href="education.html">Education</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="projects.html">Projects</a>
+      <a class="active" href="cyber-log.html">Cyber Log</a>
+      <a href="feedback.html">Feedback</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="page-shell">
+  <div class="page-container cyber-log-page">
+    <header class="cyber-log-hero fade-in">
+      <div class="page-kicker">// tail -f learning.log</div>
+      <h1>Cyber Log</h1>
+      <p class="page-intro">A dated record of what I’m learning, practising, breaking, fixing and finally understanding while I build toward Security Operations.</p>
+      <div class="log-summary" aria-label="Cyber Log summary">
+        <div class="log-stat"><strong id="entryCount">0</strong><span>entries</span></div>
+        <div class="log-stat"><strong id="topicCount">0</strong><span>topics tracked</span></div>
+        <div class="log-stat"><strong id="latestEntry">--</strong><span>latest entry</span></div>
+      </div>
+    </header>
+
+    <div class="cd-terminal log-terminal fade-in">
+      <div class="cd-terminal-header"><span class="cd-dot red"></span><span class="cd-dot yellow"></span><span class="cd-dot green"></span></div>
+      <div class="cd-terminal-body">
+        <p><span class="prompt">$</span> <span class="cd-command">cd /cyber-log</span></p>
+        <p class="cd-output">Changed directory to: /cyber-log</p>
+        <p><span class="prompt">$</span> <span class="cd-command">tail -f learning.log</span></p>
+        <p class="cd-joke">Watching for new knowledge... Ctrl+C has been emotionally disabled.</p>
+      </div>
+    </div>
+
+    <section class="log-controls fade-in" aria-label="Filter Cyber Log entries">
+      <div class="filter-heading"><span>// filter</span><span class="filter-hint">select a topic</span></div>
+      <div id="logFilters" class="log-filters"><button class="log-filter active" type="button" data-filter="all">all</button></div>
+    </section>
+
+    <section class="log-stream" aria-label="Cyber Log entries">
+      <div id="cyberLogEntries"></div>
+      <div id="logEmptyState" class="log-empty-state" hidden>
+        <span class="empty-command">$ ls ./entries</span>
+        <h2>No entries yet.</h2>
+        <p>The log is ready. The next thing I learn becomes entry #001.</p>
+        <span class="shell-cursor" aria-hidden="true"></span>
+      </div>
+    </section>
+
+    <div class="page-actions">
+      <a class="btn btn-primary" href="feedback.html">cd /feedback →</a>
+      <a class="btn btn-secondary" href="index.html">cd /home</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">Exoyb // Cyber Log</footer>
+<script src="src/js/main.js?v=20260910-1"></script>
+<script src="src/js/cyber-log.js?v=20260910-1"></script>
+</body>
+</html>
