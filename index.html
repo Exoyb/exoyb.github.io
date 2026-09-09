@@ -64,16 +64,37 @@
   </section>
 
   <section class="home-directory page-container">
-    <h2>Choose a directory</h2>
-    <div class="directory-grid">
-      <a class="directory-link fade-in" href="about.html"><span class="directory-command">$ cd /about</span><span class="directory-description">Background, direction and what makes the support-to-security transition make sense.</span></a>
-      <a class="directory-link fade-in" href="skills.html"><span class="directory-command">$ cd /skills</span><span class="directory-description">Security fundamentals, support strengths and current technical development.</span></a>
-      <a class="directory-link fade-in" href="experience.html"><span class="directory-command">$ cd /experience</span><span class="directory-description">SaaS support, management and hands-on repair experience.</span></a>
-      <a class="directory-link fade-in" href="education.html"><span class="directory-command">$ cd /education</span><span class="directory-description">Cybersecurity study, online learning and practical development.</span></a>
-      <a class="directory-link fade-in" href="certifications.html"><span class="directory-command">$ cd /certifications</span><span class="directory-description">Active study and completed credentials as they are earned.</span></a>
-      <a class="directory-link fade-in" href="projects.html"><span class="directory-command">$ cd /projects</span><span class="directory-description">Labs, scripts, investigations and hands-on portfolio work.</span></a>
-      <a class="directory-link fade-in" href="blog.html"><span class="directory-command">$ cd /blog</span><span class="directory-description">Security notes, lab write-ups and learning in public.</span></a>
-      <a class="directory-link fade-in" href="contact.html"><span class="directory-command">$ cd /contact</span><span class="directory-description">Email, GitHub, LinkedIn and professional contact details.</span></a>
+    <div class="directory-shell fade-in">
+      <div class="directory-shell-header">
+        <div class="terminal-dot dot-red"></div>
+        <div class="terminal-dot dot-yellow"></div>
+        <div class="terminal-dot dot-green"></div>
+        <span class="directory-shell-title">exoyb@portfolio: ~</span>
+      </div>
+      <div class="directory-shell-body">
+        <p class="shell-line">
+          <span class="shell-user">exoyb@portfolio</span><span class="shell-separator">:</span><span class="shell-path">~</span><span class="shell-prompt">$</span>
+          <span class="shell-command">ls -d */</span>
+        </p>
+        <p class="shell-output">Choose a directory:</p>
+
+        <div class="directory-grid shell-directory-grid">
+          <a class="directory-link fade-in" data-directory="/about" href="about.html"><span class="directory-command">&gt; /about/</span><span class="directory-description">Background, direction and what makes the support-to-security transition make sense.</span></a>
+          <a class="directory-link fade-in" data-directory="/skills" href="skills.html"><span class="directory-command">&gt; /skills/</span><span class="directory-description">Security fundamentals, support strengths and current technical development.</span></a>
+          <a class="directory-link fade-in" data-directory="/experience" href="experience.html"><span class="directory-command">&gt; /experience/</span><span class="directory-description">SaaS support, management and hands-on repair experience.</span></a>
+          <a class="directory-link fade-in" data-directory="/education" href="education.html"><span class="directory-command">&gt; /education/</span><span class="directory-description">Cybersecurity study, online learning and practical development.</span></a>
+          <a class="directory-link fade-in" data-directory="/certifications" href="certifications.html"><span class="directory-command">&gt; /certifications/</span><span class="directory-description">Active study and completed credentials as they are earned.</span></a>
+          <a class="directory-link fade-in" data-directory="/projects" href="projects.html"><span class="directory-command">&gt; /projects/</span><span class="directory-description">Labs, scripts, investigations and hands-on portfolio work.</span></a>
+          <a class="directory-link fade-in" data-directory="/blog" href="blog.html"><span class="directory-command">&gt; /blog/</span><span class="directory-description">Security notes, lab write-ups and learning in public.</span></a>
+          <a class="directory-link fade-in" data-directory="/contact" href="contact.html"><span class="directory-command">&gt; /contact/</span><span class="directory-description">Email, GitHub, LinkedIn and professional contact details.</span></a>
+        </div>
+
+        <div class="live-shell-prompt" aria-live="polite">
+          <span class="shell-user">exoyb@portfolio</span><span class="shell-separator">:</span><span class="shell-path">~</span><span class="shell-prompt">$</span>
+          <span class="shell-command">cd </span><span id="directoryTarget" class="shell-target">[choose-directory]</span><span class="shell-cursor" aria-hidden="true"></span>
+        </div>
+        <p class="shell-hint">// hover, tab or click a directory to execute</p>
+      </div>
     </div>
   </section>
 
