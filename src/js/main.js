@@ -30,6 +30,26 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    const directoryTarget = document.getElementById('directoryTarget');
+    const directoryLinks = document.querySelectorAll('[data-directory]');
+
+    if (directoryTarget && directoryLinks.length) {
+        const resetPrompt = () => {
+            directoryTarget.textContent = '[choose-directory]';
+        };
+
+        directoryLinks.forEach(link => {
+            const updatePrompt = () => {
+                directoryTarget.textContent = link.dataset.directory || '[choose-directory]';
+            };
+
+            link.addEventListener('mouseenter', updatePrompt);
+            link.addEventListener('focus', updatePrompt);
+            link.addEventListener('mouseleave', resetPrompt);
+            link.addEventListener('blur', resetPrompt);
+        });
+    }
+
     const lazyObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
