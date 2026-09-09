@@ -1,10 +1,8 @@
 /*
  * CYBER LOG — THIS IS THE ONLY SECTION YOU NEED TO EDIT FOR NEW ENTRIES.
  *
- * Copy the example object below into cyberLogEntries, remove the leading //
- * from each line, then change the values. Newest dates are shown first.
- *
- * You can delete any optional field you do not need.
+ * Add a new object to cyberLogEntries. Newest dates are shown first.
+ * Any optional field can simply be omitted.
  *
  * EXAMPLE:
  * {
@@ -13,19 +11,11 @@
  *   title: 'What I learned today',
  *   summary: 'A short intro explaining what the session was about.',
  *   tags: ['sc-900', 'identity', 'zero-trust'],
- *   learned: [
- *     'First thing I learned.',
- *     'Second thing I learned.'
- *   ],
- *   did: [
- *     'Completed a lab or practical exercise.',
- *     'Used a command or tool.'
- *   ],
- *   stuck: 'Something that confused me or that I want to revisit.',
- *   next: 'The next topic or practical task I want to tackle.',
- *   links: [
- *     { label: 'Related project', url: 'projects.html' }
- *   ]
+ *   learned: ['First thing I learned.', 'Second thing I learned.'],
+ *   did: ['Completed a lab.', 'Used a new tool.'],
+ *   stuck: 'Something that confused me or broke.',
+ *   next: 'The next thing I want to tackle.',
+ *   links: [{ label: 'Related project', url: 'projects.html' }]
  * }
  */
 
@@ -92,17 +82,27 @@ const cyberLogEntries = [
     }).format(date);
   };
 
-  const renderList = (items) => {
-    if (!Array.isArray(items) || !items.length) return '';
-    return `<ul>${items.map(item => `<li>${escapeHTML(item)}</li>`).join('')}</ul>`;
+  const renderBody = (value) => {
+    if (Array.isArray(value)) {
+      if (!value.length) return '';
+      return `<ul>${value.map(item => `<li>${escapeHTML(item)}</li>`).join('')}</ul>`;
+    }
+    return value ? `<p>${escapeHTML(value)}</p>` : '';
   };
 
-  const renderText = (value) => value ? `<p>${escapeHTML(value)}</p>` : '';
-
-  const renderDetail = (className, heading, value) => {
+  const renderFold = (className, label, value) => {
     if (!value || (Array.isArray(value) && !value.length)) return '';
-    const body = Array.isArray(value) ? renderList(value) : renderText(value);
-    return `<section class="log-detail ${className}"><h3>${heading}</h3>${body}</section>`;
+    const count = Array.isArray(value) ? value.length : 1;
+    const suffix = count === 1 ? 'note' : 'notes';
+
+    return `
+      <details class="log-fold ${className}">
+        <summary>
+          <span class="log-fold-label">${escapeHTML(label)}</span>
+          <span class="log-fold-count">${count} ${suffix}</span>
+        </summary>
+        <div class="log-fold-body">${renderBody(value)}</div>
+      </details>`;
   };
 
   const sortedEntries = [...cyberLogEntries].sort((a, b) =>
@@ -140,11 +140,11 @@ const cyberLogEntries = [
       ? `<div class="log-tags">${tags.map(tag => `<span class="log-tag">${escapeHTML(tag)}</span>`).join('')}</div>`
       : '';
 
-    const detailMarkup = [
-      renderDetail('learned', 'What I learned', entry.learned),
-      renderDetail('did', 'What I did', entry.did),
-      renderDetail('stuck', 'What confused me', entry.stuck),
-      renderDetail('next', 'Next', entry.next)
+    const folds = [
+      renderFold('learned', 'learned', entry.learned),
+      renderFold('built', 'built', entry.did),
+      renderFold('issue', 'issue / blocker', entry.stuck),
+      renderFold('next', 'next', entry.next)
     ].filter(Boolean).join('');
 
     const links = Array.isArray(entry.links) && entry.links.length
@@ -155,18 +155,19 @@ const cyberLogEntries = [
 
     return `
       <article class="log-entry" data-tags="${escapeHTML(tags.join(' '))}">
-        <div class="log-entry-meta">
-          <time class="log-date" datetime="${escapeHTML(entry.date || '')}">${escapeHTML(formatDate(entry.date || ''))}</time>
-          <span class="log-index">entry_${serial}.log</span>
-        </div>
         <div class="log-entry-card">
-          <div class="log-entry-header">
-            <h2 class="log-entry-title">${escapeHTML(entry.title || 'Untitled entry')}</h2>
+          <div class="log-entry-meta">
+            <div class="log-entry-meta-left">
+              <time class="log-date" datetime="${escapeHTML(entry.date || '')}">${escapeHTML(formatDate(entry.date || ''))}</time>
+              <span class="log-index">entry_${serial}.log</span>
+            </div>
             <span class="log-entry-type">${escapeHTML(entry.type || 'Log')}</span>
           </div>
+
+          <h2 class="log-entry-title">${escapeHTML(entry.title || 'Untitled entry')}</h2>
           ${entry.summary ? `<p class="log-entry-summary">${escapeHTML(entry.summary)}</p>` : ''}
           ${tagMarkup}
-          ${detailMarkup ? `<div class="log-detail-grid">${detailMarkup}</div>` : ''}
+          ${folds ? `<div class="log-folds">${folds}</div>` : ''}
           ${links}
         </div>
       </article>`;
