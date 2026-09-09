@@ -6,7 +6,7 @@
   <title>Exoyb | Cybersecurity Portfolio</title>
   <link rel="stylesheet" href="src/css/main.css">
   <link rel="stylesheet" href="src/css/animations.css">
-  <link rel="stylesheet" href="src/css/pages.css">
+  <link rel="stylesheet" href="src/css/pages.css?v=20260909-3">
 </head>
 <body>
   <div id="bootScreen" class="boot-screen">
@@ -65,17 +65,17 @@
 
   <section class="home-directory page-container">
     <div class="directory-shell fade-in">
-      <div class="directory-shell-header">
+      <div class="directory-shell-header terminal-header">
         <div class="terminal-dot dot-red"></div>
         <div class="terminal-dot dot-yellow"></div>
         <div class="terminal-dot dot-green"></div>
         <span class="directory-shell-title">exoyb@portfolio: ~</span>
       </div>
       <div class="directory-shell-body">
-        <p class="shell-line">
+        <div class="shell-line">
           <span class="shell-user">exoyb@portfolio</span><span class="shell-separator">:</span><span class="shell-path">~</span><span class="shell-prompt">$</span>
           <span class="shell-command">ls -d */</span>
-        </p>
+        </div>
         <p class="shell-output">Choose a directory:</p>
 
         <div class="directory-grid shell-directory-grid">
@@ -91,14 +91,14 @@
 
         <div class="live-shell-prompt" aria-live="polite">
           <span class="shell-user">exoyb@portfolio</span><span class="shell-separator">:</span><span class="shell-path">~</span><span class="shell-prompt">$</span>
-          <span class="shell-command">cd </span><span id="directoryTarget" class="shell-target">[choose-directory]</span><span class="shell-cursor" aria-hidden="true"></span>
+          <span class="shell-command">cd&nbsp;</span><span id="directoryTarget" class="shell-target">[choose-directory]</span><span class="shell-cursor" aria-hidden="true"></span>
         </div>
-        <p class="shell-hint">// hover, tab or click a directory to execute</p>
+        <p class="shell-hint">// hover or tab to preview · click to enter</p>
       </div>
     </div>
   </section>
 
   <footer class="site-footer">Exoyb // Cybersecurity Portfolio</footer>
-  <script src="src/js/main.js"></script>
+  <script src="src/js/main.js?v=20260909-3"></script>
 </body>
 </html>
