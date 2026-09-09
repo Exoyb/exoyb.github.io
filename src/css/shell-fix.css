@@ -4,6 +4,32 @@
   border-radius: 10px;
   background: rgba(10, 10, 10, 0.96);
   box-shadow: 0 12px 50px rgba(0, 0, 0, .35), 0 0 35px rgba(0, 255, 140, .05);
+  text-align: left;
+}
+
+/* Homepage: identity first, interactive shell immediately after it. */
+.home-hero {
+  min-height: 100vh;
+  padding-top: 7rem;
+  padding-bottom: 3rem;
+}
+
+.home-hero-content {
+  width: min(1100px, 100%);
+  max-width: 1100px;
+}
+
+.home-hero-content .tag {
+  margin-bottom: 1.5rem;
+}
+
+.home-hero-content h1 {
+  margin-bottom: 2rem;
+}
+
+.home-hero-content .directory-shell {
+  width: 100%;
+  margin: 0 auto;
 }
 
 .directory-shell-header,
@@ -112,12 +138,25 @@
 }
 
 @media (max-width: 900px) {
+  .home-hero {
+    padding-top: 6rem;
+  }
+
   .shell-directory-grid {
     grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 600px) {
+  .home-hero {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .home-hero-content h1 {
+    margin-bottom: 1.5rem;
+  }
+
   .directory-shell-body {
     padding: 1rem;
   }
