@@ -6,14 +6,175 @@
   <title>Exoyb | About</title>
   <link rel="stylesheet" href="src/css/main.css">
   <link rel="stylesheet" href="src/css/animations.css">
-  <link rel="stylesheet" href="src/css/pages.css">
+  <link rel="stylesheet" href="src/css/pages.css?v=20260909-3">
+  <link rel="stylesheet" href="src/css/about.css?v=20260909-1">
 </head>
 <body>
-<nav><div class="nav-content"><div class="logo"><a href="index.html">#!/bin/bash Exoyb.sh</a></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div><div class="nav-links" id="navLinks"><a class="active" href="about.html">About</a><a href="skills.html">Skills</a><a href="experience.html">Experience</a><a href="education.html">Education</a><a href="certifications.html">Certifications</a><a href="projects.html">Projects</a><a href="blog.html">Blog</a><a href="contact.html">Contact</a></div></div></nav>
-<main class="page-shell"><div class="page-container">
-<header class="page-hero fade-in"><div class="page-kicker">// whoami</div><h1>About Me</h1><p class="page-intro">Technical support specialist transitioning into Security Operations, with a background spanning SaaS support, hardware diagnostics, repair, customer service and people leadership.</p></header>
-<div class="cd-terminal fade-in"><div class="cd-terminal-header"><span class="cd-dot red"></span><span class="cd-dot yellow"></span><span class="cd-dot green"></span></div><div class="cd-terminal-body"><p><span class="prompt">$</span> <span class="cd-command">cd /about</span></p><p class="cd-output">Changed directory to: /about</p><p class="cd-joke">Finally, a career change where `cd` actually works first try.</p></div></div>
-<section class="content-grid"><article class="content-card fade-in"><h2>Current Direction</h2><p>I’m building toward an entry-level SOC / Security Operations role, focusing on alert triage, investigation fundamentals, threat detection, Windows and Linux familiarity, and practical security tooling.</p></article><article class="content-card fade-in"><h2>Technical Background</h2><p>I’ve spent years troubleshooting software and hardware faults, including SaaS platforms, desktops, laptops, mobile devices and board-level repair. That experience trained me to think in symptoms, evidence, root causes and repeatable fixes.</p></article><article class="content-card fade-in"><h2>People & Communication</h2><p>My background also includes retail management, onboarding, coaching and high-volume customer support. I’m comfortable explaining technical problems clearly to both technical and non-technical users.</p></article></section>
-<section class="section-block"><h2>At a glance</h2><div class="detail-list"><div class="detail-item fade-in"><h3>1500+ hardware repairs</h3><p>Hands-on diagnosis and restoration across a broad mix of consumer devices.</p></div><div class="detail-item fade-in"><h3>12+ years customer service</h3><p>Support, retail, escalation handling, coaching and branch management experience.</p></div><div class="detail-item fade-in"><h3>Security-first next step</h3><p>Currently developing the technical foundation required for L1 SOC work and blue-team progression.</p></div></div></section>
-<div class="page-actions"><a class="btn btn-primary" href="skills.html">cd /skills →</a><a class="btn btn-secondary" href="index.html">cd /home</a></div>
-</div></main><footer class="site-footer">Exoyb // About</footer><script src="src/js/main.js"></script></body></html>
+<nav>
+  <div class="nav-content">
+    <div class="logo"><a href="index.html">#!/bin/bash Exoyb.sh</a></div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <div class="nav-links" id="navLinks">
+      <a class="active" href="about.html">About</a>
+      <a href="skills.html">Skills</a>
+      <a href="experience.html">Experience</a>
+      <a href="education.html">Education</a>
+      <a href="certifications.html">Certifications</a>
+      <a href="projects.html">Projects</a>
+      <a href="blog.html">Blog</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<main class="page-shell">
+  <div class="page-container">
+    <section class="about-hero-grid">
+      <div class="about-hero-copy fade-in">
+        <div class="page-kicker">// whoami</div>
+        <h1>About Me</h1>
+        <p class="about-lead">Hi, I’m Dan. I’m 30 and currently work at <strong>Caseware UK</strong> as a First Line Software Support Technician — a company I’ve genuinely enjoyed being part of.</p>
+        <p class="about-lead">My day-to-day work sits somewhere between technical investigation, SaaS support and client guidance: triaging issues, finding root causes, explaining fixes clearly, managing cases through to resolution and helping accounting professionals and firm administrators get the most out of Caseware’s software.</p>
+      </div>
+
+      <figure class="about-photo-card fade-in">
+        <div class="about-photo-header">
+          <span class="terminal-dot dot-red"></span>
+          <span class="terminal-dot dot-yellow"></span>
+          <span class="terminal-dot dot-green"></span>
+          <span class="about-photo-title">dan_ridout.jpg</span>
+        </div>
+        <div class="about-photo-wrap">
+          <img src="src/assets/dan-ridout-profile.jpg" alt="Dan Ridout" onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
+          <div class="photo-fallback" hidden>profile image pending<br><span>// src/assets/dan-ridout-profile.jpg</span></div>
+        </div>
+        <figcaption class="about-photo-caption">user: dan // status: learning</figcaption>
+      </figure>
+    </section>
+
+    <div class="cd-terminal about-terminal fade-in">
+      <div class="cd-terminal-header">
+        <span class="cd-dot red"></span><span class="cd-dot yellow"></span><span class="cd-dot green"></span>
+      </div>
+      <div class="cd-terminal-body">
+        <p><span class="prompt">$</span> <span class="cd-command">cd /about</span></p>
+        <p><span class="terminal-label"># career_change:</span> <span class="cd-joke">directory exists. Surprisingly, no dependency errors.</span></p>
+        <p><span class="prompt">$</span> <span class="cd-command">whoami</span></p>
+        <p class="terminal-value">Dan Ridout // Technical Support → Security Operations</p>
+        <p><span class="prompt">$</span> <span class="cd-command">echo $CURRENTLY_LEARNING</span></p>
+        <p class="terminal-value">Microsoft SC-900 | Google Cybersecurity Professional Certificate | TryHackMe SEC1 | SAL1</p>
+      </div>
+    </div>
+
+    <section class="about-stats-strip fade-in" aria-label="Career highlights">
+      <div class="about-stat"><strong>1500+</strong><span>devices diagnosed and repaired</span></div>
+      <div class="about-stat"><strong>12+ yrs</strong><span>customer-facing experience</span></div>
+      <div class="about-stat"><strong>5 yrs</strong><span>commercial operations leadership</span></div>
+      <div class="about-stat"><strong>1st Line</strong><span>public technical KB author</span></div>
+    </section>
+
+    <section class="about-section">
+      <div class="about-section-heading fade-in">
+        <div class="shell-heading"># Where I am now</div>
+        <p>Software support gave me a place to combine technical problem-solving with the communication skills I built in customer service and management.</p>
+      </div>
+
+      <article class="current-role-card fade-in">
+        <h3>First Line Software Support Technician — Caseware UK</h3>
+        <div class="role-meta">Apr 2025 — Present // Maidstone, Kent</div>
+        <p>I support Caseware UK clients across Working Papers, Cloud Financials and UK/ROI audit products. That can mean software installations and Cloud integration one minute, then permissions, licence allocation, trial-balance import errors, formatting problems or custom-content tagging the next. I also coach clients through workflows, own and triage cases, escalate where needed, and contribute to customer self-service documentation.</p>
+        <div class="role-details">
+          <div class="role-detail">First point of contact across live support channels and self-service cases</div>
+          <div class="role-detail">Root-cause troubleshooting across SaaS and desktop accounting software</div>
+          <div class="role-detail">Client onboarding, coaching, permissions and workflow guidance</div>
+          <div class="role-detail">Knowledge-base content used by clients and Caseware’s FIN AI assistant</div>
+        </div>
+        <p class="learning-line"><strong>Next objective:</strong> I’m deliberately developing toward a Security Operations role through Microsoft SC-900, Coursera’s Google Cybersecurity Professional Certificate, and TryHackMe’s SEC1 and SAL1 learning paths. <a class="inline-link" href="https://builtinlondon.uk/job/customer-support-uk/4048053" target="_blank" rel="noopener">Original Caseware role description ↗</a></p>
+      </article>
+    </section>
+
+    <section class="about-section">
+      <div class="about-section-heading fade-in">
+        <div class="shell-heading"># The road here</div>
+        <p>I didn’t arrive in tech through one straight path. Repair, retail and operations all ended up teaching skills I now use every day.</p>
+      </div>
+
+      <div class="journey-grid">
+        <article class="journey-card fade-in">
+          <h3>Mobile Street</h3>
+          <div class="journey-date">2018 — 2021 // Store Manager & Lead Technical Specialist</div>
+          <p>This is where the hands-on troubleshooting really took off. I diagnosed and repaired desktops, laptops and mobile devices, including board-level micro-soldering, IC replacement, trace repair, POST/boot faults and devices other repair shops had written off. More than 1,500 units later, the diagnostic loop was pretty well baked into how I think.</p>
+        </article>
+
+        <article class="journey-card fade-in">
+          <h3>Cash Converters</h3>
+          <div class="journey-date">2021 — 2023 & 2024 — 2025 // Store Manager</div>
+          <p>I moved further into leadership and commercial responsibility: branch P&amp;L, high-value stock control, electronics testing and authentication, fraud prevention, staff development, customer escalations and improving store reputation. It taught me how to make decisions when the information is incomplete and the pressure is very real.</p>
+        </article>
+
+        <article class="journey-card fade-in">
+          <h3>Kwik Fit</h3>
+          <div class="journey-date">2023 — 2024 // Trainee Centre Manager</div>
+          <p>I managed daily workshop resources for an 11-person team, balanced diary capacity, B2B fleet work, quotations, stock and operational workflows — while still being willing to get involved on the workshop floor. Different industry, same fundamentals: diagnose, prioritise, communicate, execute.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="about-section">
+      <div class="about-section-heading fade-in">
+        <div class="shell-heading"># Why Security?</div>
+      </div>
+
+      <article class="why-security-card fade-in">
+        <p>My interest in cybersecurity started years before I thought about it as a career. Online gaming gave me the first nudge: I got hit by a DDoS attack and, naturally, “my internet stopped working” wasn’t a satisfying enough answer.</p>
+        <p>I wanted to know <em>what</em> had happened, <em>how</em> someone had done it and what I could do to prevent it. That rabbit hole led me into networking, how denial-of-service attacks work, malware, MAC address spoofing and other attack techniques. I learned enough to understand how things could be done — and also that doing them back would be both childish and, rather importantly, illegal.</p>
+        <p>Retail became my career for a long time, so I never developed that interest as far as I wanted to. But the mindset never really disappeared. Hardware repair and technical support kept reinforcing the exact same habit: don’t stop at the symptom; understand the cause.</p>
+        <div class="root-cause-loop">Why did I get kicked offline? → How did it happen? → How do I prevent it? → Can I reproduce the behaviour safely? → What else is happening under the hood?</div>
+        <p>Cybersecurity feels like picking that curiosity back up properly — but this time with years of troubleshooting, communication and professional experience behind it.</p>
+      </article>
+    </section>
+
+    <section class="about-section">
+      <div class="about-section-heading fade-in">
+        <div class="shell-heading"># What I bring</div>
+        <p>I’m entering security as a learner, but I’m not entering the workplace as one.</p>
+      </div>
+
+      <div class="bring-grid">
+        <article class="bring-card fade-in">
+          <span class="bring-command">$ ./diagnose --root-cause</span>
+          <h3>Technical diagnosis</h3>
+          <p>Electronics repair — especially micro-soldering — is root-cause analysis in physical form. Find the symptom, isolate the failing component, test the theory, make the repair, retest, and go again if the evidence says you were wrong. That same discipline carries directly into software troubleshooting and security investigation.</p>
+        </article>
+
+        <article class="bring-card fade-in">
+          <span class="bring-command">$ ./communicate --human</span>
+          <h3>Communication</h3>
+          <p>I have more than 12 years of customer-facing experience across support, retail and management, and communication has repeatedly been highlighted by my managers as one of my strongest traits. I’m comfortable de-escalating pressure, asking the right questions and translating technical problems into language that actually helps the person on the other end.</p>
+          <p class="about-note">Google review examples can slot in here once you send me the links.</p>
+        </article>
+
+        <article class="bring-card fade-in">
+          <span class="bring-command">$ cat knowledge_base.md</span>
+          <h3>Documentation</h3>
+          <p>At Caseware I became the only first-line colleague authorised to produce public-facing technical knowledge-base articles. Those guides help clients self-serve and also contribute to Caseware’s FIN AI support knowledge.</p>
+          <div class="docs-list">
+            <a class="doc-link" href="https://my.caseware.com/s/article/Context-llp-partner-active-period-does-not--reference-a-valid-explicit-dimension?language=en_US" target="_blank" rel="noopener">Context: LLP partner active period / explicit dimension</a>
+            <a class="doc-link" href="https://my.caseware.com/s/article/On-Saving-script-failed-Error-message?language=en_US" target="_blank" rel="noopener">“On Saving script failed” error message</a>
+            <a class="doc-link" href="https://my.caseware.com/s/article/How-to-manually-tag-custom-content-in-Cloud-Engagements?language=en_US" target="_blank" rel="noopener">Manually tag custom content in Cloud Engagements</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <div class="page-actions">
+      <a class="btn btn-primary" href="skills.html">cd /skills →</a>
+      <a class="btn btn-secondary" href="index.html">cd /home</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">Exoyb // About</footer>
+<script src="src/js/main.js?v=20260909-4"></script>
+</body>
+</html>
