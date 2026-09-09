@@ -16,6 +16,13 @@ document.addEventListener('DOMContentLoaded', () => {
         bootScreen.addEventListener('click', hideBoot, { once: true });
     }
 
+    // Keep the top navigation consistent with the terminal/directory theme.
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        const href = link.getAttribute('href') || '';
+        const page = href.split('/').pop().replace('.html', '').replace(/^#/, '');
+        if (page) link.textContent = `>/${page.toLowerCase()}`;
+    });
+
     document.querySelectorAll('a[href^="#"]').forEach(link => {
         link.addEventListener('click', (e) => {
             const href = link.getAttribute('href');
