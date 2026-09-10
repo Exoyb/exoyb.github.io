@@ -21,6 +21,22 @@
   <meta name="twitter:description" content="Hands-on cybersecurity projects, training, learning logs and professional feedback.">
   <meta name="twitter:image" content="https://exoyb.github.io/src/assets/images/dan-ridout-profile.png">
 
+  <!-- Critical first-paint state: the machine is physically OFF before JS initialises. -->
+  <style>
+    html, body { background: #050505; }
+    #bootScreen {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #050505 !important;
+      color: #454b48 !important;
+    }
+    #bootScreen .boot-content { visibility: hidden; }
+  </style>
+
   <link rel="stylesheet" href="src/css/main.css?v=20260910-6">
   <link rel="stylesheet" href="src/css/animations.css?v=20260910-6">
   <link rel="stylesheet" href="src/css/pages.css?v=20260910-6">
@@ -104,7 +120,7 @@
   <script src="src/js/ssh-typing-audio.js?v=20260910-1"></script>
   <script src="src/js/crt-power.js?v=20260910-1"></script>
   <script src="src/js/boot-ssh.js?v=20260910-7"></script>
-  <script src="src/js/power-lighting.js?v=20260910-1"></script>
+  <script src="src/js/power-lighting.js?v=20260910-2"></script>
   <script src="src/js/boot-guard.js?v=20260910-1"></script>
   <script src="src/js/pointer-glow.js?v=20260910-1"></script>
   <script src="src/js/main.js?v=20260910-10"></script>
