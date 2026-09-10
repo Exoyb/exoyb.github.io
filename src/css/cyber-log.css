@@ -1,0 +1,473 @@
+/* Cyber Log — scan-first activity feed */
+
+.cyber-log-page {
+  display: grid;
+  gap: 2.55rem;
+}
+
+.cyber-log-hero {
+  display: grid;
+  gap: 1rem;
+}
+
+.cyber-log-hero h1 {
+  margin-bottom: .2rem;
+}
+
+.log-summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.75rem;
+  margin-top: .65rem;
+  padding-top: 1rem;
+  border-top: 1px solid #262626;
+}
+
+.log-stat {
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
+}
+
+.log-stat strong {
+  color: #00FF8C;
+  font-size: 1.22rem;
+}
+
+.log-stat span {
+  color: #858585;
+  font-size: .9rem;
+}
+
+.log-terminal {
+  margin: 0;
+}
+
+.log-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .95rem 0;
+  border-top: 1px solid #262626;
+  border-bottom: 1px solid #262626;
+}
+
+.filter-heading {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  flex: 0 0 auto;
+}
+
+.filter-heading > span:first-child {
+  color: #00FF8C;
+  font-size: .96rem;
+}
+
+.filter-hint {
+  color: #6d6d6d;
+  font-size: .82rem;
+}
+
+.log-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: .6rem;
+}
+
+.log-filter {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  color: #858585;
+  padding: .35rem .12rem;
+  font: inherit;
+  font-size: .86rem;
+  cursor: pointer;
+  transition: color .18s ease, text-shadow .18s ease;
+}
+
+.log-filter::before {
+  content: '#';
+  color: #00D9FF;
+}
+
+.log-filter[data-filter="all"]::before {
+  content: '*/';
+  color: #00FF8C;
+  margin-right: .2rem;
+}
+
+.log-filter:hover,
+.log-filter.active {
+  color: #f3f3f3;
+  text-shadow: 0 0 14px rgba(0,255,140,.3);
+}
+
+.log-stream {
+  position: relative;
+}
+
+#cyberLogEntries {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.log-entry[hidden] {
+  display: none;
+}
+
+.log-entry-card {
+  position: relative;
+  overflow: hidden;
+  padding: 1.7rem 1.85rem 1.45rem;
+  border: 1px solid #303030;
+  border-left: 4px solid rgba(0,255,140,.72);
+  border-radius: 12px;
+  background: rgba(17,17,17,.8);
+  box-shadow: 0 10px 34px rgba(0,0,0,.17);
+  transition: border-color .22s ease, transform .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+.log-entry-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at 12% 15%, rgba(0,255,140,.075), transparent 42%);
+  transition: opacity .22s ease;
+}
+
+.log-entry-card:hover,
+.log-entry-card:focus-within {
+  border-color: rgba(0,255,140,.88);
+  border-left-color: #00FF8C;
+  transform: translateY(-3px);
+  background: rgba(18,21,19,.9);
+  box-shadow:
+    0 14px 38px rgba(0,0,0,.25),
+    0 0 24px rgba(0,255,140,.14),
+    0 0 52px rgba(0,255,140,.07),
+    inset 0 0 22px rgba(0,255,140,.025);
+}
+
+.log-entry-card:hover::after,
+.log-entry-card:focus-within::after {
+  opacity: 1;
+}
+
+.log-entry-meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: .95rem;
+}
+
+.log-entry-meta-left {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .8rem;
+}
+
+.log-date {
+  color: #00D9FF;
+  font-size: .98rem;
+}
+
+.log-index {
+  color: #686868;
+  font-size: .82rem;
+}
+
+.log-entry-type {
+  color: #7b7b7b;
+  font-size: .76rem;
+  text-transform: uppercase;
+  letter-spacing: .075em;
+}
+
+.log-entry-title {
+  position: relative;
+  z-index: 1;
+  color: #00FF8C;
+  font-size: clamp(1.55rem, 2.4vw, 1.9rem);
+  line-height: 1.28;
+  margin: 0 0 .8rem;
+}
+
+.log-entry-title::before {
+  content: '# ';
+  color: #00D9FF;
+}
+
+.log-entry-summary {
+  position: relative;
+  z-index: 1;
+  max-width: 920px;
+  color: #c7c7c7;
+  line-height: 1.72;
+  font-size: 1.08rem;
+  margin: 0 0 1rem;
+}
+
+/* A subtle live-terminal cue without adding another permanent UI block. */
+.log-entry-summary::after {
+  content: '|';
+  display: inline-block;
+  margin-left: .28rem;
+  color: #00FF8C;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(0,255,140,.75);
+  animation: cyberLogCursorBlink .82s steps(1, end) infinite;
+}
+
+@keyframes cyberLogCursorBlink {
+  0%, 48% { opacity: 1; }
+  49%, 100% { opacity: 0; }
+}
+
+.log-tags {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin-bottom: 1.1rem;
+}
+
+.log-tag {
+  color: #00D9FF;
+  font-size: .84rem;
+}
+
+.log-tag::before {
+  content: '#';
+}
+
+.log-folds {
+  position: relative;
+  z-index: 1;
+  border-top: 1px solid #2c2c2c;
+}
+
+.log-fold {
+  border-bottom: 1px solid #292929;
+  transition: background .18s ease, border-color .18s ease;
+}
+
+.log-fold:last-child {
+  border-bottom: 0;
+}
+
+.log-fold:hover {
+  background: rgba(0,255,140,.025);
+  border-color: rgba(0,255,140,.18);
+}
+
+.log-fold summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  list-style: none;
+  cursor: pointer;
+  padding: .9rem .1rem;
+  color: #c7c7c7;
+  user-select: none;
+}
+
+.log-fold summary::-webkit-details-marker {
+  display: none;
+}
+
+.log-fold summary::after {
+  content: '+';
+  color: #00FF8C;
+  font-size: 1.2rem;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(0,255,140,.35);
+  transition: transform .18s ease, text-shadow .18s ease;
+}
+
+.log-fold:hover summary::after {
+  text-shadow: 0 0 14px rgba(0,255,140,.72);
+}
+
+.log-fold[open] summary::after {
+  content: '−';
+}
+
+.log-fold-label {
+  color: #dedede;
+  font-size: .98rem;
+}
+
+.log-fold-label::before {
+  display: inline-block;
+  width: 1.4rem;
+  color: #00D9FF;
+}
+
+.log-fold.learned .log-fold-label::before { content: '>'; }
+.log-fold.built .log-fold-label::before { content: '$'; }
+.log-fold.issue .log-fold-label::before { content: '!'; }
+.log-fold.next .log-fold-label::before { content: '→'; }
+
+.log-fold-count {
+  margin-left: auto;
+  color: #6f6f6f;
+  font-size: .79rem;
+}
+
+.log-fold-body {
+  padding: .1rem .1rem 1rem 1.45rem;
+  max-width: 900px;
+}
+
+.log-fold-body p,
+.log-fold-body li {
+  color: #a8a8a8;
+  line-height: 1.7;
+  font-size: .98rem;
+}
+
+.log-fold-body p {
+  margin: 0;
+}
+
+.log-fold-body ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.log-fold-body li + li {
+  margin-top: .4rem;
+}
+
+.log-fold.issue[open] summary {
+  color: #ededed;
+}
+
+.log-fold.issue[open] .log-fold-label::before {
+  color: #ffbd2e;
+}
+
+.log-links {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: .65rem;
+  margin-top: 1rem;
+}
+
+.log-link {
+  color: #00D9FF;
+  text-decoration: none;
+  font-size: .88rem;
+  border-bottom: 1px dashed rgba(0,217,255,.35);
+}
+
+.log-link:hover {
+  color: #00FF8C;
+  border-color: rgba(0,255,140,.45);
+  text-shadow: 0 0 10px rgba(0,255,140,.25);
+}
+
+.log-empty-state {
+  min-height: 240px;
+  padding: 2rem;
+  border: 1px dashed #303030;
+  border-radius: 10px;
+  background: rgba(14,14,14,.66);
+  display: grid;
+  place-items: center;
+  align-content: center;
+  text-align: center;
+  gap: .65rem;
+}
+
+.log-empty-state[hidden] {
+  display: none;
+}
+
+.empty-command {
+  color: #00D9FF;
+}
+
+.log-empty-state h2 {
+  color: #00FF8C;
+  margin: 0;
+}
+
+.log-empty-state p {
+  color: #888;
+  margin: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .log-entry-card,
+  .log-entry-card::after,
+  .log-entry-summary::after {
+    animation: none;
+    transition: none;
+  }
+
+  .log-entry-summary::after {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 800px) {
+  .log-controls {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .log-filters {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .cyber-log-page {
+    gap: 1.9rem;
+  }
+
+  .log-entry-card {
+    padding: 1.3rem 1.2rem 1.05rem;
+  }
+
+  .log-entry-meta {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .45rem;
+  }
+
+  .log-entry-title {
+    font-size: 1.42rem;
+  }
+
+  .log-entry-summary {
+    font-size: 1rem;
+  }
+
+  .log-summary {
+    gap: .95rem 1.25rem;
+  }
+
+  .log-fold summary {
+    padding: .82rem 0;
+  }
+
+  .log-fold-label {
+    font-size: .94rem;
+  }
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exoyb | Training & Certifications</title>
+  <meta name="description" content="Cybersecurity training and certification study by Dan Ridout, including Microsoft, Google and TryHackMe learning.">
+  <meta name="theme-color" content="#0d100f">
+  <link rel="icon" href="src/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="src/css/main.css?v=20260910-6">
+  <link rel="stylesheet" href="src/css/animations.css?v=20260910-6">
+  <link rel="stylesheet" href="src/css/pages.css?v=20260910-8">
+  <link rel="stylesheet" href="src/css/training.css?v=20260910-10">
+</head>
+<body>
+<nav>
+  <div class="nav-content">
+    <div class="logo"><a href="index.html">#!/bin/bash Exoyb.sh</a></div>
+    <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+    <div class="nav-links" id="navLinks">
+      <a href="about.html">About</a>
+      <a class="active" href="training.html">Training</a>
+      <a href="projects.html">Projects</a>
+      <a href="cyber-log.html">Cyber Log</a>
+      <a href="feedback.html">Feedback</a>
+    </div>
+  </div>
+</nav>
+
+<main class="page-shell">
+  <div class="page-container training-page">
+    <header class="page-hero fade-in training-hero">
+      <div class="page-kicker">// ./build-knowledge --security-only</div>
+      <h1>Training & Certifications</h1>
+      <p class="page-intro">The cybersecurity-focused learning I’m actively working through, the practical platforms I use, and completed credentials as I earn them. No unrelated school subjects or CV padding.</p>
+    </header>
+
+    <div class="cd-terminal fade-in training-terminal">
+      <div class="cd-terminal-header"><span class="cd-dot red"></span><span class="cd-dot yellow"></span><span class="cd-dot green"></span></div>
+      <div class="cd-terminal-body">
+        <p><span class="prompt">$</span> <span class="cd-command">cd /training/</span></p>
+        <p class="cd-output">Changed directory to: /training/</p>
+        <p><span class="prompt">$</span> <span class="cd-command">sudo apt install cybersecurity-career</span></p>
+        <p class="cd-joke">Resolving dependencies... apparently there are quite a few.</p>
+      </div>
+    </div>
+
+    <section class="training-section fade-in">
+      <div class="training-section-head">
+        <div class="page-kicker">// completed/</div>
+        <h2>Completed credentials</h2>
+        <p>Completed training and certificates with direct verification links where available.</p>
+      </div>
+
+      <article class="credential-card">
+        <div class="credential-visual" aria-hidden="true">
+          <span class="credential-icon">📜</span>
+          <span class="credential-visual-label">VERIFIED</span>
+        </div>
+        <div class="credential-content">
+          <div class="credential-card-top">
+            <span class="training-provider">TryHackMe</span>
+            <span class="status-pill">Completed</span>
+          </div>
+          <h3>Pre-Security</h3>
+          <p class="credential-description">Completed TryHackMe’s Pre-Security learning path, with direct certificate verification below.</p>
+          <span class="credential-id">Credential ID: THM-WPENDNVQ0I</span>
+          <a class="credential-link" href="https://tryhackme.com/certificate/THM-WPENDNVQ0I" target="_blank" rel="noopener noreferrer">$ verify certificate ↗</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="training-section fade-in">
+      <div class="training-section-head">
+        <div class="page-kicker">// tryhackme_profile/</div>
+        <h2>TryHackMe Profile</h2>
+        <p>My hands-on learning profile — badges, rooms, learning paths and practical security progress live here.</p>
+      </div>
+
+      <a class="training-platform-card" href="https://tryhackme.com/p/N4X13V" target="_blank" rel="noopener noreferrer">
+        <div class="training-platform-mark" aria-hidden="true">THM</div>
+        <div class="training-platform-copy">
+          <span class="training-platform-label">Profile // N4X13V</span>
+          <strong>TryHackMe</strong>
+          <span>View my badges, completed rooms, learning paths and current hands-on progress.</span>
+        </div>
+        <span class="training-platform-action">$ ls badges/ ↗</span>
+      </a>
+    </section>
+
+    <section class="training-section fade-in">
+      <div class="training-section-head">
+        <div class="page-kicker">// active_processes</div>
+        <h2>Currently working on</h2>
+        <p>Structured learning that is directly relevant to security fundamentals and an eventual SOC / Security Operations role.</p>
+      </div>
+
+      <div class="training-grid">
+        <article class="training-card">
+          <div class="training-card-top"><span class="training-provider">Microsoft</span><span class="status-pill">In progress</span></div>
+          <h3>SC-900</h3>
+          <p>Security, Compliance and Identity fundamentals across Microsoft’s cloud ecosystem.</p>
+          <div class="training-tags"><span>Security</span><span>Identity</span><span>Compliance</span></div>
+        </article>
+
+        <article class="training-card">
+          <div class="training-card-top"><span class="training-provider">Google · Coursera</span><span class="status-pill">In progress</span></div>
+          <h3>Google Cybersecurity Professional Certificate</h3>
+          <p>Foundational cybersecurity concepts, investigation workflows, security tooling and practical analyst skills.</p>
+          <div class="training-tags"><span>Analyst skills</span><span>Investigation</span><span>Foundations</span></div>
+        </article>
+
+        <article class="training-card">
+          <div class="training-card-top"><span class="training-provider">TryHackMe</span><span class="status-pill">Active</span></div>
+          <h3>SEC1</h3>
+          <p>Hands-on learning designed to build practical security knowledge through guided rooms and exercises.</p>
+          <div class="training-tags"><span>Hands-on</span><span>Labs</span><span>Security</span></div>
+        </article>
+
+        <article class="training-card">
+          <div class="training-card-top"><span class="training-provider">TryHackMe</span><span class="status-pill">Active</span></div>
+          <h3>SAL1</h3>
+          <p>Practical learning focused on developing the foundations needed for security analyst work.</p>
+          <div class="training-tags"><span>SOC</span><span>Analysis</span><span>Labs</span></div>
+        </article>
+      </div>
+    </section>
+
+    <div class="page-actions"><a class="btn btn-primary" href="projects.html">cd /projects/ →</a><a class="btn btn-secondary" href="index.html">cd /home/</a></div>
+  </div>
+</main>
+
+<footer class="site-footer">Exoyb // Training</footer>
+<script src="src/js/audio.js?v=20260910-2"></script>
+<script src="src/js/main.js?v=20260910-7"></script>
+</body>
+</html>

@@ -1,0 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@600;700&display=swap');
+
+.directory-shell {
+  overflow: hidden;
+  border: 1px solid rgba(0, 255, 140, .46);
+  border-radius: 12px;
+  background: rgba(12, 12, 13, .97);
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, .025) inset,
+    0 0 14px rgba(0, 255, 140, .13),
+    0 0 34px rgba(0, 255, 140, .045),
+    0 22px 70px rgba(0, 0, 0, .42);
+  text-align: left;
+}
+
+.home-hero {
+  min-height: 100vh;
+  align-items: flex-start;
+  padding-top: 5.25rem;
+  padding-bottom: 1.1rem;
+}
+
+.home-hero-content {
+  width: min(1320px, 96vw);
+  max-width: 1320px;
+}
+
+.home-hero-content .tag {
+  margin-bottom: 1.05rem;
+  font-size: .9rem;
+}
+
+.home-identity {
+  margin-bottom: 1.45rem;
+  text-align: center;
+}
+
+.home-hero-content h1 {
+  margin: 0;
+  font-family: 'Space Grotesk', Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: clamp(3.25rem, 6vw, 5.35rem);
+  font-weight: 700;
+  line-height: .92;
+  letter-spacing: -.06em;
+  text-transform: uppercase;
+}
+
+.home-alias {
+  margin-top: .65rem;
+  color: #7f8b84;
+  font-family: var(--font-mono);
+  font-size: clamp(.8rem, 1vw, .95rem);
+  font-weight: 600;
+  letter-spacing: .18em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.home-hero-content .directory-shell {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.directory-shell-header,
+.directory-shell-header.terminal-header {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: .55rem;
+  min-height: 48px;
+  margin: 0;
+  padding: .9rem 1.25rem;
+  background: #181819;
+  border-bottom: 1px solid #34363a;
+}
+
+.directory-shell-header .terminal-dot {
+  display: block;
+  flex: 0 0 13px;
+  width: 13px;
+  height: 13px;
+  margin: 0;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.directory-shell-title {
+  display: inline-block;
+  margin-left: .5rem;
+  color: #858585;
+  font-size: .9rem;
+  line-height: 1;
+}
+
+.directory-shell-body {
+  padding: 1.55rem 1.7rem 1.45rem;
+  background: rgba(10, 10, 11, .94);
+}
+
+.shell-line,
+.live-shell-prompt {
+  font-size: 1.12rem;
+}
+
+.shell-line {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0;
+  margin: 0;
+  line-height: 1.65;
+}
+
+.shell-user {
+  color: #d9ddd9;
+}
+
+.shell-user::first-letter {
+  color: inherit;
+}
+
+.shell-path {
+  color: #aeb4b1;
+}
+
+.shell-separator,
+.shell-prompt {
+  color: #b7b7b7;
+}
+
+.shell-command,
+.shell-target {
+  color: #f0f0f0;
+}
+
+.shell-output {
+  margin: .3rem 0 1.05rem;
+  color: #9c9c9c;
+  font-size: 1.05rem;
+}
+
+/* Six tracks lets five links sit as a balanced 3 + 2 layout. */
+.shell-directory-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: .85rem .95rem;
+  margin: 0 0 1.25rem;
+}
+
+.shell-directory-grid .directory-link {
+  grid-column: span 2;
+  min-width: 0;
+  min-height: 142px;
+  padding: 1.15rem 1.2rem;
+  border-color: #34363a;
+  background: rgba(18, 18, 19, .91);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .012);
+}
+
+.shell-directory-grid .directory-link:nth-child(4),
+.shell-directory-grid .directory-link:nth-child(5) {
+  grid-column: span 3;
+}
+
+.shell-directory-grid .directory-link:hover,
+.shell-directory-grid .directory-link:focus-visible {
+  border-color: rgba(0, 255, 140, .58);
+  background: rgba(20, 20, 21, .98);
+  box-shadow:
+    0 0 0 1px rgba(0, 255, 140, .04) inset,
+    0 0 13px rgba(0, 255, 140, .09),
+    0 8px 24px rgba(0, 0, 0, .26);
+}
+
+.shell-directory-grid .directory-command {
+  margin-bottom: .55rem;
+  color: var(--green);
+  font-size: 1.12rem;
+  font-weight: 600;
+}
+
+.shell-directory-grid .directory-description {
+  color: #a6a6a6;
+  font-size: .96rem;
+  line-height: 1.58;
+}
+
+.live-shell-prompt {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  width: 100%;
+  min-height: 2.35rem;
+  margin-top: .25rem;
+  padding-top: .95rem;
+  border-top: 1px dashed #333538;
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.live-shell-prompt::-webkit-scrollbar { display: none; }
+.live-shell-prompt > span { flex: 0 0 auto; }
+
+.live-shell-prompt .shell-user {
+  color: #d9ddd9;
+}
+
+.shell-cursor {
+  display: inline-block;
+  flex: 0 0 3px !important;
+  width: 3px !important;
+  height: 1.15em !important;
+  margin-left: 4px;
+  padding: 0;
+  background: var(--green) !important;
+  box-shadow: 0 0 9px rgba(0, 255, 140, .68);
+  opacity: 1;
+  animation: terminalBlink .82s steps(1,end) infinite !important;
+}
+
+.shell-hint {
+  margin: .55rem 0 0;
+  color: #707070;
+  font-size: .88rem;
+  line-height: 1.35;
+}
+
+@media (max-width: 1200px) {
+  .home-hero-content {
+    width: min(1160px, 96vw);
+  }
+
+  .shell-directory-grid .directory-link {
+    min-height: 132px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .shell-directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .shell-directory-grid .directory-link,
+  .shell-directory-grid .directory-link:nth-child(4),
+  .shell-directory-grid .directory-link:nth-child(5) { grid-column: span 1; }
+}
+
+@media (max-width: 900px) {
+  .home-hero { padding-top: 5.4rem; }
+}
+
+@media (max-width: 650px) {
+  .shell-directory-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .home-hero { padding-left: 1rem; padding-right: 1rem; }
+  .home-hero-content { width: 100%; }
+  .home-hero-content h1 { font-size: clamp(2.55rem, 12vw, 3.35rem); }
+  .home-alias { margin-top: .5rem; font-size: .76rem; letter-spacing: .15em; }
+  .home-identity { margin-bottom: 1.15rem; }
+  .home-hero-content .tag { font-size: .8rem; }
+  .directory-shell-body { padding: 1.15rem; }
+  .directory-shell-title { max-width: 55vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .shell-line,
+  .live-shell-prompt { font-size: 1rem; }
+  .shell-output { font-size: .95rem; }
+  .shell-directory-grid .directory-link { min-height: 0; padding: 1rem; }
+  .shell-directory-grid .directory-command { font-size: 1.04rem; }
+  .shell-directory-grid .directory-description { font-size: .9rem; }
+}

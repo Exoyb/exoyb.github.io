@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exoyb | About</title>
+  <link rel="icon" href="src/assets/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0d100f">
+  <link rel="stylesheet" href="src/css/main.css?v=20260910-6">
+  <link rel="stylesheet" href="src/css/animations.css?v=20260910-6">
+  <link rel="stylesheet" href="src/css/pages.css?v=20260910-8">
+  <link rel="stylesheet" href="src/css/about.css?v=20260910-7">
+</head>
+<body>
+<nav><div class="nav-content"><div class="logo"><a href="index.html">#!/bin/bash Exoyb.sh</a></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div><div class="nav-links" id="navLinks"><a class="active" href="about.html">About</a><a href="training.html">Training</a><a href="projects.html">Projects</a><a href="cyber-log.html">Cyber Log</a><a href="feedback.html">Feedback</a></div></div></nav>
+
+<main class="page-shell"><div class="page-container about-page-layout">
+  <header class="about-hero fade-in">
+    <div class="about-hero-copy">
+      <div class="page-kicker">// whoami</div>
+      <h1>About Me</h1>
+      <p class="page-intro">I’m Dan, 30, and I currently work for <a class="inline-link" href="https://www.caseware.com/" target="_blank" rel="noopener noreferrer">Caseware</a> as a Software Support Technician while developing my skills to break into Cybersecurity and Security Operations.</p>
+
+      <div class="about-stats">
+        <div class="about-stat"><span class="about-stat-value">1500+</span><span class="about-stat-label">devices repaired</span></div>
+        <div class="about-stat"><span class="about-stat-value">12+</span><span class="about-stat-label">years customer service</span></div>
+        <div class="about-stat"><span class="about-stat-value">5 yrs</span><span class="about-stat-label">commercial leadership</span></div>
+      </div>
+
+      <div class="about-mini-terminal cd-terminal">
+        <div class="about-mini-header cd-terminal-header"><span class="cd-dot red"></span><span class="cd-dot yellow"></span><span class="cd-dot green"></span><span class="about-mini-title">profile.sys</span></div>
+        <div class="about-mini-body cd-terminal-body">
+          <p><span class="prompt">$</span> <span class="cd-command">whoami</span></p>
+          <p class="cd-output">Dan Ridout // SaaS Support Technician // Future SOC Analyst</p>
+          <p><span class="prompt">$</span> <span class="cd-command">current_study --list</span></p>
+          <p class="cd-output">Microsoft SC-900 · Google Cybersecurity Professional Certificate · TryHackMe SEC1 · TryHackMe SAL1</p>
+        </div>
+      </div>
+    </div>
+
+    <aside class="about-photo-frame fade-in">
+      <div class="about-photo-header"><span class="cd-dot red"></span><span class="cd-dot yellow"></span><span class="cd-dot green"></span><span class="about-photo-title">dan_ridout.png</span></div>
+      <div class="about-photo-body">
+        <img class="about-photo" src="src/assets/images/dan-ridout-profile.png" alt="Portrait of Dan Ridout" onerror="this.closest('.about-photo-body').classList.add('photo-unavailable'); this.remove();">
+        <div class="photo-hud" aria-hidden="true">
+          <span class="hud-corner tl"></span><span class="hud-corner tr"></span><span class="hud-corner bl"></span><span class="hud-corner br"></span>
+          <span class="hud-label">SYS://PROFILE_01</span>
+          <div class="hud-meta"><span>USER: DAN_RIDOUT</span><span class="hud-status">MODE: LEARNING</span></div>
+        </div>
+        <div class="about-photo-fallback"><span class="fallback-command">$ locate dan_ridout.png</span><span class="fallback-text">Profile image slot ready.</span></div>
+      </div>
+      <div class="about-photo-caption">Maidstone, Kent // Curious by default // Calm under pressure</div>
+    </aside>
+  </header>
+
+  <section class="about-section fade-in">
+    <div class="section-head"><div class="page-kicker">// where am i now?</div><h2>Current role</h2></div>
+    <div class="story-panel current-role-panel">
+      <p>I currently work at Caseware in a first-line support role, helping customers across phone, email, chat and the self-service portal. A big part of my day is triaging incoming issues, reproducing problems, guiding users through fixes, maintaining case ownership, and escalating more complex cases when needed.</p>
+      <p>I support Working Papers, Cloud Financials and UK/ROI audit products, covering everything from installations, permissions and licence allocation to Trial Balance import errors, formatting issues and custom-content tagging. I also contribute to customer self-service by writing public-facing knowledge-base articles used by clients and Caseware’s FIN AI assistant.</p>
+    </div>
+  </section>
+
+  <section class="about-section about-two-column fade-in">
+    <article class="story-panel story-feature-card">
+      <div class="page-kicker">// how i got here</div>
+      <h2>From repair benches to support desks</h2>
+      <p class="story-intro">My route into tech wasn’t a straight line. Repair, retail and operations each sharpened a different part of how I work now.</p>
+      <div class="career-steps">
+        <div class="career-step"><span class="career-step-label">Mobile Street</span><p>Hands-on diagnosis across desktops, laptops and mobile devices, including board-level micro-soldering, IC replacement and trace repair.</p></div>
+        <div class="career-step"><span class="career-step-label">Cash Converters</span><p>Store leadership, electronics testing and authentication, fraud prevention, customer escalation and staff development.</p></div>
+        <div class="career-step"><span class="career-step-label">Kwik Fit</span><p>Managed workflow for an 11-person workshop, balancing customers, jobs, commercial accounts and site operations.</p></div>
+      </div>
+    </article>
+
+    <article class="story-panel story-feature-card">
+      <div class="page-kicker">// why security?</div>
+      <h2>Why Cybersecurity?</h2>
+      <p class="story-intro">The interest started with online gaming. After being knocked offline by DDoS attacks, “the internet broke” wasn’t a satisfying enough answer.</p>
+      <p>I wanted to understand what had happened, how it worked and how to stop it happening again. That curiosity led me into networking, malware, spoofing, software behaviour and attack techniques.</p>
+      <div class="root-cause-line">What happened? → How? → Why? → How do I prevent it? → What does the evidence say?</div>
+      <p>Years later, hardware repair and software support have reinforced the exact same habit: don’t stop at the symptom. Find the cause. Security Operations feels like the natural place to take that mindset next.</p>
+    </article>
+  </section>
+
+  <section class="about-section fade-in">
+    <div class="section-head"><div class="page-kicker">// what i bring</div><h2>What I bring</h2></div>
+    <div class="bring-grid">
+      <article class="bring-card"><h3>Technical diagnosis</h3><p>I’m comfortable getting hands-on with problems, whether that means software troubleshooting, fault isolation, hardware testing or board-level repair. My instinct is always to diagnose properly first, not guess and hope.</p></article>
+      <article class="bring-card"><h3>Communication</h3><p>After 12+ years in customer-facing roles, I’m confident explaining technical issues clearly to people with very different levels of understanding. Managers have consistently highlighted communication as one of my strongest traits.</p></article>
+      <article class="bring-card documentation-card"><h3>Documentation</h3><p>I’m the only first-line colleague selected to write public-facing technical documentation for Caseware customers and for the FIN AI knowledge base. Good documentation matters because it turns one solution into something repeatable and scalable.</p><div class="link-stack"><a class="inline-link" href="https://my.caseware.com/s/article/Context-llp-partner-active-period-does-not--reference-a-valid-explicit-dimension?language=en_US" target="_blank" rel="noopener noreferrer">LLP partner active period article</a><a class="inline-link" href="https://my.caseware.com/s/article/On-Saving-script-failed-Error-message?language=en_US" target="_blank" rel="noopener noreferrer">On Saving script failed article</a><a class="inline-link" href="https://my.caseware.com/s/article/How-to-manually-tag-custom-content-in-Cloud-Engagements?language=en_US" target="_blank" rel="noopener noreferrer">Manual tagging in Cloud Engagements</a></div></article>
+      <article class="bring-card"><h3>Leadership & composure</h3><p>I’ve managed stores, coached colleagues, handled escalations and kept operations moving under pressure. I bring a calm, practical mindset that helps in both customer support and technical investigation.</p></article>
+    </div>
+  </section>
+
+  <section class="about-section about-contact fade-in" id="contact">
+    <div class="section-head"><div class="page-kicker">// contact.txt</div><h2>Get in touch</h2></div>
+    <p class="contact-intro">For cybersecurity opportunities, technical support roles, portfolio feedback or professional networking.</p>
+    <div class="about-contact-grid">
+      <a class="contact-card" href="mailto:dan.ridout@icloud.com"><span class="contact-command">$ mail</span><strong>Email</strong><span>dan.ridout@icloud.com</span></a>
+      <a class="contact-card" href="https://github.com/Exoyb" target="_blank" rel="noopener noreferrer"><span class="contact-command">$ git remote -v</span><strong>GitHub</strong><span>github.com/Exoyb</span></a>
+      <a class="contact-card" href="https://www.linkedin.com/in/n4x13v/" target="_blank" rel="noopener noreferrer"><span class="contact-command">$ connect</span><strong>LinkedIn</strong><span>linkedin.com/in/n4x13v</span></a>
+    </div>
+  </section>
+
+  <div class="page-actions about-actions"><a class="btn btn-primary" href="training.html">cd /training/ →</a><a class="btn btn-secondary" href="index.html">cd /home/</a></div>
+</div></main>
+<footer class="site-footer">Exoyb // About</footer>
+<script src="src/js/audio.js?v=20260910-3"></script>
+<script src="src/js/main.js?v=20260910-10"></script>
+</body>
+</html>

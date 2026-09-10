@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exoyb | Projects</title>
+  <meta name="description" content="Hands-on projects by Dan Ridout, including this cybersecurity portfolio and future security labs, scripts and investigations.">
+  <meta name="theme-color" content="#0d100f">
+  <link rel="icon" href="src/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="src/css/main.css?v=20260910-6">
+  <link rel="stylesheet" href="src/css/animations.css?v=20260910-6">
+  <link rel="stylesheet" href="src/css/pages.css?v=20260910-8">
+  <link rel="stylesheet" href="src/css/projects.css?v=20260910-1">
+</head>
+<body>
+<nav><div class="nav-content"><div class="logo"><a href="index.html">#!/bin/bash Exoyb.sh</a></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div><div class="nav-links" id="navLinks"><a href="about.html">About</a><a href="training.html">Training</a><a class="active" href="projects.html">Projects</a><a href="cyber-log.html">Cyber Log</a><a href="feedback.html">Feedback</a></div></div></nav>
+
+<main class="page-shell"><div class="page-container projects-page">
+  <header class="page-hero projects-hero fade-in">
+    <div class="page-kicker">// ~/projects/</div>
+    <h1>Projects</h1>
+    <p class="page-intro">Things I’ve actually built, tested or investigated. This is where the portfolio proves capability rather than simply listing it.</p>
+  </header>
+
+  <div class="cd-terminal projects-terminal fade-in">
+    <div class="cd-terminal-header"><span class="cd-dot red"></span><span class="cd-dot yellow"></span><span class="cd-dot green"></span></div>
+    <div class="cd-terminal-body"><p><span class="prompt">$</span> <span class="cd-command">ls -lah ~/projects/</span></p><p class="cd-output">Scanning for finished work...</p><p class="cd-joke">unfinished-projects 1–6 have requested anonymity.</p></div>
+  </div>
+
+  <section class="project-showcase fade-in" aria-label="Project showcase">
+    <article class="project-card featured">
+      <div class="project-copy">
+        <div class="project-eyebrow"><span>project_001</span><span>// web / portfolio</span></div>
+        <h2>Exoyb Cybersecurity Portfolio</h2>
+        <p>My first GitHub project. I took a single-page HTML template, restructured it into a multi-page portfolio, removed irrelevant template content, built the terminal-style landing page, added shared navigation and interactions, and have been iterating on the visual system as I learn.</p>
+        <div class="project-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span><span>Git</span></div>
+      </div>
+      <span class="project-status active">ACTIVE</span>
+      <div class="project-actions"><a class="project-link" href="https://github.com/Exoyb/exoyb.github.io" target="_blank" rel="noopener noreferrer">view source ↗</a><a class="project-link" href="index.html">launch project →</a><a class="project-link" href="cyber-log.html">development log →</a></div>
+    </article>
+
+    <article class="project-card">
+      <div class="project-copy">
+        <div class="project-eyebrow"><span>project_002</span><span>// security labs</span></div>
+        <h2>Security Labs</h2>
+        <p>Reserved for practical TryHackMe work, investigations and blue-team exercises where I can show the problem, evidence, process and outcome rather than just saying I completed a room.</p>
+        <div class="project-stack"><span>Investigation</span><span>Blue Team</span><span>TryHackMe</span></div>
+      </div>
+      <span class="project-status">NEXT UP</span>
+    </article>
+
+    <article class="project-card">
+      <div class="project-copy">
+        <div class="project-eyebrow"><span>project_003</span><span>// scripts</span></div>
+        <h2>Scripts & Automation</h2>
+        <p>A home for small Bash, PowerShell or Python utilities once I have something useful enough to explain, demonstrate and publish properly.</p>
+        <div class="project-stack"><span>Bash</span><span>PowerShell</span><span>Python</span></div>
+      </div>
+      <span class="project-status">QUEUED</span>
+    </article>
+  </section>
+
+  <section class="section-block fade-in">
+    <div class="page-kicker">// project_format</div>
+    <h2>How I document projects</h2>
+    <div class="project-method">
+      <div class="detail-item"><h3>01 // Problem</h3><p>What was I trying to build, investigate, detect, automate or understand?</p></div>
+      <div class="detail-item"><h3>02 // Process</h3><p>Tools, commands, screenshots, evidence and decisions — enough to show how I approached it.</p></div>
+      <div class="detail-item"><h3>03 // Outcome</h3><p>What worked, what broke, what I learned and what I’d change next time.</p></div>
+    </div>
+  </section>
+
+  <div class="page-actions"><a class="btn btn-primary" href="cyber-log.html">cd /cyber-log/ →</a><a class="btn btn-secondary" href="index.html">cd /home/</a></div>
+</div></main>
+<footer class="site-footer">Exoyb // Projects</footer>
+<script src="src/js/audio.js?v=20260910-2"></script>
+<script src="src/js/main.js?v=20260910-7"></script>
+</body>
+</html>

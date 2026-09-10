@@ -1,0 +1,120 @@
+/* Optional Easter egg clue — intentionally subtle until inspected. */
+.cipher-transmission {
+  position: relative;
+  overflow: hidden;
+  padding: 1.05rem 1.15rem;
+  border: 1px solid rgba(0,255,140,.18);
+  border-radius: 9px;
+  background: rgba(12,13,13,.72);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.012);
+  cursor: crosshair;
+  transition: border-color .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+.cipher-transmission::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, rgba(0,255,140,.035), transparent);
+  transform: translateX(-100%);
+  transition: transform .7s ease;
+}
+
+.cipher-transmission:hover,
+.cipher-transmission:focus-visible,
+.cipher-transmission.decrypted {
+  border-color: rgba(0,255,140,.55);
+  background: rgba(12,15,14,.88);
+  box-shadow: 0 0 18px rgba(0,255,140,.07), inset 0 0 18px rgba(0,255,140,.018);
+}
+
+.cipher-transmission:hover::before,
+.cipher-transmission:focus-visible::before,
+.cipher-transmission.decrypted::before {
+  transform: translateX(100%);
+}
+
+.cipher-meta {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: .55rem;
+  color: #626863;
+  font-size: .72rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+.cipher-line {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  min-height: 1.6rem;
+  color: #7b847e;
+  font-size: clamp(.8rem, 1.5vw, .94rem);
+  line-height: 1.5;
+  white-space: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.cipher-line::-webkit-scrollbar { display: none; }
+
+.cipher-prefix {
+  flex: 0 0 auto;
+  color: #00d9ff;
+  font-weight: 600;
+}
+
+.cipher-payload {
+  color: #7f8983;
+  letter-spacing: .045em;
+  transition: color .18s ease, text-shadow .18s ease;
+}
+
+.cipher-transmission.decrypted .cipher-payload {
+  color: #00ff8c;
+  text-shadow: 0 0 10px rgba(0,255,140,.24);
+}
+
+.cipher-cursor {
+  display: inline-block;
+  flex: 0 0 2px;
+  width: 2px;
+  height: 1em;
+  background: #00ff8c;
+  opacity: .65;
+  animation: terminalBlink .82s steps(1,end) infinite;
+}
+
+.cipher-hint {
+  position: relative;
+  z-index: 1;
+  margin: .45rem 0 0;
+  color: #505450;
+  font-size: .72rem;
+}
+
+.cipher-transmission.decrypted .cipher-hint {
+  color: #6f7872;
+}
+
+@media (max-width: 560px) {
+  .cipher-meta { flex-direction: column; gap: .15rem; }
+  .cipher-line { font-size: .78rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cipher-transmission,
+  .cipher-transmission::before,
+  .cipher-payload,
+  .cipher-cursor {
+    transition: none;
+    animation: none;
+  }
+}
