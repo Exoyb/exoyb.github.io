@@ -24,6 +24,16 @@
   border-left: 3px solid rgba(0,255,140,.58);
   border-radius: 10px;
   background: var(--surface);
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background .22s ease;
+}
+
+.project-card:hover,
+.project-card:focus-within {
+  transform: translateY(-3px);
+  border-color: rgba(0,255,140,.82);
+  border-left-color: var(--green);
+  background: rgba(17,22,19,.94);
+  box-shadow: 0 14px 38px rgba(0,0,0,.26), 0 0 24px rgba(0,255,140,.14), 0 0 54px rgba(0,255,140,.06);
 }
 
 .project-card::after {
