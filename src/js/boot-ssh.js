@@ -178,7 +178,7 @@
         const typeHuman = async (element, value) => {
             for (const character of value) {
                 element.textContent += character;
-                let delay = 82 + Math.random() * 82;
+                let delay = 95 + Math.random() * 55;
                 if (character === ' ') delay += 95;
                 if (character === '@') delay += 70;
                 await sleep(delay);
