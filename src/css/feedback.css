@@ -122,20 +122,50 @@
 }
 
 .csat-table-shell {
+  position: relative;
   overflow: hidden;
   border: 1px solid rgba(0,255,140,.34);
   border-radius: 10px;
-  background: var(--surface);
+  background: #070a08;
+  box-shadow: 0 16px 40px rgba(0,0,0,.28), inset 0 0 28px rgba(0,255,140,.018);
 }
 
 .csat-table-bar {
+  position: relative;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 1rem;
-  padding: .8rem 1rem;
-  border-bottom: 1px solid var(--line-soft);
+  min-height: 42px;
+  padding: .65rem 1rem .65rem 5.2rem;
+  border-bottom: 1px solid rgba(0,255,140,.22);
+  background: linear-gradient(180deg, #171b18, #101310);
   color: var(--cyan);
   font-size: .78rem;
+  box-shadow: inset 0 -1px rgba(255,255,255,.025);
+}
+
+.csat-table-bar::before {
+  content: '';
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #ff5f57;
+  transform: translateY(-50%);
+  box-shadow: 19px 0 #febc2e, 38px 0 #28c840;
+}
+
+.csat-table-bar span:first-child {
+  color: #c7d0ca;
+  font-weight: 600;
+}
+
+.csat-table-bar span:first-child::before {
+  content: 'exoyb@portfolio:~/caseware$ ';
+  color: var(--green);
 }
 
 .csat-table-bar span:last-child { color: #727c75; }
@@ -143,8 +173,25 @@
 .csat-scroll {
   max-height: 520px;
   overflow: auto;
+  background:
+    linear-gradient(rgba(0,255,140,.012) 1px, transparent 1px) 0 0 / 100% 24px,
+    #080b09;
   scrollbar-width: thin;
   scrollbar-color: var(--green) #0b0e0c;
+  overscroll-behavior: contain;
+}
+
+.csat-scroll::-webkit-scrollbar { width: 10px; height: 10px; }
+.csat-scroll::-webkit-scrollbar-track { background: #0b0e0c; }
+.csat-scroll::-webkit-scrollbar-thumb {
+  background: rgba(0,255,140,.48);
+  border: 2px solid #0b0e0c;
+  border-radius: 8px;
+}
+
+.csat-scroll:focus {
+  outline: 1px solid rgba(0,255,140,.55);
+  outline-offset: -1px;
 }
 
 .csat-table {
@@ -158,7 +205,7 @@
   padding: .9rem 1rem;
   text-align: left;
   vertical-align: top;
-  border-bottom: 1px solid var(--line-soft);
+  border-bottom: 1px solid rgba(0,255,140,.10);
 }
 
 .csat-table th {
@@ -166,10 +213,11 @@
   top: 0;
   z-index: 2;
   color: var(--green);
-  background: #0d100f;
+  background: rgba(10,14,11,.97);
   font-size: .76rem;
   text-transform: uppercase;
   letter-spacing: .08em;
+  box-shadow: 0 1px rgba(0,255,140,.18);
 }
 
 .csat-table th:nth-child(1),
@@ -183,17 +231,32 @@
   font-size: .88rem;
 }
 
-.csat-table td:nth-child(1) { color: var(--cyan); white-space: nowrap; }
+.csat-table td:nth-child(1) {
+  color: var(--cyan);
+  white-space: nowrap;
+}
+
+.csat-table td:nth-child(1)::before {
+  content: '> ';
+  color: var(--green);
+}
+
 .csat-table td:nth-child(2) { color: #ffd84d; white-space: nowrap; font-weight: 700; }
-.csat-table tbody tr:hover { background: rgba(0,255,140,.035); }
+.csat-table tbody tr:hover { background: rgba(0,255,140,.045); }
 .csat-table tbody tr:last-child td { border-bottom: 0; }
 
 .csat-evidence-note {
   padding: .9rem 1rem;
   color: #89938c;
-  border-top: 1px solid var(--line-soft);
+  border-top: 1px solid rgba(0,255,140,.16);
+  background: #0d100e;
   font-size: .78rem;
   line-height: 1.6;
+}
+
+.csat-evidence-note::before {
+  content: 'exoyb@portfolio:~/caseware$ '; 
+  color: var(--green);
 }
 
 .review-grid {
@@ -328,5 +391,10 @@
   }
 
   .csat-table { min-width: 720px; }
-  .csat-table-bar { flex-direction: column; gap: .25rem; }
+  .csat-table-bar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: .25rem;
+    padding-left: 5.2rem;
+  }
 }
