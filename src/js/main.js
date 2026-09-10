@@ -152,11 +152,30 @@
 
     const setupRevealMotion = () => {
         if (reducedMotion || !('IntersectionObserver' in window)) return;
+
+        const staggerGroups = [
+            '.shell-directory-grid', '.about-stats', '.career-steps', '.bring-grid',
+            '.about-contact-grid', '.training-grid', '.project-showcase', '.project-method',
+            '.manager-grid', '.review-grid', '.review-gallery'
+        ];
+
+        staggerGroups.forEach(selector => {
+            document.querySelectorAll(selector).forEach(group => {
+                [...group.children].forEach((child, index) => {
+                    child.classList.add('fade-in');
+                    child.dataset.revealIndex = String(index);
+                });
+            });
+        });
+
         document.body.classList.add('motion-enabled');
         const elements = [...document.querySelectorAll('.fade-in')];
+
         elements.forEach((element, index) => {
             element.classList.add('reveal-pending');
-            element.style.setProperty('--reveal-delay', `${Math.min(index % 4, 3) * 70}ms`);
+            const localIndex = Number(element.dataset.revealIndex);
+            const staggerIndex = Number.isFinite(localIndex) ? localIndex : index % 4;
+            element.style.setProperty('--reveal-delay', `${Math.min(staggerIndex, 5) * 65}ms`);
         });
 
         const observer = new IntersectionObserver(entries => {
