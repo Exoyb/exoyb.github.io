@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="src/css/main.css?v=20260910-6">
   <link rel="stylesheet" href="src/css/animations.css?v=20260910-6">
   <link rel="stylesheet" href="src/css/pages.css?v=20260910-8">
-  <link rel="stylesheet" href="src/css/feedback.css?v=20260910-7">
+  <link rel="stylesheet" href="src/css/feedback.css?v=20260910-9">
 </head>
 <body>
 <nav>
@@ -27,11 +27,11 @@
   <header class="feedback-hero fade-in">
     <div class="page-kicker">// grep -Ri "Dan" ./feedback/</div>
     <h1>Feedback & Reviews</h1>
-    <p class="page-intro">Technical ability matters, but so does how you work with people. These are real examples of feedback I’ve received from customers, managers and colleagues across support, retail and operations.</p>
+    <p class="page-intro">Technical ability matters, but so does how you work with people. This page brings together real feedback from SaaS support, retail management and earlier operations roles without making you read everything at once.</p>
 
     <div class="feedback-summary">
-      <div class="feedback-stat"><strong>10+</strong><span>named 5-star customer reviews</span></div>
       <div class="feedback-stat"><strong>4.90/5</strong><span>Caseware CSAT across 29 responses</span></div>
+      <div class="feedback-stat"><strong>10+</strong><span>named 5-star public reviews</span></div>
       <div class="feedback-stat"><strong>2026</strong><span>latest formal manager assessment</span></div>
     </div>
   </header>
@@ -39,112 +39,160 @@
   <div class="cd-terminal feedback-terminal fade-in">
     <div class="cd-terminal-header"><span class="cd-dot red"></span><span class="cd-dot yellow"></span><span class="cd-dot green"></span></div>
     <div class="cd-terminal-body">
-      <p><span class="prompt">$</span> <span class="cd-command">cd /feedback/</span></p>
-      <p class="cd-output">Changed directory to: /feedback/</p>
-      <p><span class="prompt">$</span> <span class="cd-command">grep -Ri "helpful\|professional\|customer service" .</span></p>
-      <p class="cd-joke">Multiple matches found. Ego inflation contained within acceptable limits.</p>
+      <p><span class="prompt">$</span> <span class="cd-command">ls ./feedback/</span></p>
+      <p class="cd-output">caseware/ &nbsp; cash-converters/ &nbsp; kwik-fit/</p>
+      <p><span class="prompt">$</span> <span class="cd-command">echo "select a source to inspect"</span></p>
+      <p class="cd-joke">select a source to inspect</p>
     </div>
   </div>
 
-  <section class="feedback-section fade-in">
-    <div class="feedback-section-head">
-      <div class="page-kicker">// caseware/professional_feedback.log</div>
-      <h2>Caseware feedback</h2>
-      <p>Formal manager feedback and client CSAT from my current SaaS support role at Caseware. The client comments below come from monthly internal CSAT summaries circulated by my 1st Line Support Team Leader.</p>
+  <section class="feedback-browser fade-in" aria-label="Feedback sources">
+    <div class="feedback-browser-head">
+      <div class="page-kicker">// feedback/index</div>
+      <h2>Choose a feedback source</h2>
+      <p>Each section expands independently, so employers can jump straight to the evidence most relevant to them.</p>
     </div>
 
-    <article class="manager-feature">
-      <div class="manager-meta">Manager Assessment // 16 Jul 2026 // Tom Dawber</div>
-      <blockquote>One of Dan’s greatest strengths is the level of customer service he delivers. He approaches customer interactions thoughtfully and professionally, taking the time to ensure clients receive the right support while maintaining an excellent standard of call quality throughout the year.</blockquote>
-    </article>
+    <details class="feedback-accordion employer-caseware">
+      <summary>
+        <span class="accordion-icon" aria-hidden="true"></span>
+        <span class="accordion-title-wrap">
+          <span class="accordion-title">Caseware</span>
+          <span class="accordion-subtitle">SaaS Support · Manager assessment · Client CSAT</span>
+        </span>
+        <span class="accordion-metric">4.90 / 5</span>
+      </summary>
+      <div class="accordion-content">
+        <div class="feedback-section-head compact-head">
+          <div class="page-kicker">// caseware/professional_feedback.log</div>
+          <h2>Caseware feedback</h2>
+          <p>Formal manager feedback and client CSAT from my current SaaS support role. Client comments are taken from monthly internal CSAT summaries circulated by the 1st Line Support Team Leader.</p>
+        </div>
 
-    <div class="manager-grid">
-      <article class="manager-card"><span class="manager-command">$ cat growth_mindset.log</span><h3>Growth & development</h3><p>Dan has steadily built his confidence and product knowledge, is open to feedback, actively looks for opportunities to learn, and has become a dependable and valued member of the team.</p></article>
-      <article class="manager-card"><span class="manager-command">$ cat teamwork.log</span><h3>Supporting colleagues</h3><p>He regularly supports colleagues by volunteering to assist with customer calls and helping others work through more complex cases, not only resolving the issue but helping colleagues understand the solution for the future.</p></article>
-      <article class="manager-card"><span class="manager-command">$ cat core_values.log</span><h3>Trust & collaboration</h3><p>Customers and colleagues can rely on Dan to approach situations professionally, follow through on commitments, share knowledge constructively and bring balanced thinking and clarity to discussions.</p></article>
-    </div>
+        <article class="manager-feature">
+          <div class="manager-meta">Manager Assessment // 16 Jul 2026 // Tom Dawber</div>
+          <blockquote>One of Dan’s greatest strengths is the level of customer service he delivers. He approaches customer interactions thoughtfully and professionally, taking the time to ensure clients receive the right support while maintaining an excellent standard of call quality throughout the year.</blockquote>
+        </article>
 
-    <div class="feedback-section-head" style="margin-top:2.5rem;">
-      <div class="page-kicker">// caseware/client_csat.log</div>
-      <h3>Caseware client CSAT</h3>
-      <p><strong>4.90 / 5 average CSAT</strong> across 29 responses from six monthly summaries, including 26 five-star scores. Scroll through the full evidence log below rather than just a few selected highlights.</p>
-    </div>
+        <div class="manager-grid">
+          <article class="manager-card"><span class="manager-command">$ cat growth_mindset.log</span><h3>Growth & development</h3><p>Dan has steadily built his confidence and product knowledge, is open to feedback, actively looks for opportunities to learn, and has become a dependable and valued member of the team.</p></article>
+          <article class="manager-card"><span class="manager-command">$ cat teamwork.log</span><h3>Supporting colleagues</h3><p>He regularly supports colleagues by volunteering to assist with customer calls and helping others work through more complex cases, not only resolving the issue but helping colleagues understand the solution for the future.</p></article>
+          <article class="manager-card"><span class="manager-command">$ cat core_values.log</span><h3>Trust & collaboration</h3><p>Customers and colleagues can rely on Dan to approach situations professionally, follow through on commitments, share knowledge constructively and bring balanced thinking and clarity to discussions.</p></article>
+        </div>
 
-    <div class="csat-table-shell">
-      <div class="csat-table-bar"><span>$ cat client_csat.log --all</span><span>29 records // Jan–Aug 2026</span></div>
-      <div class="csat-scroll" tabindex="0">
-        <table class="csat-table">
-          <thead><tr><th>Month</th><th>CSAT</th><th>Client comment</th></tr></thead>
-          <tbody>
-            <tr><td>Aug 2026</td><td>5 / 5</td><td>Resolved issue swiftly.</td></tr>
-            <tr><td>Aug 2026</td><td>5 / 5</td><td>Dan was really nice and very helpful in assisting me with the CaseWare issues I was experiencing. He was clear and thorough in his explanations, walking me through the things I need to do. I also learnt something new which will save on efficiencies going forward which I'm excited to share with the team. Overall super satisfied with todays service! :)</td></tr>
-            <tr><td>Aug 2026</td><td>5 / 5</td><td>Great thank you Dan :-)</td></tr>
-            <tr><td>Aug 2026</td><td>5 / 5</td><td>really helpful fixed the issues with seconds and walked me through the cloud and helped me with understanding the system better</td></tr>
-            <tr><td>Aug 2026</td><td>5 / 5</td><td>Thank you</td></tr>
+        <div class="feedback-section-head csat-heading">
+          <div class="page-kicker">// caseware/client_csat.log</div>
+          <h3>Caseware client CSAT</h3>
+          <p><strong>4.90 / 5 average CSAT</strong> across 29 responses from six monthly summaries. The table keeps the volume of evidence visible, while stronger and more detailed comments appear first rather than being ordered by date.</p>
+        </div>
 
-            <tr><td>Jul 2026</td><td>5 / 5</td><td>Honestly the support you provide is always class. However some of the quirks in your system are so irritating. All the best!</td></tr>
-            <tr><td>Jul 2026</td><td>5 / 5</td><td>Very thorough and patient - thank you</td></tr>
-            <tr><td>Jul 2026</td><td>5 / 5</td><td>The Caseware support team were extremely patient, professional, and knowledgeable throughout the process. I really appreciate their support and would be happy to give them a very positive review.</td></tr>
-            <tr><td>Jul 2026</td><td>5 / 5</td><td>Dan clearly explained the issue and the ways to resolve it</td></tr>
-            <tr><td>Jul 2026</td><td>5 / 5</td><td>Dan kept going until the solution, which was not at all obvious, presented itself. Thank you.</td></tr>
-
-            <tr><td>Jun 2026</td><td>5 / 5</td><td>Many thanks Dan for your patience and all of your help</td></tr>
-            <tr><td>Jun 2026</td><td>4 / 5</td><td>Yet to be resolved as I need to find some more info from the manager. Overall, satisfied so far.</td></tr>
-            <tr><td>Jun 2026</td><td>5 / 5</td><td>Problems sorted quickly and efficiently, thank you</td></tr>
-
-            <tr><td>May 2026</td><td>5 / 5</td><td>Amazing help and support.</td></tr>
-            <tr><td>May 2026</td><td>5 / 5</td><td>Advisor very helpful</td></tr>
-            <tr><td>May 2026</td><td>5 / 5</td><td>helpful adviser</td></tr>
-
-            <tr><td>Mar 2026</td><td>5 / 5</td><td>Support was excellent. Issue resolved</td></tr>
-            <tr><td>Mar 2026</td><td>5 / 5</td><td>great support by Dan and colleagues.</td></tr>
-            <tr><td>Mar 2026</td><td>4 / 5</td><td>Dan was really helpful and attentive.</td></tr>
-            <tr><td>Mar 2026</td><td>5 / 5</td><td>Always efficient, helped solve my (stupid!) problem quickly. Much appreciated.</td></tr>
-            <tr><td>Mar 2026</td><td>5 / 5</td><td>Dan was very helpful in his responses. We didnt know the answer but went to a 2nd liner to ask rather than waste everybodies time.</td></tr>
-
-            <tr><td>Jan 2026</td><td>5 / 5</td><td>Thank you for staying late to get me sorted</td></tr>
-            <tr><td>Jan 2026</td><td>5 / 5</td><td>Dan helped my issue very helpful!.</td></tr>
-            <tr><td>Jan 2026</td><td>5 / 5</td><td>Dan is great</td></tr>
-            <tr><td>Jan 2026</td><td>4 / 5</td><td>excellent suport</td></tr>
-            <tr><td>Jan 2026</td><td>5 / 5</td><td>Dan was great, very helpful and followed up when I didn't immediately answer. Thank you.</td></tr>
-            <tr><td>Jan 2026</td><td>5 / 5</td><td>Dan was very helpful and spoke through the changes and reasons certain changes could not be made.</td></tr>
-            <tr><td>Jan 2026</td><td>5 / 5</td><td>Excellent help as always</td></tr>
-            <tr><td>Jan 2026</td><td>5 / 5</td><td>Dan was really helpful and definitely went the extra mile to help me. He explained things very clearly and took the time to go through all of my issues on the call.</td></tr>
-          </tbody>
-        </table>
+        <div class="csat-table-shell">
+          <div class="csat-table-bar"><span>cat client_csat.log --rank=signal</span><span>28 shown // 29 total</span></div>
+          <div class="csat-scroll" tabindex="0">
+            <table class="csat-table">
+              <thead><tr><th>CSAT</th><th>Client comment</th></tr></thead>
+              <tbody>
+                <tr><td>5 / 5</td><td>Dan was really helpful and definitely went the extra mile to help me. He explained things very clearly and took the time to go through all of my issues on the call.</td></tr>
+                <tr><td>5 / 5</td><td>Dan was really nice and very helpful in assisting me with the CaseWare issues I was experiencing. He was clear and thorough in his explanations, walking me through the things I need to do. I also learnt something new which will save on efficiencies going forward which I'm excited to share with the team. Overall super satisfied with todays service! :)</td></tr>
+                <tr><td>5 / 5</td><td>Dan kept going until the solution, which was not at all obvious, presented itself. Thank you.</td></tr>
+                <tr><td>5 / 5</td><td>Thank you for staying late to get me sorted</td></tr>
+                <tr><td>5 / 5</td><td>Dan was very helpful in his responses. We didnt know the answer but went to a 2nd liner to ask rather than waste everybodies time.</td></tr>
+                <tr><td>5 / 5</td><td>Dan was great, very helpful and followed up when I didn't immediately answer. Thank you.</td></tr>
+                <tr><td>5 / 5</td><td>Dan was very helpful and spoke through the changes and reasons certain changes could not be made.</td></tr>
+                <tr><td>5 / 5</td><td>really helpful fixed the issues with seconds and walked me through the cloud and helped me with understanding the system better</td></tr>
+                <tr><td>5 / 5</td><td>Very thorough and patient - thank you</td></tr>
+                <tr><td>5 / 5</td><td>Dan clearly explained the issue and the ways to resolve it</td></tr>
+                <tr><td>5 / 5</td><td>Many thanks Dan for your patience and all of your help</td></tr>
+                <tr><td>5 / 5</td><td>Always efficient, helped solve my (stupid!) problem quickly. Much appreciated.</td></tr>
+                <tr><td>5 / 5</td><td>Resolved issue swiftly.</td></tr>
+                <tr><td>5 / 5</td><td>Problems sorted quickly and efficiently, thank you</td></tr>
+                <tr><td>5 / 5</td><td>Support was excellent. Issue resolved</td></tr>
+                <tr><td>5 / 5</td><td>The Caseware support team were extremely patient, professional, and knowledgeable throughout the process. I really appreciate their support and would be happy to give them a very positive review.</td></tr>
+                <tr><td>5 / 5</td><td>Honestly the support you provide is always class. However some of the quirks in your system are so irritating. All the best!</td></tr>
+                <tr><td>5 / 5</td><td>Amazing help and support.</td></tr>
+                <tr><td>5 / 5</td><td>great support by Dan and colleagues.</td></tr>
+                <tr><td>4 / 5</td><td>Dan was really helpful and attentive.</td></tr>
+                <tr><td>5 / 5</td><td>Excellent help as always</td></tr>
+                <tr><td>4 / 5</td><td>excellent suport</td></tr>
+                <tr><td>5 / 5</td><td>Advisor very helpful</td></tr>
+                <tr><td>5 / 5</td><td>helpful adviser</td></tr>
+                <tr><td>5 / 5</td><td>Great thank you Dan :-)</td></tr>
+                <tr><td>5 / 5</td><td>Dan helped my issue very helpful!.</td></tr>
+                <tr><td>5 / 5</td><td>Dan is great</td></tr>
+                <tr><td>5 / 5</td><td>Thank you</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="csat-evidence-note">Aggregate: 29 source responses across January, March, May, June, July and August 2026. One unresolved 4/5 response is intentionally omitted from the public display; the 4.90/5 aggregate still reflects the complete 29-response source set. Remaining comments are reproduced as supplied, including original spelling and grammar. Source emails are retained privately and can be evidenced on request.</div>
+        </div>
       </div>
-      <div class="csat-evidence-note">Source: six internal Caseware UK monthly client-feedback summaries covering January, March, May, June, July and August 2026. Comments are reproduced as supplied, including original spelling and grammar. Original source emails are retained privately and can be evidenced on request.</div>
-    </div>
-  </section>
+    </details>
 
-  <section class="feedback-section fade-in">
-    <div class="feedback-section-head"><div class="page-kicker">// public_reviews.log</div><h2>Selected customer feedback</h2><p>Public Google reviews from customers I supported while working at Cash Converters and Kwik Fit. These are selected because they specifically mention me and demonstrate customer service, technical knowledge, after-sales ownership and professionalism.</p></div>
+    <details class="feedback-accordion employer-cash">
+      <summary>
+        <span class="accordion-icon" aria-hidden="true"></span>
+        <span class="accordion-title-wrap">
+          <span class="accordion-title">Cash Converters</span>
+          <span class="accordion-subtitle">Retail Management · Technical Sales · After-sales ownership</span>
+        </span>
+        <span class="accordion-metric">10+ reviews</span>
+      </summary>
+      <div class="accordion-content">
+        <div class="feedback-section-head compact-head">
+          <div class="page-kicker">// cash-converters/public_reviews.log</div>
+          <h2>Cash Converters customer feedback</h2>
+          <p>Public Google reviews from customers I supported while working in store management. The selected examples lead with the strongest evidence of ownership, technical knowledge, communication and after-sales service.</p>
+        </div>
 
-    <div class="review-grid">
-      <article class="review-card"><div class="review-topline"><span class="review-author">Marta Sarah</span><span class="review-stars">★★★★★</span></div><div class="review-location">Cash Converters · Maidstone</div><p>“We were super-impressed with genuine customer service from Julie and the store manager Dan who personally engaged with DHL to locate and deliver to us our mis-handled parcel… Dan was excellent in communicating what he was doing and what he was aiming to achieve. <span class="review-highlight">Absolutely excellent after-sale customer care.</span>”</p></article>
-      <article class="review-card"><div class="review-topline"><span class="review-author">Daniel Taylor</span><span class="review-stars">★★★★★</span></div><div class="review-location">Cash Converters · Maidstone</div><p>“Just want to give a massive shout out to Dan… he sent me some really detailed photos and it looked mint… The package arrived in just a day, well packaged and it looks great. <span class="review-highlight">Thanks Dan, you really made a birthday for someone that bit more special.</span>”</p></article>
-      <article class="review-card"><div class="review-topline"><span class="review-author">James Manners</span><span class="review-stars">★★★★★</span></div><div class="review-location">Cash Converters · Maidstone</div><p>“Dan was super helpful with buying my old tech off me. Wonderful service. Beat CEX on price. Will definitely be back in the future to sell anything on.”</p></article>
-      <article class="review-card"><div class="review-topline"><span class="review-author">Chloe Louise</span><span class="review-stars">★★★★★</span></div><div class="review-location">Cash Converters · Maidstone</div><p>“Dan served me and he gave fantastic customer service, honestly the best one to get served by, and he’s got great knowledge — so if you ever need help or want to know anything go straight to him.”</p></article>
-      <article class="review-card"><div class="review-topline"><span class="review-author">Kwik Fit customer</span><span class="review-stars">★★★★★</span></div><div class="review-location">Kwik Fit · Strood</div><p>“Dan was brilliant. Even though there was a tricky customer who was unnecessarily moaning about EVERYTHING and ANYTHING, <span class="review-highlight">Dan remained calm and professional!</span> Well done Dan and great work Kwik Fit Strood!”</p></article>
-    </div>
-  </section>
+        <div class="review-grid">
+          <article class="review-card"><div class="review-topline"><span class="review-author">Marta Sarah</span><span class="review-stars">★★★★★</span></div><div class="review-location">Cash Converters · Maidstone</div><p>“We were super-impressed with genuine customer service from Julie and the store manager Dan who personally engaged with DHL to locate and deliver to us our mis-handled parcel… Dan was excellent in communicating what he was doing and what he was aiming to achieve. <span class="review-highlight">Absolutely excellent after-sale customer care.</span>”</p></article>
+          <article class="review-card"><div class="review-topline"><span class="review-author">Daniel Taylor</span><span class="review-stars">★★★★★</span></div><div class="review-location">Cash Converters · Maidstone</div><p>“Just want to give a massive shout out to Dan… he sent me some really detailed photos and it looked mint… The package arrived in just a day, well packaged and it looks great. <span class="review-highlight">Thanks Dan, you really made a birthday for someone that bit more special.</span>”</p></article>
+          <article class="review-card"><div class="review-topline"><span class="review-author">Chloe Louise</span><span class="review-stars">★★★★★</span></div><div class="review-location">Cash Converters · Maidstone</div><p>“Dan served me and he gave fantastic customer service, honestly the best one to get served by, and he’s got great knowledge — so if you ever need help or want to know anything go straight to him.”</p></article>
+          <article class="review-card"><div class="review-topline"><span class="review-author">James Manners</span><span class="review-stars">★★★★★</span></div><div class="review-location">Cash Converters · Maidstone</div><p>“Dan was super helpful with buying my old tech off me. Wonderful service. Beat CEX on price. Will definitely be back in the future to sell anything on.”</p></article>
+        </div>
 
-  <section class="feedback-section fade-in">
-    <div class="feedback-section-head"><div class="page-kicker">// screenshots/</div><h2>Original review captures</h2><p>The original Google review screenshots are included below for context. Click any image to open the lightbox; use ← / → to move between reviews and Esc to close.</p></div>
+        <div class="feedback-section-head gallery-heading"><div class="page-kicker">// cash-converters/screenshots/</div><h3>Original review captures</h3><p>Original screenshots are retained below as supporting evidence. Click any image to open the lightbox.</p></div>
+        <div class="review-gallery">
+          <figure class="review-shot"><a href="src/assets/images/reviews/cash-maidstone-marta-sarah.jpg"><img src="src/assets/images/reviews/cash-maidstone-marta-sarah.jpg" alt="Google review by Marta Sarah mentioning Dan at Cash Converters Maidstone" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Maidstone // Marta Sarah</figcaption></figure>
+          <figure class="review-shot"><a href="src/assets/images/reviews/cash-maidstone-james-manners.jpg"><img src="src/assets/images/reviews/cash-maidstone-james-manners.jpg" alt="Google review by James Manners mentioning Dan at Cash Converters Maidstone" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Maidstone // James Manners</figcaption></figure>
+          <figure class="review-shot"><a href="src/assets/images/reviews/cash-maidstone-alex-page.jpg"><img src="src/assets/images/reviews/cash-maidstone-alex-page.jpg" alt="Google review by Alex Page mentioning Dan at Cash Converters Maidstone" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Maidstone // Alex Page</figcaption></figure>
+          <figure class="review-shot"><a href="src/assets/images/reviews/cash-maidstone-jason.jpg"><img src="src/assets/images/reviews/cash-maidstone-jason.jpg" alt="Google review mentioning Dan at Cash Converters Maidstone" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Maidstone // Jason</figcaption></figure>
+          <figure class="review-shot"><a href="src/assets/images/reviews/cash-maidstone-daniel-taylor.jpg"><img src="src/assets/images/reviews/cash-maidstone-daniel-taylor.jpg" alt="Google review by Daniel Taylor mentioning Dan at Cash Converters Maidstone" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Maidstone // Daniel Taylor</figcaption></figure>
+          <figure class="review-shot"><a href="src/assets/images/reviews/cash-maidstone-chloe-louise.jpg"><img src="src/assets/images/reviews/cash-maidstone-chloe-louise.jpg" alt="Google review by Chloe Louise mentioning Dan at Cash Converters Maidstone" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Maidstone // Chloe Louise</figcaption></figure>
+          <figure class="review-shot"><a href="src/assets/images/reviews/cash-crawley-anton-regen.jpg"><img src="src/assets/images/reviews/cash-crawley-anton-regen.jpg" alt="Google review of Cash Converters Crawley during Dan's management" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Crawley // store turnaround feedback</figcaption></figure>
+          <figure class="review-shot"><a href="src/assets/images/reviews/cash-crawley-asa-holman.jpg"><img src="src/assets/images/reviews/cash-crawley-asa-holman.jpg" alt="Google review by Asa Holman mentioning Dan at Cash Converters Crawley" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Crawley // Asa Holman</figcaption></figure>
+          <figure class="review-shot"><a href="src/assets/images/reviews/cash-crawley-godfrey-haire.jpg"><img src="src/assets/images/reviews/cash-crawley-godfrey-haire.jpg" alt="Google review by Godfrey Haire mentioning Dan at Cash Converters Crawley" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Crawley // Godfrey Haire</figcaption></figure>
+          <figure class="review-shot"><a href="src/assets/images/reviews/cash-crawley-julian-mckenzie.jpg"><img src="src/assets/images/reviews/cash-crawley-julian-mckenzie.jpg" alt="Google review by Julian McKenzie mentioning Dan at Cash Converters Crawley" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Crawley // Julian McKenzie</figcaption></figure>
+        </div>
+      </div>
+    </details>
 
-    <div class="review-gallery">
-      <figure class="review-shot"><a href="src/assets/images/reviews/cash-maidstone-marta-sarah.jpg"><img src="src/assets/images/reviews/cash-maidstone-marta-sarah.jpg" alt="Google review by Marta Sarah mentioning Dan at Cash Converters Maidstone" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Maidstone // Marta Sarah</figcaption></figure>
-      <figure class="review-shot"><a href="src/assets/images/reviews/cash-maidstone-james-manners.jpg"><img src="src/assets/images/reviews/cash-maidstone-james-manners.jpg" alt="Google review by James Manners mentioning Dan at Cash Converters Maidstone" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Maidstone // James Manners</figcaption></figure>
-      <figure class="review-shot"><a href="src/assets/images/reviews/cash-maidstone-alex-page.jpg"><img src="src/assets/images/reviews/cash-maidstone-alex-page.jpg" alt="Google review by Alex Page mentioning Dan at Cash Converters Maidstone" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Maidstone // Alex Page</figcaption></figure>
-      <figure class="review-shot"><a href="src/assets/images/reviews/cash-maidstone-jason.jpg"><img src="src/assets/images/reviews/cash-maidstone-jason.jpg" alt="Google review mentioning Dan at Cash Converters Maidstone" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Maidstone // Jason</figcaption></figure>
-      <figure class="review-shot"><a href="src/assets/images/reviews/cash-maidstone-daniel-taylor.jpg"><img src="src/assets/images/reviews/cash-maidstone-daniel-taylor.jpg" alt="Google review by Daniel Taylor mentioning Dan at Cash Converters Maidstone" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Maidstone // Daniel Taylor</figcaption></figure>
-      <figure class="review-shot"><a href="src/assets/images/reviews/cash-maidstone-chloe-louise.jpg"><img src="src/assets/images/reviews/cash-maidstone-chloe-louise.jpg" alt="Google review by Chloe Louise mentioning Dan at Cash Converters Maidstone" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Maidstone // Chloe Louise</figcaption></figure>
-      <figure class="review-shot"><a href="src/assets/images/reviews/cash-crawley-anton-regen.jpg"><img src="src/assets/images/reviews/cash-crawley-anton-regen.jpg" alt="Google review of Cash Converters Crawley during Dan's management" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Crawley // store turnaround feedback</figcaption></figure>
-      <figure class="review-shot"><a href="src/assets/images/reviews/cash-crawley-asa-holman.jpg"><img src="src/assets/images/reviews/cash-crawley-asa-holman.jpg" alt="Google review by Asa Holman mentioning Dan at Cash Converters Crawley" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Crawley // Asa Holman</figcaption></figure>
-      <figure class="review-shot"><a href="src/assets/images/reviews/cash-crawley-godfrey-haire.jpg"><img src="src/assets/images/reviews/cash-crawley-godfrey-haire.jpg" alt="Google review by Godfrey Haire mentioning Dan at Cash Converters Crawley" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Crawley // Godfrey Haire</figcaption></figure>
-      <figure class="review-shot"><a href="src/assets/images/reviews/cash-crawley-julian-mckenzie.jpg"><img src="src/assets/images/reviews/cash-crawley-julian-mckenzie.jpg" alt="Google review by Julian McKenzie mentioning Dan at Cash Converters Crawley" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Cash Converters Crawley // Julian McKenzie</figcaption></figure>
-      <figure class="review-shot"><a href="src/assets/images/reviews/kwik-fit-strood-dan.jpg"><img src="src/assets/images/reviews/kwik-fit-strood-dan.jpg" alt="Google review mentioning Dan at Kwik Fit Strood" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Kwik Fit Strood // customer feedback</figcaption></figure>
-    </div>
+    <details class="feedback-accordion employer-kwikfit">
+      <summary>
+        <span class="accordion-icon" aria-hidden="true"></span>
+        <span class="accordion-title-wrap">
+          <span class="accordion-title">Kwik Fit</span>
+          <span class="accordion-subtitle">Retail Operations · Customer handling · Professionalism</span>
+        </span>
+        <span class="accordion-metric">1 attributable review</span>
+      </summary>
+      <div class="accordion-content">
+        <div class="feedback-section-head compact-head">
+          <div class="page-kicker">// kwik-fit/public_reviews.log</div>
+          <h2>Kwik Fit customer feedback</h2>
+          <p>One public review in the current evidence set specifically names Dan, so it is shown on its own rather than padded with unattributable store feedback.</p>
+        </div>
+
+        <div class="review-grid single-review-grid">
+          <article class="review-card"><div class="review-topline"><span class="review-author">Kwik Fit customer</span><span class="review-stars">★★★★★</span></div><div class="review-location">Kwik Fit · Strood</div><p>“Dan was brilliant. Even though there was a tricky customer who was unnecessarily moaning about EVERYTHING and ANYTHING, <span class="review-highlight">Dan remained calm and professional!</span> Well done Dan and great work Kwik Fit Strood!”</p></article>
+        </div>
+
+        <div class="feedback-section-head gallery-heading"><div class="page-kicker">// kwik-fit/screenshots/</div><h3>Original review capture</h3></div>
+        <div class="review-gallery single-gallery">
+          <figure class="review-shot"><a href="src/assets/images/reviews/kwik-fit-strood-dan.jpg"><img src="src/assets/images/reviews/kwik-fit-strood-dan.jpg" alt="Google review mentioning Dan at Kwik Fit Strood" onerror="this.closest('figure').classList.add('missing-shot')"></a><figcaption>Kwik Fit Strood // customer feedback</figcaption></figure>
+        </div>
+      </div>
+    </details>
   </section>
 
   <div class="page-actions"><a class="btn btn-primary" href="about.html#contact">cd /about/ →</a><a class="btn btn-secondary" href="index.html">cd /home/</a></div>
