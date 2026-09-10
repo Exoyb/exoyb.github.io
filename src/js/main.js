@@ -118,7 +118,7 @@
             }, reducedMotion ? 0 : 380);
         };
 
-        window.setTimeout(hideBoot, reducedMotion ? 500 : 5900);
+        window.setTimeout(hideBoot, reducedMotion ? 500 : 9600);
         document.addEventListener('keydown', hideBoot, { once: true });
         bootScreen.addEventListener('click', hideBoot, { once: true });
     };
