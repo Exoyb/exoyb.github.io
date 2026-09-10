@@ -3,6 +3,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         const gate = document.querySelector('.power-gate');
         const button = gate?.querySelector('.power-button');
+        const bootContent = document.querySelector('#bootScreen .boot-content');
         if (!gate || !button) return;
 
         const style = document.createElement('style');
@@ -118,6 +119,9 @@
         document.head.appendChild(style);
 
         button.addEventListener('click', () => {
+            // The POST screen is kept invisible by critical inline CSS until the
+            // power gesture, preventing a one-frame green flash during page load.
+            if (bootContent) bootContent.style.visibility = 'visible';
             gate.classList.add('system-powered');
         }, { once: true, capture: true });
     });
