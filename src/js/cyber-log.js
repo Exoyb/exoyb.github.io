@@ -2,8 +2,8 @@
  * CYBER LOG — EDIT THIS ARRAY TO ADD NEW ENTRIES.
  *
  * Each entry becomes a compact expandable card. The closed view deliberately
- * shows only the date and title. Supporting context, tags and evidence appear
- * once the entry is opened so the feed stays easy to scan as it grows.
+ * shows the entry number, date and title. Supporting context, tags and evidence
+ * appear once the entry is opened so the feed stays easy to scan as it grows.
  * Newest dates are shown first. Any optional field can be omitted.
  *
  * EXAMPLE:
@@ -166,14 +166,16 @@ const cyberLogEntries = [
           <summary class="log-entry-toggle">
             <span class="log-entry-switch" aria-hidden="true"></span>
             <span class="log-entry-preview">
-              <time class="log-date" datetime="${escapeHTML(entry.date || '')}">${escapeHTML(formatDate(entry.date || ''))}</time>
+              <span class="log-entry-preview-meta">
+                <span class="log-index">entry_${serial}.log</span>
+                <time class="log-date" datetime="${escapeHTML(entry.date || '')}">${escapeHTML(formatDate(entry.date || ''))}</time>
+              </span>
               <span class="log-entry-title">${escapeHTML(entry.title || 'Untitled entry')}</span>
             </span>
           </summary>
 
           <div class="log-entry-content">
             <div class="log-entry-expanded-meta">
-              <span class="log-index">entry_${serial}.log</span>
               <span class="log-entry-type">${escapeHTML(entry.type || 'Log')}</span>
             </div>
             ${entry.summary ? `<p class="log-entry-summary">${escapeHTML(entry.summary)}</p>` : ''}
