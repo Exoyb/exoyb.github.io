@@ -25,14 +25,6 @@
   line-height: 1.72;
 }
 
-.training-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .7rem;
-  margin-top: .9rem;
-}
-
-.training-profile-link,
 .credential-link {
   display: inline-flex;
   align-items: center;
@@ -44,13 +36,86 @@
   transition: color .18s ease, border-color .18s ease, text-shadow .18s ease;
 }
 
-.training-profile-link:hover,
-.training-profile-link:focus-visible,
 .credential-link:hover,
 .credential-link:focus-visible {
   color: var(--green);
   border-bottom-color: rgba(0,255,140,.62);
   text-shadow: 0 0 10px rgba(0,255,140,.24);
+}
+
+.training-platform-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.15rem;
+  padding: 1rem 1.2rem;
+  color: inherit;
+  text-decoration: none;
+  border: 1px solid rgba(0,255,140,.28);
+  border-radius: 10px;
+  background: rgba(17,17,18,.88);
+  box-shadow: 0 0 10px rgba(0,255,140,.02);
+  transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.training-platform-card:hover,
+.training-platform-card:focus-visible {
+  outline: none;
+  transform: translateY(-2px);
+  border-color: rgba(0,255,140,.78);
+  background: rgba(20,20,21,.96);
+  box-shadow: 0 12px 32px rgba(0,0,0,.28), 0 0 16px rgba(0,255,140,.12), 0 0 34px rgba(0,255,140,.04);
+}
+
+.training-platform-mark {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  border: 1px solid rgba(0,217,255,.38);
+  border-radius: 9px;
+  color: var(--cyan);
+  background: #0d0d0e;
+  font-size: .88rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  box-shadow: inset 0 0 16px rgba(0,217,255,.025);
+}
+
+.training-platform-copy {
+  display: grid;
+  gap: .2rem;
+  min-width: 0;
+}
+
+.training-platform-label {
+  color: #7f8983;
+  font-size: .72rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.training-platform-copy strong {
+  color: var(--green);
+  font-size: 1.08rem;
+}
+
+.training-platform-copy span:last-child {
+  color: #a8afa9;
+  font-size: .85rem;
+  line-height: 1.55;
+}
+
+.training-platform-action {
+  color: var(--cyan);
+  font-size: .82rem;
+  white-space: nowrap;
+}
+
+.training-platform-card:hover .training-platform-action,
+.training-platform-card:focus-visible .training-platform-action {
+  color: var(--green);
+  text-shadow: 0 0 9px rgba(0,255,140,.28);
 }
 
 .training-grid {
@@ -219,5 +284,28 @@
     min-height: 130px;
     border-right: 0;
     border-bottom: 1px solid rgba(0,255,140,.22);
+  }
+
+  .training-platform-card {
+    grid-template-columns: auto 1fr;
+  }
+
+  .training-platform-action {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 520px) {
+  .training-platform-card {
+    grid-template-columns: 1fr;
+  }
+
+  .training-platform-mark {
+    width: 52px;
+    height: 52px;
+  }
+
+  .training-platform-action {
+    grid-column: 1;
   }
 }
