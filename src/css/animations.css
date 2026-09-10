@@ -30,6 +30,18 @@
     transform: none;
 }
 
+/* Neutral pin-point texture: keeps the charcoal background from feeling flat
+   without reintroducing the old green wash. */
+body::before {
+    background-image:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.009) 0 1px, transparent 1px 4px),
+        radial-gradient(circle, rgba(245,245,245,.42) 1px, transparent 1.15px),
+        radial-gradient(circle, rgba(210,214,212,.18) 1px, transparent 1.15px);
+    background-size: auto, 54px 54px, 108px 108px;
+    background-position: 0 0, 0 0, 27px 27px;
+    opacity: .18;
+}
+
 /* A restrained phosphor wake-up: stepped visibility, then settle into place. */
 .motion-enabled .fade-in.reveal-pending {
     opacity: 0;
