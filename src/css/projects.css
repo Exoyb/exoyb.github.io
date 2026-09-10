@@ -110,6 +110,19 @@
   font-size: .82rem;
 }
 
+.project-meta {
+  display: grid;
+  gap: .38rem;
+  justify-items: end;
+}
+
+.project-date {
+  color: #7f8983;
+  font-size: .68rem;
+  letter-spacing: .055em;
+  white-space: nowrap;
+}
+
 .project-status {
   display: inline-flex;
   align-items: center;
@@ -324,10 +337,13 @@
     grid-template-columns: auto minmax(0,1fr);
   }
 
-  .project-status {
+  .project-status,
+  .project-meta {
     grid-column: 2;
     justify-self: start;
   }
+
+  .project-meta { justify-items: start; }
 
   .project-content { padding: 0 1rem 1.15rem; }
   .priority-list > div { grid-template-columns: 1fr; gap: .35rem; }
