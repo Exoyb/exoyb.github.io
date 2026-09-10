@@ -25,6 +25,12 @@
         const style = document.createElement('style');
         style.id = 'exoyb-interactive-styles';
         style.textContent = `
+            .terminal-session-title {
+                margin-left: .45rem;
+                color: #707974;
+                font-size: .82rem;
+                white-space: nowrap;
+            }
             .terminal-uptime {
                 margin-left: auto;
                 padding-left: .9rem;
@@ -149,6 +155,50 @@
         });
     };
 
+    const normaliseTerminalIdentity = () => {
+        document.querySelectorAll('.logo a').forEach(link => {
+            link.textContent = '$ ./Exoyb.sh';
+        });
+
+        document.querySelectorAll('.directory-shell-title').forEach(title => {
+            title.textContent = 'exoyb@portfolio: ~';
+        });
+
+        document.querySelectorAll('.cd-terminal-header').forEach(header => {
+            let title = header.querySelector('.terminal-session-title');
+            const legacyTitle = header.querySelector('.about-mini-title');
+
+            if (legacyTitle) {
+                legacyTitle.className = 'terminal-session-title';
+                title = legacyTitle;
+            }
+
+            if (!title) {
+                title = document.createElement('span');
+                title.className = 'terminal-session-title';
+                const uptime = header.querySelector('.terminal-uptime');
+                header.insertBefore(title, uptime || null);
+            }
+
+            title.textContent = 'exoyb@portfolio: ~';
+        });
+
+        document.querySelectorAll('.cd-terminal-body').forEach(body => {
+            let currentPath = '~';
+
+            body.querySelectorAll('p').forEach(line => {
+                const prompt = line.querySelector('.prompt');
+                if (!prompt) return;
+
+                prompt.innerHTML = `<span class="shell-user">exoyb@portfolio</span><span class="shell-separator">:</span><span class="shell-path">${currentPath}</span><span class="shell-prompt">$</span>`;
+
+                const command = line.querySelector('.cd-command')?.textContent.trim() || '';
+                const cdMatch = command.match(/^cd\s+(\S+)$/);
+                if (cdMatch) currentPath = cdMatch[1];
+            });
+        });
+    };
+
     const repairLegacyLinks = () => {
         const swaps = [
             ['a[href="blog.html"]', 'cyber-log.html', '/blog', '/cyber-log'],
@@ -263,7 +313,7 @@
         const overlay = document.createElement('div');
         overlay.className = 'terminal-page-transition';
         overlay.setAttribute('aria-hidden', 'true');
-        overlay.innerHTML = '<span class="transition-prompt">$</span><span class="transition-command"></span><span class="transition-cursor"></span>';
+        overlay.innerHTML = '<span class="transition-prompt">exoyb@portfolio:~$</span><span class="transition-command"></span><span class="transition-cursor"></span>';
         document.body.appendChild(overlay);
         const commandOutput = overlay.querySelector('.transition-command');
         let navigating = false;
@@ -465,6 +515,7 @@
         addInteractiveStyles();
         setupBoot();
         normaliseNavigation();
+        normaliseTerminalIdentity();
         repairLegacyLinks();
         setupScrollProgress();
         setupPointerGlow();
