@@ -1,8 +1,9 @@
 /*
  * CYBER LOG — EDIT THIS ARRAY TO ADD NEW ENTRIES.
  *
- * Each entry becomes a compact expandable card. Inside it, the evidence is split
- * into smaller sections so visitors can inspect only the detail they care about.
+ * Each entry becomes a compact expandable card. The closed view deliberately
+ * shows only the date and title. Supporting context, tags and evidence appear
+ * once the entry is opened so the feed stays easy to scan as it grows.
  * Newest dates are shown first. Any optional field can be omitted.
  *
  * EXAMPLE:
@@ -163,26 +164,20 @@ const cyberLogEntries = [
       <article class="log-entry" data-tags="${escapeHTML(tags.join(' '))}">
         <details class="log-entry-card">
           <summary class="log-entry-toggle">
-            <div class="log-entry-meta">
-              <div class="log-entry-meta-left">
-                <time class="log-date" datetime="${escapeHTML(entry.date || '')}">${escapeHTML(formatDate(entry.date || ''))}</time>
-                <span class="log-index">entry_${serial}.log</span>
-              </div>
-              <span class="log-entry-type">${escapeHTML(entry.type || 'Log')}</span>
-            </div>
-
-            <div class="log-entry-heading">
-              <span class="log-entry-switch" aria-hidden="true"></span>
-              <div>
-                <h2 class="log-entry-title">${escapeHTML(entry.title || 'Untitled entry')}</h2>
-                ${entry.summary ? `<p class="log-entry-summary">${escapeHTML(entry.summary)}</p>` : ''}
-              </div>
-            </div>
-            ${tagMarkup}
-            <span class="log-entry-hint">inspect entry</span>
+            <span class="log-entry-switch" aria-hidden="true"></span>
+            <span class="log-entry-preview">
+              <time class="log-date" datetime="${escapeHTML(entry.date || '')}">${escapeHTML(formatDate(entry.date || ''))}</time>
+              <span class="log-entry-title">${escapeHTML(entry.title || 'Untitled entry')}</span>
+            </span>
           </summary>
 
           <div class="log-entry-content">
+            <div class="log-entry-expanded-meta">
+              <span class="log-index">entry_${serial}.log</span>
+              <span class="log-entry-type">${escapeHTML(entry.type || 'Log')}</span>
+            </div>
+            ${entry.summary ? `<p class="log-entry-summary">${escapeHTML(entry.summary)}</p>` : ''}
+            ${tagMarkup}
             ${folds ? `<div class="log-folds">${folds}</div>` : '<p class="log-no-detail">No additional notes for this entry yet.</p>'}
             ${links}
           </div>
