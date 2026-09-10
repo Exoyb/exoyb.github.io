@@ -9,6 +9,14 @@
     margin: 0 auto;
 }
 
+/* All primary page titles use the same identity treatment as the homepage name. */
+.page-shell h1 {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    letter-spacing: -.045em;
+    text-transform: uppercase;
+}
+
 .inline-sign {
     display: inline-block;
     margin-left: .5rem;
