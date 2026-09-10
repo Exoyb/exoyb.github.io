@@ -1,18 +1,20 @@
 /*
- * CYBER LOG — THIS IS THE ONLY SECTION YOU NEED TO EDIT FOR NEW ENTRIES.
+ * CYBER LOG — EDIT THIS ARRAY TO ADD NEW ENTRIES.
  *
- * Add a new object to cyberLogEntries. Newest dates are shown first.
- * Any optional field can simply be omitted.
+ * Each entry becomes a compact expandable card. Inside it, the evidence is split
+ * into smaller sections so visitors can inspect only the detail they care about.
+ * Newest dates are shown first. Any optional field can be omitted.
  *
  * EXAMPLE:
  * {
  *   date: '2026-09-10',
  *   type: 'Daily Log',
  *   title: 'What I learned today',
- *   summary: 'A short intro explaining what the session was about.',
+ *   summary: 'One sentence explaining what this session was about.',
  *   tags: ['sc-900', 'identity', 'zero-trust'],
+ *   did: ['Completed a lab.', 'Tested a configuration.'],
  *   learned: ['First thing I learned.', 'Second thing I learned.'],
- *   did: ['Completed a lab.', 'Used a new tool.'],
+ *   tools: ['Kali Linux', 'Wireshark'],
  *   stuck: 'Something that confused me or broke.',
  *   next: 'The next thing I want to tackle.',
  *   links: [{ label: 'Related project', url: 'projects.html' }]
@@ -24,17 +26,18 @@ const cyberLogEntries = [
     date: '2026-09-10',
     type: 'Portfolio Development',
     title: 'Refining the portfolio (and breaking the boot screen)',
-    summary: 'More work on the portfolio today: refining the landing page, adding content and polishing the terminal-style interface. Also managed to create my first proper self-inflicted debugging session.',
+    summary: 'Refined the landing page, added content and polished the terminal-style interface — while creating a useful self-inflicted debugging session along the way.',
     tags: ['portfolio', 'html', 'ui', 'debugging'],
-    learned: [
-      'Small changes can have surprisingly large knock-on effects when markup or scripts are removed.',
-      'When something suddenly stops working, retracing the most recent changes is usually a good place to start.'
-    ],
     did: [
       'Built the landing-page terminal with hover effects and a flashing pipe-style cursor ready for the cd interaction.',
       'Added more information, photos and formatting across the portfolio.',
       'Added the first Cyber Log entries.'
     ],
+    learned: [
+      'Small changes can have surprisingly large knock-on effects when markup or scripts are removed.',
+      'When something suddenly stops working, retracing the most recent changes is usually a good place to start.'
+    ],
+    tools: ['HTML', 'CSS', 'JavaScript', 'GitHub'],
     stuck: 'I accidentally deleted the closing script for the boot screen while removing a redundant contact form, then spent about 30 minutes hunting down what I had broken. Whoops!'
   },
   {
@@ -43,14 +46,15 @@ const cyberLogEntries = [
     title: 'Started my first GitHub project',
     summary: 'Created a GitHub account and started development of my first project: this portfolio.',
     tags: ['github', 'portfolio', 'html'],
+    did: [
+      'Changed the original single index.html template into one repository containing separate HTML files for each page.',
+      'Removed clutter and irrelevant information tabs to make the site more focused and concise.'
+    ],
     learned: [
       'A single-page template can be restructured into a multi-page site while keeping everything inside one repository.',
       'A portfolio is clearer when irrelevant or duplicated sections are removed instead of filling space for the sake of it.'
     ],
-    did: [
-      'Changed the original single index.html template into one repository containing separate HTML files for each page.',
-      'Removed clutter and irrelevant information tabs to make the site more focused and concise.'
-    ]
+    tools: ['GitHub', 'HTML', 'CSS']
   }
 ];
 
@@ -90,16 +94,17 @@ const cyberLogEntries = [
     return value ? `<p>${escapeHTML(value)}</p>` : '';
   };
 
-  const renderFold = (className, label, value) => {
+  const renderFold = (className, label, value, countLabel = 'notes') => {
     if (!value || (Array.isArray(value) && !value.length)) return '';
     const count = Array.isArray(value) ? value.length : 1;
-    const suffix = count === 1 ? 'note' : 'notes';
+    const singular = countLabel.endsWith('s') ? countLabel.slice(0, -1) : countLabel;
+    const suffix = count === 1 ? singular : countLabel;
 
     return `
       <details class="log-fold ${className}">
         <summary>
           <span class="log-fold-label">${escapeHTML(label)}</span>
-          <span class="log-fold-count">${count} ${suffix}</span>
+          <span class="log-fold-count">${count} ${escapeHTML(suffix)}</span>
         </summary>
         <div class="log-fold-body">${renderBody(value)}</div>
       </details>`;
@@ -141,10 +146,11 @@ const cyberLogEntries = [
       : '';
 
     const folds = [
-      renderFold('learned', 'learned', entry.learned),
-      renderFold('built', 'built', entry.did),
+      renderFold('did', 'what I did', entry.did),
+      renderFold('learned', 'what I learned', entry.learned),
+      renderFold('tools', 'tools used', entry.tools, 'tools'),
       renderFold('issue', 'issue / blocker', entry.stuck),
-      renderFold('next', 'next', entry.next)
+      renderFold('next', 'next steps', entry.next)
     ].filter(Boolean).join('');
 
     const links = Array.isArray(entry.links) && entry.links.length
@@ -155,21 +161,32 @@ const cyberLogEntries = [
 
     return `
       <article class="log-entry" data-tags="${escapeHTML(tags.join(' '))}">
-        <div class="log-entry-card">
-          <div class="log-entry-meta">
-            <div class="log-entry-meta-left">
-              <time class="log-date" datetime="${escapeHTML(entry.date || '')}">${escapeHTML(formatDate(entry.date || ''))}</time>
-              <span class="log-index">entry_${serial}.log</span>
+        <details class="log-entry-card">
+          <summary class="log-entry-toggle">
+            <div class="log-entry-meta">
+              <div class="log-entry-meta-left">
+                <time class="log-date" datetime="${escapeHTML(entry.date || '')}">${escapeHTML(formatDate(entry.date || ''))}</time>
+                <span class="log-index">entry_${serial}.log</span>
+              </div>
+              <span class="log-entry-type">${escapeHTML(entry.type || 'Log')}</span>
             </div>
-            <span class="log-entry-type">${escapeHTML(entry.type || 'Log')}</span>
-          </div>
 
-          <h2 class="log-entry-title">${escapeHTML(entry.title || 'Untitled entry')}</h2>
-          ${entry.summary ? `<p class="log-entry-summary">${escapeHTML(entry.summary)}</p>` : ''}
-          ${tagMarkup}
-          ${folds ? `<div class="log-folds">${folds}</div>` : ''}
-          ${links}
-        </div>
+            <div class="log-entry-heading">
+              <span class="log-entry-switch" aria-hidden="true"></span>
+              <div>
+                <h2 class="log-entry-title">${escapeHTML(entry.title || 'Untitled entry')}</h2>
+                ${entry.summary ? `<p class="log-entry-summary">${escapeHTML(entry.summary)}</p>` : ''}
+              </div>
+            </div>
+            ${tagMarkup}
+            <span class="log-entry-hint">inspect entry</span>
+          </summary>
+
+          <div class="log-entry-content">
+            ${folds ? `<div class="log-folds">${folds}</div>` : '<p class="log-no-detail">No additional notes for this entry yet.</p>'}
+            ${links}
+          </div>
+        </details>
       </article>`;
   }).join('');
 
