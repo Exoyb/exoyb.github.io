@@ -139,7 +139,7 @@
     };
 
     const glowSelectors = [
-        '.directory-link', '.cd-terminal', '.content-card', '.detail-item',
+        '.directory-link', '.cd-terminal', '.content-card', '.detail-item', '.project-card',
         '.about-stat', '.about-mini-terminal', '.about-photo-frame', '.story-panel',
         '.bring-card', '.career-step', '.contact-card', '.training-card',
         '.education-feature', '.credential-empty', '.manager-feature', '.manager-card',
@@ -222,6 +222,7 @@
         const prevButton = lightbox.querySelector('.lightbox-prev');
         const nextButton = lightbox.querySelector('.lightbox-next');
         let index = 0;
+        let returnFocus = null;
 
         const show = nextIndex => {
             index = (nextIndex + reviewLinks.length) % reviewLinks.length;
@@ -234,6 +235,7 @@
         };
 
         const open = nextIndex => {
+            returnFocus = document.activeElement;
             show(nextIndex);
             lightbox.classList.add('open');
             document.body.classList.add('lightbox-open');
@@ -243,6 +245,7 @@
         const close = () => {
             lightbox.classList.remove('open');
             document.body.classList.remove('lightbox-open');
+            if (returnFocus && typeof returnFocus.focus === 'function') returnFocus.focus();
         };
 
         reviewLinks.forEach((link, linkIndex) => {
@@ -270,8 +273,8 @@
     document.addEventListener('DOMContentLoaded', () => {
         addHeadIdentity();
         setupBoot();
-        repairLegacyLinks();
         normaliseNavigation();
+        repairLegacyLinks();
         setupScrollProgress();
         setupPointerGlow();
         decorateGlowSurfaces();
