@@ -1,13 +1,12 @@
 .directory-shell {
   overflow: hidden;
-  border: 1px solid #333;
+  border: 1px solid var(--line);
   border-radius: 10px;
-  background: rgba(10, 10, 10, 0.96);
-  box-shadow: 0 12px 50px rgba(0, 0, 0, .35), 0 0 35px rgba(0, 255, 140, .05);
+  background: rgba(7,10,8,.96);
+  box-shadow: 0 16px 56px rgba(0,0,0,.38), 0 0 38px rgba(0,255,140,.055);
   text-align: left;
 }
 
-/* Homepage: identity first, interactive shell immediately after it. */
 .home-hero {
   min-height: 100vh;
   align-items: flex-start;
@@ -16,17 +15,15 @@
 }
 
 .home-hero-content {
-  width: min(1100px, 100%);
-  max-width: 1100px;
+  width: min(1120px, 100%);
+  max-width: 1120px;
 }
 
-.home-hero-content .tag {
-  margin-bottom: 1.05rem;
-}
+.home-hero-content .tag { margin-bottom: 1.05rem; }
 
 .home-hero-content h1 {
-  font-size: clamp(2.5rem, 4.5vw, 3.35rem);
   margin-bottom: 1.2rem;
+  font-size: clamp(2.6rem, 4.6vw, 3.5rem);
 }
 
 .home-hero-content .directory-shell {
@@ -44,8 +41,8 @@
   min-height: 40px;
   margin: 0;
   padding: .7rem 1rem;
-  background: #1b1b1b;
-  border-bottom: 1px solid #333;
+  background: #151a17;
+  border-bottom: 1px solid var(--line);
 }
 
 .directory-shell-header .terminal-dot {
@@ -55,20 +52,17 @@
   height: 12px;
   margin: 0;
   padding: 0;
-  border-radius: 50%;
 }
 
 .directory-shell-title {
   display: inline-block;
   margin-left: .45rem;
-  color: #777;
+  color: #737d76;
   font-size: .82rem;
   line-height: 1;
 }
 
-.directory-shell-body {
-  padding: 1.2rem 1.5rem 1.15rem;
-}
+.directory-shell-body { padding: 1.2rem 1.5rem 1.15rem; }
 
 .shell-line {
   display: flex;
@@ -79,25 +73,30 @@
   line-height: 1.6;
 }
 
-.shell-output {
-  margin: .2rem 0 .85rem;
-}
+.shell-output { margin: .2rem 0 .85rem; }
 
+/* Six tracks lets five links sit as a balanced 3 + 2 layout. */
 .shell-directory-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: .65rem .8rem;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: .7rem .8rem;
   margin: 0 0 1.05rem;
 }
 
 .shell-directory-grid .directory-link {
+  grid-column: span 2;
   min-width: 0;
-  padding: .85rem 1rem;
+  padding: .9rem 1rem;
+}
+
+.shell-directory-grid .directory-link:nth-child(4),
+.shell-directory-grid .directory-link:nth-child(5) {
+  grid-column: span 3;
 }
 
 .shell-directory-grid .directory-description {
-  font-size: .82rem;
-  line-height: 1.4;
+  font-size: .84rem;
+  line-height: 1.45;
 }
 
 .live-shell-prompt {
@@ -108,19 +107,14 @@
   min-height: 2rem;
   margin-top: .2rem;
   padding-top: .75rem;
-  border-top: 1px dashed #2b2b2b;
+  border-top: 1px dashed var(--line);
   white-space: nowrap;
   overflow-x: auto;
   scrollbar-width: none;
 }
 
-.live-shell-prompt::-webkit-scrollbar {
-  display: none;
-}
-
-.live-shell-prompt > span {
-  flex: 0 0 auto;
-}
+.live-shell-prompt::-webkit-scrollbar { display: none; }
+.live-shell-prompt > span { flex: 0 0 auto; }
 
 .shell-cursor {
   display: inline-block;
@@ -129,59 +123,36 @@
   height: 1.15em !important;
   margin-left: 4px;
   padding: 0;
-  background: #00FF8C !important;
-  box-shadow: 0 0 9px rgba(0, 255, 140, .8);
+  background: var(--green) !important;
+  box-shadow: 0 0 10px rgba(0,255,140,.85);
   opacity: 1;
-  animation: shellCursorHardBlink .8s steps(1, end) infinite !important;
-}
-
-@keyframes shellCursorHardBlink {
-  0%, 49% { opacity: 1; }
-  50%, 100% { opacity: 0; }
+  animation: terminalBlink .82s steps(1,end) infinite !important;
 }
 
 .shell-hint {
   margin: .45rem 0 0;
+  color: #5a645e;
   line-height: 1.3;
 }
 
 @media (max-width: 1000px) {
-  .shell-directory-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+  .shell-directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .shell-directory-grid .directory-link,
+  .shell-directory-grid .directory-link:nth-child(4),
+  .shell-directory-grid .directory-link:nth-child(5) { grid-column: span 1; }
 }
 
 @media (max-width: 900px) {
-  .home-hero {
-    padding-top: 5.5rem;
-  }
+  .home-hero { padding-top: 5.5rem; }
 }
 
 @media (max-width: 650px) {
-  .shell-directory-grid {
-    grid-template-columns: 1fr;
-  }
+  .shell-directory-grid { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {
-  .home-hero {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
-  .home-hero-content h1 {
-    font-size: clamp(2.1rem, 10vw, 2.8rem);
-    margin-bottom: 1.1rem;
-  }
-
-  .directory-shell-body {
-    padding: 1rem;
-  }
-
-  .directory-shell-title {
-    max-width: 55vw;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
+  .home-hero { padding-left: 1rem; padding-right: 1rem; }
+  .home-hero-content h1 { font-size: clamp(2.1rem, 10vw, 2.8rem); margin-bottom: 1.1rem; }
+  .directory-shell-body { padding: 1rem; }
+  .directory-shell-title { max-width: 55vw; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 }
