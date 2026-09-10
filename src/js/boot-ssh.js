@@ -76,6 +76,7 @@
             return;
         }
 
+        // Let POST finish, then deliberately slow the SSH handoff down enough to be readable.
         window.setTimeout(() => {
             ssh.classList.add('visible');
             let index = 0;
@@ -84,14 +85,15 @@
                 if (index < text.length) return;
                 window.clearInterval(timer);
                 commandCursor?.remove();
-            }, 24);
-        }, 4140);
+            }, 70);
+        }, 5000);
 
-        window.setTimeout(() => passwordLine.classList.add('visible'), 4700);
+        // Real SSH does not echo password characters, so hold on the prompt instead.
+        window.setTimeout(() => passwordLine.classList.add('visible'), 6500);
         window.setTimeout(() => {
             passwordLine.querySelector('.boot-ssh-cursor')?.remove();
             statusLine.classList.add('visible');
-        }, 5200);
-        window.setTimeout(() => loginLine.classList.add('visible'), 5480);
+        }, 7600);
+        window.setTimeout(() => loginLine.classList.add('visible'), 8000);
     });
 })();
