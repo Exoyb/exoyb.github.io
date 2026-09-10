@@ -96,6 +96,13 @@
 
 .log-stream { position: relative; }
 
+.log-stream-title {
+  margin: 0 0 1rem;
+  color: var(--green);
+  font-size: clamp(1.55rem, 2.6vw, 1.95rem);
+  line-height: 1.25;
+}
+
 #cyberLogEntries {
   display: grid;
   gap: .85rem;
@@ -166,8 +173,20 @@
 
 .log-entry-preview {
   display: grid;
-  gap: .3rem;
+  gap: .32rem;
   min-width: 0;
+}
+
+.log-entry-preview-meta {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: .7rem;
+}
+
+.log-index {
+  color: #727a75;
+  font-size: .78rem;
 }
 
 .log-date {
@@ -190,15 +209,10 @@
 .log-entry-expanded-meta {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   flex-wrap: wrap;
   gap: .6rem 1rem;
   margin-bottom: .75rem;
-}
-
-.log-index {
-  color: #676f6a;
-  font-size: .78rem;
 }
 
 .log-entry-type {
@@ -399,8 +413,7 @@
 
   .log-entry-expanded-meta {
     align-items: flex-start;
-    flex-direction: column;
-    gap: .25rem;
+    justify-content: flex-start;
   }
 
   .log-fold summary { padding: .7rem .75rem; }
