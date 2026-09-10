@@ -82,6 +82,7 @@
         const runMatrixEffect = () => {
             if (effectRunning) return;
             effectRunning = true;
+            window.ExoybAudio?.play('matrix');
 
             const overlay = document.createElement('div');
             overlay.className = 'matrix-easter-egg';
