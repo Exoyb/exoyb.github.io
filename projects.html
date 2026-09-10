@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exoyb | Projects</title>
-  <meta name="description" content="Hands-on projects by Dan Ridout, including this cybersecurity portfolio and future security labs, scripts and investigations.">
+  <meta name="description" content="Hands-on cybersecurity projects by Dan Ridout, including security audits, practical labs and this portfolio.">
   <meta name="theme-color" content="#0d100f">
   <link rel="icon" href="src/assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="src/css/main.css?v=20260910-6">
   <link rel="stylesheet" href="src/css/animations.css?v=20260910-6">
   <link rel="stylesheet" href="src/css/pages.css?v=20260910-10">
-  <link rel="stylesheet" href="src/css/projects.css?v=20260910-1">
+  <link rel="stylesheet" href="src/css/projects.css?v=20260910-2">
 </head>
 <body>
 <nav><div class="nav-content"><div class="logo"><a href="index.html">#!/bin/bash Exoyb.sh</a></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div><div class="nav-links" id="navLinks"><a href="about.html">About</a><a href="training.html">Training</a><a class="active" href="projects.html">Projects</a><a href="cyber-log.html">Cyber Log</a><a href="feedback.html">Feedback</a></div></div></nav>
@@ -19,55 +19,125 @@
   <header class="page-hero projects-hero fade-in">
     <div class="page-kicker">// ~/projects/</div>
     <h1>PROJECTS</h1>
-    <p class="page-intro">Hands-on work showing how I approach problems, gather evidence, test ideas and document what I learn.</p>
+    <p class="page-intro">The practical stuff. Audits, labs, things I’ve built and anything useful enough to keep.</p>
   </header>
 
   <div class="cd-terminal projects-terminal fade-in">
     <div class="cd-terminal-header"><span class="cd-dot red"></span><span class="cd-dot yellow"></span><span class="cd-dot green"></span></div>
-    <div class="cd-terminal-body"><p><span class="prompt">$</span> <span class="cd-command">ls -lah ~/projects/</span></p><p class="cd-output">Scanning for finished work...</p><p class="cd-joke">unfinished-projects 1–6 have requested anonymity.</p></div>
+    <div class="cd-terminal-body">
+      <p><span class="prompt">$</span> <span class="cd-command">ls -lah ~/projects/</span></p>
+      <p class="cd-output">security-audit/ &nbsp; portfolio/ &nbsp; scripts/</p>
+      <p class="cd-joke">unfinished-projects have once again declined to comment.</p>
+    </div>
   </div>
 
-  <section class="project-showcase fade-in" aria-label="Project showcase">
-    <article class="project-card featured">
-      <div class="project-copy">
-        <div class="project-eyebrow"><span>project_001</span><span>// web / portfolio</span></div>
-        <h2>Exoyb Cybersecurity Portfolio</h2>
-        <p>My first GitHub project. I took a single-page HTML template, restructured it into a multi-page portfolio, removed irrelevant template content, built the terminal-style landing page, added shared navigation and interactions, and have been iterating on the visual system as I learn.</p>
-        <div class="project-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span><span>Git</span></div>
-      </div>
-      <span class="project-status active">ACTIVE</span>
-      <div class="project-actions"><a class="project-link" href="https://github.com/Exoyb/exoyb.github.io" target="_blank" rel="noopener noreferrer">view source ↗</a><a class="project-link" href="index.html">launch project →</a><a class="project-link" href="cyber-log.html">development log →</a></div>
-    </article>
-
-    <article class="project-card">
-      <div class="project-copy">
-        <div class="project-eyebrow"><span>project_002</span><span>// security labs</span></div>
-        <h2>Security Labs</h2>
-        <p>Reserved for practical TryHackMe work, investigations and blue-team exercises where I can show the problem, evidence, process and outcome rather than just saying I completed a room.</p>
-        <div class="project-stack"><span>Investigation</span><span>Blue Team</span><span>TryHackMe</span></div>
-      </div>
-      <span class="project-status">NEXT UP</span>
-    </article>
-
-    <article class="project-card">
-      <div class="project-copy">
-        <div class="project-eyebrow"><span>project_003</span><span>// scripts</span></div>
-        <h2>Scripts & Automation</h2>
-        <p>A home for small Bash, PowerShell or Python utilities once I have something useful enough to explain, demonstrate and publish properly.</p>
-        <div class="project-stack"><span>Bash</span><span>PowerShell</span><span>Python</span></div>
-      </div>
-      <span class="project-status">QUEUED</span>
-    </article>
-  </section>
-
-  <section class="section-block fade-in">
-    <div class="page-kicker">// project_format</div>
-    <h2>How I document projects</h2>
-    <div class="project-method">
-      <div class="detail-item"><h3>01 // Problem</h3><p>What was I trying to build, investigate, detect, automate or understand?</p></div>
-      <div class="detail-item"><h3>02 // Process</h3><p>Tools, commands, screenshots, evidence and decisions — enough to show how I approached it.</p></div>
-      <div class="detail-item"><h3>03 // Outcome</h3><p>What worked, what broke, what I learned and what I’d change next time.</p></div>
+  <section class="project-browser fade-in" aria-label="Project browser">
+    <div class="project-browser-head">
+      <div class="page-kicker">// projects/index</div>
+      <h2>Open a project</h2>
+      <p>Each one expands into the useful bits. No separate essay page required.</p>
     </div>
+
+    <details class="project-accordion project-security" open>
+      <summary>
+        <span class="project-toggle" aria-hidden="true"></span>
+        <span class="project-title-wrap">
+          <span class="project-index">project_001 // security audit</span>
+          <span class="project-title">Botium Toys Security Audit</span>
+          <span class="project-subtitle">Risk assessment · Controls · Compliance · Remediation</span>
+        </span>
+        <span class="project-status complete">COMPLETE</span>
+      </summary>
+
+      <div class="project-content">
+        <div class="project-intro-grid">
+          <div>
+            <div class="page-kicker">// project_001/readme</div>
+            <h2>Botium Toys Security Audit</h2>
+            <p>My first structured security audit project. I reviewed Botium Toys’ assets, existing security controls and compliance practices, identified gaps and looked at where the biggest risks sat.</p>
+            <p>I then completed a controls and compliance checklist and produced a prioritised set of recommendations for the IT Manager. The aim wasn’t just to point at what was missing, but to explain why it mattered and suggest realistic ways the business could improve it.</p>
+          </div>
+          <div class="project-stack audit-stack"><span>Security Audit</span><span>Risk Assessment</span><span>NIST CSF</span><span>PCI DSS</span><span>GDPR</span><span>SOC</span></div>
+        </div>
+
+        <div class="project-detail-grid">
+          <article class="project-detail">
+            <span class="detail-command">$ cat scope.txt</span>
+            <h3>What I assessed</h3>
+            <p>The audit covered the organisation’s wider security programme, including employee devices, internal systems and networks, data storage, legacy systems and existing physical and technical controls.</p>
+          </article>
+          <article class="project-detail">
+            <span class="detail-command">$ cat findings.txt</span>
+            <h3>What stood out</h3>
+            <p>The biggest gaps included broad access to sensitive data, no encryption for cardholder information, no least privilege or separation of duties, no IDS, no backups or disaster recovery plan, and weak password controls.</p>
+          </article>
+          <article class="project-detail">
+            <span class="detail-command">$ cat response.txt</span>
+            <h3>What I recommended</h3>
+            <p>I prioritised the recommendations by risk and implementation effort, then suggested practical fixes around access control, encryption, permissions, backups, disaster recovery, passwords, intrusion detection, asset classification and legacy system monitoring.</p>
+          </article>
+        </div>
+
+        <div class="audit-priority">
+          <div class="page-kicker">// recommendations --priority</div>
+          <h3>How I prioritised it</h3>
+          <div class="priority-list">
+            <div><span class="priority critical">CRITICAL</span><p>Access control and encryption. Sensitive customer and payment data needed protecting first.</p></div>
+            <div><span class="priority high">HIGH</span><p>Least privilege, separation of duties, backups, disaster recovery and stronger password security.</p></div>
+            <div><span class="priority medium">MEDIUM</span><p>Password management, IDS, asset classification and regular legacy system monitoring.</p></div>
+          </div>
+        </div>
+
+        <div class="project-evidence">
+          <div>
+            <div class="page-kicker">// evidence/</div>
+            <h3>Project documents</h3>
+            <p>The full work is kept as evidence rather than turning this page into a wall of text.</p>
+          </div>
+          <div class="project-actions">
+            <a class="project-link document-link" href="src/assets/documents/botium-toys/Botium Toys - Assessment report.pdf" target="_blank" rel="noopener noreferrer">assessment report ↗</a>
+            <a class="project-link document-link" href="src/assets/documents/botium-toys/Botium Toys - Controls and compliance checklist.pdf" target="_blank" rel="noopener noreferrer">controls & compliance ↗</a>
+            <a class="project-link document-link" href="src/assets/documents/botium-toys/Botium Toys - Suggestion e-mail to IT.pdf" target="_blank" rel="noopener noreferrer">recommendations to IT ↗</a>
+          </div>
+        </div>
+      </div>
+    </details>
+
+    <details class="project-accordion project-portfolio">
+      <summary>
+        <span class="project-toggle" aria-hidden="true"></span>
+        <span class="project-title-wrap">
+          <span class="project-index">project_002 // web / portfolio</span>
+          <span class="project-title">Exoyb Cybersecurity Portfolio</span>
+          <span class="project-subtitle">HTML · CSS · JavaScript · GitHub Pages</span>
+        </span>
+        <span class="project-status active">ACTIVE</span>
+      </summary>
+      <div class="project-content">
+        <div class="page-kicker">// project_002/readme</div>
+        <h2>Exoyb Cybersecurity Portfolio</h2>
+        <p>My first GitHub project. I took a single-page HTML template, restructured it into a multi-page portfolio, removed the bits I didn’t want, built the terminal-style landing page and have been changing it ever since.</p>
+        <div class="project-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span><span>Git</span></div>
+        <div class="project-actions"><a class="project-link" href="https://github.com/Exoyb/exoyb.github.io" target="_blank" rel="noopener noreferrer">view source ↗</a><a class="project-link" href="index.html">launch project →</a><a class="project-link" href="cyber-log.html">development log →</a></div>
+      </div>
+    </details>
+
+    <details class="project-accordion project-queued">
+      <summary>
+        <span class="project-toggle" aria-hidden="true"></span>
+        <span class="project-title-wrap">
+          <span class="project-index">project_003 // scripts</span>
+          <span class="project-title">Scripts & Automation</span>
+          <span class="project-subtitle">Bash · PowerShell · Python</span>
+        </span>
+        <span class="project-status">QUEUED</span>
+      </summary>
+      <div class="project-content">
+        <div class="page-kicker">// project_003/status</div>
+        <h2>Nothing worth pretending is finished yet.</h2>
+        <p>This is where small Bash, PowerShell or Python utilities can live once I have something useful enough to explain and publish properly.</p>
+      </div>
+    </details>
   </section>
 
   <div class="page-actions"><a class="btn btn-primary" href="cyber-log.html">cd /cyber-log/ →</a><a class="btn btn-secondary" href="index.html">cd /home/</a></div>
