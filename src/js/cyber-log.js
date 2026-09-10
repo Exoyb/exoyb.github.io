@@ -25,6 +25,14 @@
 const cyberLogEntries = [
   {
     date: '2026-09-10',
+    type: 'Security Project',
+    title: 'Completed my first security audit',
+    summary: 'Completed my first Security Audit and uploaded the finished documents to my Projects page.',
+    tags: ['security-audit', 'projects'],
+    links: [{ label: 'View the project', url: 'projects.html' }]
+  },
+  {
+    date: '2026-09-10',
     type: 'Portfolio Development // Patch Notes',
     title: 'Refining the portfolio — full patch notes',
     summary: 'A major polish pass across the portfolio focused on presentation, interaction, feedback evidence, boot-sequence immersion and small details that make the site feel more like a system than a template.',
