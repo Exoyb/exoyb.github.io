@@ -9,8 +9,8 @@
   <meta name="theme-color" content="#0d100f">
   <link rel="stylesheet" href="src/css/main.css?v=20260910-6">
   <link rel="stylesheet" href="src/css/animations.css?v=20260910-6">
-  <link rel="stylesheet" href="src/css/pages.css?v=20260910-8">
-  <link rel="stylesheet" href="src/css/about.css?v=20260910-8">
+  <link rel="stylesheet" href="src/css/pages.css?v=20260910-9">
+  <link rel="stylesheet" href="src/css/about.css?v=20260910-9">
 </head>
 <body>
 <nav><div class="nav-content"><div class="logo"><a href="index.html">#!/bin/bash Exoyb.sh</a></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div><div class="nav-links" id="navLinks"><a class="active" href="about.html">About</a><a href="training.html">Training</a><a href="projects.html">Projects</a><a href="cyber-log.html">Cyber Log</a><a href="feedback.html">Feedback</a></div></div></nav>
@@ -19,24 +19,14 @@
   <header class="about-hero fade-in">
     <div class="about-hero-copy">
       <div class="page-kicker">// whoami</div>
-      <h1>About Me</h1>
-      <p class="page-intro about-lead">I’m Dan Ridout, a Software Support Technician at <a class="inline-link" href="https://www.caseware.com/" target="_blank" rel="noopener noreferrer">Caseware</a>, building toward a role in Cybersecurity and Security Operations.</p>
-      <p class="about-summary">My background spans hardware repair, technical support and people leadership, but the common thread has always been the same: <strong>work out what happened, find the cause, explain it clearly, and leave the next person with something useful.</strong></p>
+      <h1>ABOUT ME</h1>
+      <p class="page-intro about-lead">I’m Dan Ridout, a Software Support Technician at <a class="inline-link" href="https://www.caseware.com/" target="_blank" rel="noopener noreferrer">Caseware</a>, building toward Cybersecurity and Security Operations.</p>
+      <p class="about-summary">Hardware repair, software support and leadership look different on paper, but I’ve always worked the same way: <strong>work out what happened, find the cause, explain it clearly and leave useful evidence behind.</strong></p>
 
       <div class="about-stats" aria-label="Career highlights">
         <div class="about-stat"><span class="about-stat-value">1500+</span><span class="about-stat-label">devices repaired</span></div>
         <div class="about-stat"><span class="about-stat-value">12+</span><span class="about-stat-label">years customer-facing</span></div>
         <div class="about-stat"><span class="about-stat-value">5 yrs</span><span class="about-stat-label">commercial leadership</span></div>
-      </div>
-
-      <div class="about-mini-terminal cd-terminal">
-        <div class="about-mini-header cd-terminal-header"><span class="cd-dot red"></span><span class="cd-dot yellow"></span><span class="cd-dot green"></span><span class="about-mini-title">profile.sys</span></div>
-        <div class="about-mini-body cd-terminal-body">
-          <p><span class="prompt">$</span> <span class="cd-command">whoami</span></p>
-          <p class="cd-output">Dan Ridout // SaaS Support // Security Operations path</p>
-          <p><span class="prompt">$</span> <span class="cd-command">cat direction.txt</span></p>
-          <p class="cd-output">Troubleshooting → Investigation → Security Operations</p>
-        </div>
       </div>
     </div>
 
@@ -59,19 +49,19 @@
     <div class="section-head about-section-intro">
       <div class="page-kicker">// current_process</div>
       <h2 id="current-role-title">What I do now</h2>
-      <p>A quick version first. The deeper story is there if you want it.</p>
+      <p>The short version before the deeper story.</p>
     </div>
     <div class="about-now-grid">
-      <article class="now-card now-card-primary">
+      <article class="now-card">
         <span class="now-command">$ ps aux | grep caseware</span>
         <h3>Software Support Technician</h3>
-        <p>I troubleshoot Caseware software across phone, email, chat and the support portal — triaging issues, reproducing faults, guiding users through fixes, owning cases and escalating when a problem needs deeper investigation.</p>
+        <p>I troubleshoot Caseware software across phone, email, chat and the support portal: triage issues, reproduce faults, guide fixes, own cases and escalate with useful context when deeper investigation is needed.</p>
       </article>
       <article class="now-card">
         <span class="now-command">$ grep -i transferable_skills</span>
         <h3>The security overlap</h3>
-        <div class="skill-chips" aria-label="Transferable skills"><span>Triage</span><span>Root cause</span><span>Permissions</span><span>2FA</span><span>Escalation</span><span>Documentation</span></div>
-        <p>The tools will change, but the working habits already feel familiar: gather evidence, narrow the problem, understand impact, communicate clearly and know when to escalate.</p>
+        <p class="overlap-line">Triage · Root cause · Permissions · 2FA · Escalation · Documentation</p>
+        <p>Different tools, familiar habits: gather evidence, narrow the problem, understand impact, communicate clearly and know when to escalate.</p>
       </article>
     </div>
   </section>
@@ -80,15 +70,12 @@
     <div class="section-head about-section-intro">
       <div class="page-kicker">// open ./story/</div>
       <h2 id="story-title">The bits people usually ask me</h2>
-      <p>Pick whatever matters to you. You don’t need to read my life story from top to bottom.</p>
+      <p>Open whatever matters to you. The page is designed to be skimmed, not read like a biography.</p>
     </div>
 
     <div class="about-question-grid">
       <details class="about-question">
-        <summary>
-          <span class="question-icon" aria-hidden="true"></span>
-          <span class="question-copy"><span class="question-title">Why Cybersecurity?</span><span class="question-teaser">It started with gaming, DDoS attacks and refusing to accept “the internet broke” as an answer.</span></span>
-        </summary>
+        <summary><span class="question-icon" aria-hidden="true"></span><span class="question-copy"><span class="question-title">Why Cybersecurity?</span><span class="question-teaser">Gaming, DDoS attacks and refusing to accept “the internet broke” as an answer.</span></span></summary>
         <div class="question-content">
           <p>My interest started through online gaming. After being knocked offline by DDoS attacks, I wanted to understand what had actually happened: what the attack was doing, why it worked and what could be done to stop it.</p>
           <p>That curiosity spread into networking, malware, spoofing, software behaviour and attack techniques. I kept coming back to the same questions: <strong>What happened? How? Why? What evidence proves it?</strong></p>
@@ -96,33 +83,24 @@
       </details>
 
       <details class="about-question">
-        <summary>
-          <span class="question-icon" aria-hidden="true"></span>
-          <span class="question-copy"><span class="question-title">Why now?</span><span class="question-teaser">This is a deliberate move built on years of troubleshooting, not a sudden career reset.</span></span>
-        </summary>
+        <summary><span class="question-icon" aria-hidden="true"></span><span class="question-copy"><span class="question-title">Why now?</span><span class="question-teaser">A deliberate move built on years of troubleshooting, not a sudden career reset.</span></span></summary>
         <div class="question-content">
-          <p>I’ve spent years building the pieces without originally calling them “security skills”: diagnosing hardware, testing electronics, dealing with fraud risk, supporting software, handling permissions and authentication issues, documenting fixes and escalating complex problems.</p>
-          <p>Now I’m deliberately turning that experience toward security. I’m studying the fundamentals, building hands-on labs and documenting the journey so employers can see the progression rather than just take my word for it.</p>
+          <p>I’ve spent years building the pieces without originally calling them security skills: diagnosing hardware, testing electronics, dealing with fraud risk, supporting software, handling permissions and authentication issues, documenting fixes and escalating complex problems.</p>
+          <p>Now I’m deliberately turning that experience toward security through structured study, hands-on labs and documented work employers can actually inspect.</p>
         </div>
       </details>
 
       <details class="about-question">
-        <summary>
-          <span class="question-icon" aria-hidden="true"></span>
-          <span class="question-copy"><span class="question-title">Why Security Operations / SOC?</span><span class="question-teaser">Because investigation, triage and evidence are the parts of technical work I naturally gravitate toward.</span></span>
-        </summary>
+        <summary><span class="question-icon" aria-hidden="true"></span><span class="question-copy"><span class="question-title">Why Security Operations / SOC?</span><span class="question-teaser">Investigation, triage and evidence are the parts of technical work I naturally gravitate toward.</span></span></summary>
         <div class="question-content">
-          <p>SOC work appeals to me because it turns curiosity into a process: something happened, there is evidence somewhere, and the job is to work out what matters, what caused it and what should happen next.</p>
-          <p>That maps well to how I already approach support. I like narrowing noisy problems into something specific, reproducing behaviour where possible, separating symptoms from causes and handing over useful context when escalation is needed.</p>
+          <p>SOC work appeals to me because it turns curiosity into a process: something happened, evidence exists somewhere, and the job is to work out what matters, what caused it and what should happen next.</p>
+          <p>That maps well to how I already approach support: narrow noisy problems, reproduce behaviour where possible, separate symptoms from causes and hand over useful context when escalation is needed.</p>
           <div class="root-cause-line">Signal → Evidence → Triage → Root cause → Action → Documentation</div>
         </div>
       </details>
 
       <details class="about-question">
-        <summary>
-          <span class="question-icon" aria-hidden="true"></span>
-          <span class="question-copy"><span class="question-title">What got me into tech?</span><span class="question-teaser">Before SaaS support, I spent years repairing devices, testing electronics and managing technical retail teams.</span></span>
-        </summary>
+        <summary><span class="question-icon" aria-hidden="true"></span><span class="question-copy"><span class="question-title">What got me into tech?</span><span class="question-teaser">Before SaaS support, I spent years repairing devices, testing electronics and managing technical teams.</span></span></summary>
         <div class="question-content">
           <div class="career-steps">
             <div class="career-step"><span class="career-step-label">Mobile Street</span><p>Hands-on diagnosis across desktops, laptops and mobile devices, including board-level micro-soldering, IC replacement and trace repair.</p></div>
@@ -133,26 +111,20 @@
       </details>
 
       <details class="about-question">
-        <summary>
-          <span class="question-icon" aria-hidden="true"></span>
-          <span class="question-copy"><span class="question-title">What do I bring from support?</span><span class="question-teaser">Technical diagnosis matters, but so do communication, ownership and knowing when to escalate.</span></span>
-        </summary>
+        <summary><span class="question-icon" aria-hidden="true"></span><span class="question-copy"><span class="question-title">What do I bring from support?</span><span class="question-teaser">Technical diagnosis matters, but so do communication, ownership and knowing when to escalate.</span></span></summary>
         <div class="question-content">
           <p>Support has taught me to work with incomplete information, ask better questions, stay calm when someone is frustrated and keep ownership of a problem even when the eventual fix sits with another team.</p>
-          <p>At Caseware I also write technical knowledge-base content, so I’m used to turning a one-off solution into guidance someone else can follow. For an entry-level SOC role, I see that as just as important as knowing a tool: good analysts leave useful notes.</p>
+          <p>At Caseware I also write customer-facing knowledge-base content, so I’m used to turning a one-off solution into guidance someone else can follow. Good analysts leave useful notes.</p>
           <p><a class="inline-link" href="feedback.html">See customer and manager feedback →</a></p>
         </div>
       </details>
 
       <details class="about-question">
-        <summary>
-          <span class="question-icon" aria-hidden="true"></span>
-          <span class="question-copy"><span class="question-title">What am I learning now?</span><span class="question-teaser">Security fundamentals first, then practical analyst work I can explain and evidence.</span></span>
-        </summary>
+        <summary><span class="question-icon" aria-hidden="true"></span><span class="question-copy"><span class="question-title">What am I learning now?</span><span class="question-teaser">Security fundamentals first, then practical analyst work I can explain and evidence.</span></span></summary>
         <div class="question-content">
           <p>I’m currently working through Microsoft SC-900, the Google Cybersecurity Professional Certificate and hands-on TryHackMe learning including SEC1 and SAL1.</p>
           <p>The goal isn’t to collect logos. I want enough foundation to understand what I’m seeing, then enough practical repetition to investigate it properly.</p>
-          <p><a class="inline-link" href="training.html">View training and certifications →</a> &nbsp; <a class="inline-link" href="cyber-log.html">Read the Cyber Log →</a></p>
+          <p><a class="inline-link" href="training.html">View training →</a> &nbsp; <a class="inline-link" href="cyber-log.html">Read the Cyber Log →</a></p>
         </div>
       </details>
     </div>
@@ -162,13 +134,25 @@
     <div class="section-head about-section-intro">
       <div class="page-kicker">// capabilities</div>
       <h2 id="value-title">What I’d bring to a team</h2>
-      <p>The useful bits, without turning this page into another CV.</p>
+      <p>Four strengths at a glance. Expand only the ones you want to inspect.</p>
     </div>
     <div class="bring-grid">
-      <article class="bring-card"><span class="bring-index">01</span><h3>Technical diagnosis</h3><p>Comfortable getting hands-on, testing assumptions and narrowing faults instead of jumping at the first plausible answer.</p></article>
-      <article class="bring-card"><span class="bring-index">02</span><h3>Clear communication</h3><p>More than a decade in customer-facing roles has taught me how to explain technical problems without hiding behind jargon.</p></article>
-      <article class="bring-card"><span class="bring-index">03</span><h3>Documentation</h3><p>I write customer-facing Caseware knowledge-base content because a good fix is more valuable when somebody else can repeat it.</p><div class="link-stack"><a class="inline-link" href="https://my.caseware.com/s/article/Context-llp-partner-active-period-does-not--reference-a-valid-explicit-dimension?language=en_US" target="_blank" rel="noopener noreferrer">LLP partner active period article ↗</a><a class="inline-link" href="https://my.caseware.com/s/article/On-Saving-script-failed-Error-message?language=en_US" target="_blank" rel="noopener noreferrer">On Saving script failed article ↗</a><a class="inline-link" href="https://my.caseware.com/s/article/How-to-manually-tag-custom-content-in-Cloud-Engagements?language=en_US" target="_blank" rel="noopener noreferrer">Manual tagging in Cloud Engagements ↗</a></div></article>
-      <article class="bring-card"><span class="bring-index">04</span><h3>Composure & ownership</h3><p>I’ve managed stores, coached teams and handled escalations. Pressure doesn’t remove the need to be methodical, useful and accountable.</p></article>
+      <details class="bring-card">
+        <summary><span class="bring-index">01</span><span class="bring-copy"><span class="bring-title">Technical diagnosis</span><span class="bring-teaser">Test assumptions, isolate faults and avoid guessing.</span></span><span class="mini-toggle" aria-hidden="true"></span></summary>
+        <div class="bring-content"><p>Comfortable getting hands-on, testing assumptions and narrowing faults instead of jumping at the first plausible answer.</p></div>
+      </details>
+      <details class="bring-card">
+        <summary><span class="bring-index">02</span><span class="bring-copy"><span class="bring-title">Clear communication</span><span class="bring-teaser">Explain technical problems without hiding behind jargon.</span></span><span class="mini-toggle" aria-hidden="true"></span></summary>
+        <div class="bring-content"><p>More than a decade in customer-facing roles has taught me how to adapt explanations to different levels of technical confidence while keeping the important detail intact.</p></div>
+      </details>
+      <details class="bring-card">
+        <summary><span class="bring-index">03</span><span class="bring-copy"><span class="bring-title">Documentation</span><span class="bring-teaser">Turn one fix into something useful and repeatable.</span></span><span class="mini-toggle" aria-hidden="true"></span></summary>
+        <div class="bring-content"><p>I write customer-facing Caseware knowledge-base content because a good fix is more valuable when somebody else can repeat it.</p><div class="link-stack"><a class="inline-link" href="https://my.caseware.com/s/article/Context-llp-partner-active-period-does-not--reference-a-valid-explicit-dimension?language=en_US" target="_blank" rel="noopener noreferrer">LLP partner active period article ↗</a><a class="inline-link" href="https://my.caseware.com/s/article/On-Saving-script-failed-Error-message?language=en_US" target="_blank" rel="noopener noreferrer">On Saving script failed article ↗</a><a class="inline-link" href="https://my.caseware.com/s/article/How-to-manually-tag-custom-content-in-Cloud-Engagements?language=en_US" target="_blank" rel="noopener noreferrer">Manual tagging in Cloud Engagements ↗</a></div></div>
+      </details>
+      <details class="bring-card">
+        <summary><span class="bring-index">04</span><span class="bring-copy"><span class="bring-title">Composure & ownership</span><span class="bring-teaser">Stay methodical when the problem or pressure increases.</span></span><span class="mini-toggle" aria-hidden="true"></span></summary>
+        <div class="bring-content"><p>I’ve managed stores, coached teams and handled escalations. Pressure doesn’t remove the need to be methodical, useful and accountable.</p></div>
+      </details>
     </div>
   </section>
 
