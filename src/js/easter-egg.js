@@ -1,23 +1,16 @@
-// Exoyb Easter egg: decryptable clue on Cyber Log -> arrow-key display override on Home
+// Exoyb Easter egg: decryptable text + arrow-key display override on Home
 (() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*+-=/<>[]{}';
 
-    const setupCipherClue = () => {
-        const panel = document.getElementById('cipherTransmission');
-        const payload = document.getElementById('cipherPayload');
-        if (!panel || !payload) return;
-
-        const cipherText = payload.dataset.cipher || payload.textContent || '';
-        const plainText = payload.dataset.plain || 'HOME:// ↑ ↑ ↓ ↓ ← ← → →';
-        const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*+-=/<>[]{}';
+    const createScrambler = element => {
         let timer = null;
-        let decrypted = false;
 
-        const scrambleTo = target => {
+        return target => {
             if (timer) window.clearInterval(timer);
 
             if (reducedMotion) {
-                payload.textContent = target;
+                element.textContent = target;
                 return;
             }
 
@@ -28,18 +21,29 @@
                 const progress = Math.min(1, frame / frames);
                 const revealCount = Math.floor(target.length * progress);
 
-                payload.textContent = [...target].map((character, index) => {
-                    if (index < revealCount || character === ' ') return character;
+                element.textContent = [...target].map((character, index) => {
+                    if (index < revealCount || character === ' ' || character === '|') return character;
                     return glyphs[Math.floor(Math.random() * glyphs.length)];
                 }).join('');
 
                 if (progress >= 1) {
                     window.clearInterval(timer);
                     timer = null;
-                    payload.textContent = target;
+                    element.textContent = target;
                 }
             }, 28);
         };
+    };
+
+    const setupCipherClue = () => {
+        const panel = document.getElementById('cipherTransmission');
+        const payload = document.getElementById('cipherPayload');
+        if (!panel || !payload) return;
+
+        const cipherText = payload.dataset.cipher || payload.textContent || '';
+        const plainText = payload.dataset.plain || 'HOME:// ↑ ↑ ↓ ↓ ← ← → →';
+        const scrambleTo = createScrambler(payload);
+        let decrypted = false;
 
         const decrypt = () => {
             decrypted = true;
@@ -58,6 +62,36 @@
         panel.addEventListener('focus', decrypt);
         panel.addEventListener('blur', encrypt);
         panel.addEventListener('click', () => decrypted ? encrypt() : decrypt());
+    };
+
+    const setupHomeDecryptTag = () => {
+        const tag = document.getElementById('homeDecryptTag');
+        if (!tag) return;
+
+        const cipherText = tag.dataset.cipher || tag.textContent || '';
+        const plainText = tag.dataset.plain || '';
+        const scrambleTo = createScrambler(tag);
+        let decrypted = false;
+
+        const decrypt = () => {
+            if (decrypted) return;
+            decrypted = true;
+            tag.classList.add('decrypted');
+            scrambleTo(plainText);
+        };
+
+        const encrypt = () => {
+            if (!decrypted) return;
+            decrypted = false;
+            tag.classList.remove('decrypted');
+            scrambleTo(cipherText);
+        };
+
+        tag.addEventListener('mouseenter', decrypt);
+        tag.addEventListener('mouseleave', encrypt);
+        tag.addEventListener('focus', decrypt);
+        tag.addEventListener('blur', encrypt);
+        tag.addEventListener('click', () => decrypted ? encrypt() : decrypt());
     };
 
     const setupHomeSequence = () => {
@@ -98,7 +132,7 @@
             let drops = [];
             let columns = 0;
             const fontSize = 18;
-            const glyphs = '01EXOYB<>[]{}#$%*+=-/';
+            const matrixGlyphs = '01EXOYB<>[]{}#$%*+=-/';
 
             const sizeCanvas = () => {
                 const ratio = Math.min(window.devicePixelRatio || 1, 2);
@@ -118,7 +152,7 @@
                 context.textAlign = 'left';
 
                 for (let column = 0; column < columns; column += 1) {
-                    const character = glyphs[Math.floor(Math.random() * glyphs.length)];
+                    const character = matrixGlyphs[Math.floor(Math.random() * matrixGlyphs.length)];
                     const x = column * fontSize;
                     const y = drops[column] * fontSize;
                     context.fillStyle = Math.random() > .965 ? '#dfffee' : '#00ff8c';
@@ -182,6 +216,21 @@
     const addEffectStyles = () => {
         const style = document.createElement('style');
         style.textContent = `
+            .decrypt-tag {
+                cursor: crosshair;
+                color: #849089 !important;
+                border-color: rgba(0,217,255,.32) !important;
+                letter-spacing: .025em;
+                transition: color .18s ease, border-color .18s ease, box-shadow .18s ease, background .18s ease;
+            }
+            .decrypt-tag:hover,
+            .decrypt-tag:focus-visible,
+            .decrypt-tag.decrypted {
+                color: var(--green, #00ff8c) !important;
+                border-color: rgba(0,255,140,.58) !important;
+                background: rgba(8,18,13,.82);
+                box-shadow: 0 0 18px rgba(0,255,140,.08);
+            }
             .matrix-easter-egg {
                 position: fixed;
                 inset: 0;
@@ -215,6 +264,9 @@
             }
             .matrix-easter-status.hide { opacity: 0; }
             .matrix-easter-egg.matrix-static .matrix-easter-canvas { display: none; }
+            @media (max-width: 720px) {
+                .decrypt-tag { font-size: .72rem !important; }
+            }
             @media (prefers-reduced-motion: reduce) {
                 .matrix-easter-egg { transition: opacity .12s linear; }
                 .matrix-easter-status { transition: none; }
@@ -226,6 +278,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         addEffectStyles();
         setupCipherClue();
+        setupHomeDecryptTag();
         setupHomeSequence();
     });
 })();
