@@ -55,32 +55,52 @@
     line-height: 1.82;
 }
 
-/* Shared inner-page terminal: neutral charcoal body, phosphor-green edge only. */
+/* Shared terminal window. Homepage shell is the reference design. */
 .cd-terminal {
     margin: 2rem 0 3rem;
     overflow: hidden;
-    border: 1px solid rgba(0,255,140,.30);
-    border-radius: 10px;
-    background: rgba(12,12,13,.96);
+    border: 1px solid rgba(0,255,140,.46);
+    border-radius: 12px;
+    background: rgba(12,12,13,.97);
     box-shadow:
-        0 0 0 1px rgba(255,255,255,.018) inset,
-        0 0 12px rgba(0,255,140,.065),
-        0 12px 34px rgba(0,0,0,.28);
+        0 0 0 1px rgba(255,255,255,.025) inset,
+        0 0 14px rgba(0,255,140,.13),
+        0 0 34px rgba(0,255,140,.045),
+        0 22px 70px rgba(0,0,0,.42);
 }
 
 .cd-terminal-header {
     display: flex;
     align-items: center;
-    gap: .45rem;
-    padding: .72rem 1rem;
+    gap: .55rem;
+    min-height: 48px;
+    padding: .9rem 1.25rem;
     background: #181819;
     border-bottom: 1px solid #34363a;
 }
 
+.cd-terminal .cd-dot {
+    flex: 0 0 13px;
+    width: 13px;
+    height: 13px;
+}
+
 .cd-terminal-body {
-    padding: 1.2rem 1.4rem;
+    padding: 1.55rem 1.7rem 1.45rem;
     color: #b9b9b9;
+    background: rgba(10,10,11,.94);
+    font-size: 1.05rem;
     line-height: 1.78;
+}
+
+.cd-terminal:hover,
+.cd-terminal:focus-within {
+    border-color: rgba(0,255,140,.78);
+    box-shadow:
+        0 0 0 1px rgba(255,255,255,.025) inset,
+        0 0 18px rgba(0,255,140,.18),
+        0 0 42px rgba(0,255,140,.06),
+        0 22px 70px rgba(0,0,0,.42);
 }
 
 .cd-command { color: var(--cyan); }
