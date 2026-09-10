@@ -22,9 +22,17 @@
     text-shadow: none;
 }
 
+/* Keep structure visible at rest; hover simply intensifies the same phosphor edge. */
+.glow-surface {
+    border-color: rgba(0,255,140,.26) !important;
+    box-shadow: 0 0 0 1px rgba(0,255,140,.012) inset, 0 0 10px rgba(0,255,140,.022);
+}
+
 .glow-surface:hover,
 .glow-surface:focus-within {
     transform: translateY(-2px);
+    border-color: rgba(0,255,140,.78) !important;
+    box-shadow: 0 12px 32px rgba(0,0,0,.30), 0 0 16px rgba(0,255,140,.13), 0 0 34px rgba(0,255,140,.045) !important;
 }
 
 .page-hero {
@@ -73,22 +81,11 @@
     padding: 1.2rem 1.4rem;
     color: #b9b9b9;
     line-height: 1.78;
-    background: rgba(10,10,11,.88);
-}
-
-.cd-terminal:hover,
-.cd-terminal:focus-within {
-    border-color: rgba(0,255,140,.55) !important;
-    background: rgba(12,12,13,.98);
-    box-shadow:
-        0 0 0 1px rgba(255,255,255,.02) inset,
-        0 0 15px rgba(0,255,140,.10),
-        0 14px 36px rgba(0,0,0,.30) !important;
 }
 
 .cd-command { color: var(--cyan); }
-.cd-output { color: #949494; }
-.cd-joke { color: #a7aaa8; }
+.cd-output { color: #8f8f8f; }
+.cd-joke { color: #b0b0b0; }
 
 .content-grid {
     display: grid;
