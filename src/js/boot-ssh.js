@@ -229,8 +229,8 @@
             await sleep(300);
             loginLine.classList.add('visible');
 
-            // Enough time to read the successful login without leaving a long dead hang.
-            await sleep(650);
+            // Hold the completed SSH session long enough to actually read the final login line.
+            await sleep(1500);
             finishBoot();
         };
 
