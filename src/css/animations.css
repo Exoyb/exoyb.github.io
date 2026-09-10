@@ -25,26 +25,26 @@
     50% { opacity: .66; }
 }
 
-/* JS adds reveal-pending/is-visible and a small stagger delay. */
 .fade-in {
     opacity: 1;
     transform: none;
 }
 
+/* A restrained phosphor wake-up: stepped visibility, then settle into place. */
 .motion-enabled .fade-in.reveal-pending {
     opacity: 0;
-    transform: translateY(14px);
-    filter: blur(1px);
+    transform: translateY(10px);
+    filter: brightness(1.7) contrast(1.08) blur(.7px);
     transition:
-        opacity .5s ease var(--reveal-delay, 0ms),
-        transform .5s ease var(--reveal-delay, 0ms),
-        filter .5s ease var(--reveal-delay, 0ms);
+        opacity .34s steps(7, end) var(--reveal-delay, 0ms),
+        transform .42s cubic-bezier(.2,.7,.2,1) var(--reveal-delay, 0ms),
+        filter .4s steps(7, end) var(--reveal-delay, 0ms);
 }
 
 .motion-enabled .fade-in.reveal-pending.is-visible {
     opacity: 1;
     transform: translateY(0);
-    filter: blur(0);
+    filter: brightness(1) contrast(1) blur(0);
 }
 
 @media (prefers-reduced-motion: reduce) {
