@@ -2,21 +2,21 @@
 
 /* Exoyb global visual system */
 :root {
-    --bg: #0d100f;
-    --bg-deep: #080a09;
-    --surface: rgba(17, 20, 18, .88);
-    --surface-strong: rgba(12, 15, 13, .96);
-    --line: #2a302d;
-    --line-soft: #202522;
-    --text: #e7ebe8;
-    --muted: #99a09b;
-    --dim: #666e69;
+    --bg: #141414;
+    --bg-deep: #0b0b0c;
+    --surface: rgba(20, 20, 21, .90);
+    --surface-strong: rgba(13, 13, 14, .97);
+    --line: #303235;
+    --line-soft: #242628;
+    --text: #e7e7e7;
+    --muted: #9b9b9b;
+    --dim: #696969;
     --green: #00ff8c;
     --cyan: #00d9ff;
     --amber: #ffca58;
     --red: #ff625d;
     --nav-height: 68px;
-    --glow: 0 0 22px rgba(0, 255, 140, .14), 0 0 54px rgba(0, 255, 140, .06);
+    --glow: 0 0 14px rgba(0, 255, 140, .11), 0 0 30px rgba(0, 255, 140, .035);
     --font-mono: 'IBM Plex Mono', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Liberation Mono', Menlo, monospace;
     --pointer-x: 50vw;
     --pointer-y: 50vh;
@@ -40,8 +40,8 @@ body {
     overflow-x: hidden;
     color: var(--text);
     background:
-        radial-gradient(circle at 50% -20%, rgba(0, 255, 140, .045), transparent 40%),
-        linear-gradient(180deg, #101311 0%, var(--bg) 42%, #0a0d0b 100%);
+        radial-gradient(circle at 50% -18%, rgba(255,255,255,.022), transparent 38%),
+        linear-gradient(180deg, #161617 0%, #131314 42%, #0f0f10 100%);
     font-family: var(--font-mono);
     font-size: 16px;
     line-height: 1.6;
@@ -61,15 +61,15 @@ body::after {
 
 body::before {
     background-image:
-        repeating-linear-gradient(0deg, rgba(255,255,255,.011) 0 1px, transparent 1px 4px),
-        radial-gradient(circle, rgba(0,255,140,.34) 1px, transparent 1px);
+        repeating-linear-gradient(0deg, rgba(255,255,255,.010) 0 1px, transparent 1px 4px),
+        radial-gradient(circle, rgba(165,174,169,.22) 1px, transparent 1px);
     background-size: auto, 52px 52px;
-    opacity: .16;
+    opacity: .12;
 }
 
 body::after {
-    background: radial-gradient(520px circle at var(--pointer-x) var(--pointer-y), rgba(0,255,140,.075), rgba(0,217,255,.025) 30%, transparent 67%);
-    opacity: .82;
+    background: radial-gradient(210px circle at var(--pointer-x) var(--pointer-y), rgba(0,255,140,.055), rgba(0,217,255,.015) 38%, transparent 72%);
+    opacity: .62;
     transition: opacity .25s ease;
 }
 
@@ -99,8 +99,8 @@ nav {
     min-height: var(--nav-height);
     padding: .95rem 2rem;
     z-index: 1000;
-    background: rgba(10,13,11,.88);
-    border-bottom: 1px solid rgba(0,255,140,.14);
+    background: rgba(14,14,15,.93);
+    border-bottom: 1px solid rgba(255,255,255,.08);
     box-shadow: 0 8px 35px rgba(0,0,0,.22);
     backdrop-filter: blur(15px) saturate(120%);
     -webkit-backdrop-filter: blur(15px) saturate(120%);
@@ -171,7 +171,7 @@ nav {
     height: 6px;
     overflow: hidden;
     pointer-events: none;
-    background: rgba(0,255,140,.025);
+    background: rgba(255,255,255,.018);
 }
 
 .scroll-progress-bar {
@@ -235,11 +235,11 @@ strong { font-weight: 600; }
     padding: .48rem .85rem;
     margin-bottom: 1.7rem;
     color: var(--green);
-    background: rgba(8,12,10,.72);
+    background: rgba(17,17,18,.78);
     border: 1px solid rgba(0,255,140,.38);
     border-radius: 5px;
     font-size: .84rem;
-    box-shadow: inset 0 0 22px rgba(0,255,140,.025);
+    box-shadow: none;
 }
 
 /* Shared terminal chrome */
@@ -266,7 +266,7 @@ strong { font-weight: 600; }
     padding: .78rem 1.25rem;
     border: 1px solid;
     border-radius: 5px;
-    background: rgba(10,13,11,.54);
+    background: rgba(14,14,15,.62);
     font-family: var(--font-mono);
     font-weight: 600;
     text-decoration: none;
@@ -289,7 +289,7 @@ strong { font-weight: 600; }
     color: #07100b;
     background: var(--green);
     border-color: var(--green);
-    box-shadow: 0 0 20px rgba(0,255,140,.25), 0 0 44px rgba(0,255,140,.09);
+    box-shadow: 0 0 16px rgba(0,255,140,.20), 0 0 30px rgba(0,255,140,.06);
 }
 
 /* Unified glow language. */
@@ -300,9 +300,9 @@ strong { font-weight: 600; }
 
 .glow-surface:hover,
 .glow-surface:focus-within {
-    border-color: rgba(0,255,140,.78) !important;
-    box-shadow: 0 14px 38px rgba(0,0,0,.26), var(--glow) !important;
-    filter: brightness(1.035);
+    border-color: rgba(0,255,140,.74) !important;
+    box-shadow: 0 12px 32px rgba(0,0,0,.30), var(--glow) !important;
+    filter: brightness(1.025);
 }
 
 /* Review lightbox */
@@ -315,7 +315,7 @@ strong { font-weight: 600; }
     grid-template-rows: 64px minmax(0,1fr) auto;
     align-items: center;
     padding: 1rem;
-    background: rgba(2,5,3,.94);
+    background: rgba(4,4,5,.95);
     opacity: 0;
     pointer-events: none;
     backdrop-filter: blur(14px);
@@ -335,7 +335,7 @@ strong { font-weight: 600; }
     max-height: calc(100vh - 150px);
     object-fit: contain;
     border: 1px solid rgba(0,255,140,.5);
-    box-shadow: 0 0 42px rgba(0,255,140,.11), 0 24px 80px rgba(0,0,0,.6);
+    box-shadow: 0 0 30px rgba(0,255,140,.08), 0 24px 80px rgba(0,0,0,.6);
 }
 
 .review-lightbox-caption {
@@ -350,8 +350,8 @@ strong { font-weight: 600; }
 .lightbox-close,
 .lightbox-nav {
     appearance: none;
-    border: 1px solid #344039;
-    background: rgba(10,14,11,.78);
+    border: 1px solid #34363a;
+    background: rgba(14,14,15,.82);
     color: var(--green);
     font: 600 1.4rem/1 var(--font-mono);
     cursor: pointer;
@@ -363,8 +363,8 @@ strong { font-weight: 600; }
 .lightbox-close:focus-visible,
 .lightbox-nav:focus-visible {
     border-color: var(--green);
-    background: rgba(0,255,140,.07);
-    box-shadow: 0 0 20px rgba(0,255,140,.18);
+    background: rgba(0,255,140,.05);
+    box-shadow: 0 0 16px rgba(0,255,140,.14);
 }
 
 .lightbox-close {
@@ -531,8 +531,8 @@ body.lightbox-open { overflow: hidden; }
         right: 0;
         display: none;
         padding: .8rem 1rem 1rem;
-        background: rgba(6,10,7,.98);
-        border-bottom: 1px solid rgba(0,255,140,.2);
+        background: rgba(10,10,11,.98);
+        border-bottom: 1px solid rgba(255,255,255,.08);
         box-shadow: 0 15px 35px rgba(0,0,0,.35);
     }
 
