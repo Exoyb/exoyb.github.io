@@ -95,6 +95,14 @@
             return;
         }
 
+        if (kind === 'type') {
+            // Dry, quiet terminal-key tick: mostly mechanical noise with a tiny tonal body.
+            const jitter = (Math.random() - 0.5) * 180;
+            scheduleNoiseClick(ctx, now, 0.018 + Math.random() * 0.008, 0.018 + Math.random() * 0.009);
+            scheduleTone(ctx, 980 + jitter, now, 0.022, 0.008, 'square');
+            return;
+        }
+
         if (kind === 'power') {
             scheduleTone(ctx, 360, now, 0.09, 0.04, 'square');
             scheduleTone(ctx, 540, now + 0.09, 0.12, 0.05, 'triangle');
