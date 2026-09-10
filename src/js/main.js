@@ -20,6 +20,84 @@
         }
     };
 
+    const addInteractiveStyles = () => {
+        if (document.getElementById('exoyb-interactive-styles')) return;
+        const style = document.createElement('style');
+        style.id = 'exoyb-interactive-styles';
+        style.textContent = `
+            .terminal-uptime {
+                margin-left: auto;
+                padding-left: .9rem;
+                color: #686d69;
+                font-size: .67rem;
+                font-weight: 500;
+                letter-spacing: .07em;
+                white-space: nowrap;
+                user-select: none;
+            }
+            .directory-shell:hover .terminal-uptime,
+            .cd-terminal:hover .terminal-uptime {
+                color: #8e9690;
+            }
+            .terminal-page-transition {
+                position: fixed;
+                left: 50%;
+                bottom: 1.35rem;
+                z-index: 5000;
+                display: flex;
+                align-items: center;
+                max-width: calc(100vw - 2rem);
+                padding: .62rem .9rem;
+                border: 1px solid rgba(0,255,140,.68);
+                border-radius: 6px;
+                color: #d9dedb;
+                background: rgba(9,9,10,.96);
+                box-shadow: 0 0 15px rgba(0,255,140,.14), 0 12px 38px rgba(0,0,0,.46);
+                font: 500 .82rem/1.2 var(--font-mono, monospace);
+                opacity: 0;
+                transform: translate(-50%, 7px);
+                pointer-events: none;
+                transition: opacity .08s linear, transform .12s ease;
+            }
+            .terminal-page-transition.show {
+                opacity: 1;
+                transform: translate(-50%, 0);
+            }
+            .transition-prompt { color: var(--green, #00ff8c); font-weight: 700; margin-right: .45rem; }
+            .transition-command { color: #e5e8e6; white-space: nowrap; }
+            .transition-cursor {
+                width: 3px;
+                height: 1.05em;
+                margin-left: 4px;
+                background: var(--green, #00ff8c);
+                box-shadow: 0 0 8px rgba(0,255,140,.72);
+                animation: transitionCursorBlink .22s steps(1,end) 1;
+            }
+            body.page-transitioning main,
+            body.page-transitioning .hero {
+                opacity: .94;
+                filter: brightness(.94);
+                transition: opacity .18s linear, filter .18s linear;
+            }
+            @keyframes transitionCursorBlink {
+                0%, 42% { opacity: 1; }
+                43%, 78% { opacity: 0; }
+                79%, 100% { opacity: 1; }
+            }
+            @media (max-width: 560px) {
+                .terminal-uptime { display: none; }
+                .terminal-page-transition { bottom: .8rem; font-size: .76rem; }
+            }
+            @media (prefers-reduced-motion: reduce) {
+                .terminal-page-transition,
+                body.page-transitioning main,
+                body.page-transitioning .hero { transition: none; }
+                .transition-cursor { animation: none; }
+            }
+        `;
+        document.head.appendChild(style);
+    };
+
     const setupBoot = () => {
         const bootScreen = document.getElementById('bootScreen');
         if (!bootScreen) return;
@@ -65,7 +143,7 @@
             const href = link.getAttribute('href') || '';
             const file = href.split('#')[0].split('/').pop();
             const page = file.replace('.html', '');
-            if (page) link.textContent = `>/${page.toLowerCase()}`;
+            if (page) link.textContent = `>/${page.toLowerCase()}/`;
             link.classList.toggle('active', file === currentPage);
             link.addEventListener('click', () => closeMenu());
         });
@@ -138,11 +216,104 @@
         }, { passive: true });
     };
 
+    const setupTerminalUptime = () => {
+        const headers = [...document.querySelectorAll('.directory-shell-header, .cd-terminal-header')];
+        if (!headers.length) return;
+
+        const storageKey = 'exoyb-session-started-at';
+        let startedAt = Date.now();
+
+        try {
+            const stored = Number(window.sessionStorage.getItem(storageKey));
+            if (Number.isFinite(stored) && stored > 0 && stored <= Date.now()) {
+                startedAt = stored;
+            } else {
+                window.sessionStorage.setItem(storageKey, String(startedAt));
+            }
+        } catch (_) {
+            // Storage can be unavailable in hardened/private browser contexts; uptime still works for this page.
+        }
+
+        const readouts = headers.map(header => {
+            let readout = header.querySelector('.terminal-uptime');
+            if (!readout) {
+                readout = document.createElement('span');
+                readout.className = 'terminal-uptime';
+                readout.setAttribute('aria-label', 'Session uptime');
+                header.appendChild(readout);
+            }
+            return readout;
+        });
+
+        const format = value => String(value).padStart(2, '0');
+        const update = () => {
+            const elapsed = Math.max(0, Math.floor((Date.now() - startedAt) / 1000));
+            const hours = Math.floor(elapsed / 3600);
+            const minutes = Math.floor((elapsed % 3600) / 60);
+            const seconds = elapsed % 60;
+            const label = `UPTIME ${format(hours)}:${format(minutes)}:${format(seconds)}`;
+            readouts.forEach(readout => { readout.textContent = label; });
+        };
+
+        update();
+        window.setInterval(update, 1000);
+    };
+
+    const setupPageTransitions = () => {
+        const overlay = document.createElement('div');
+        overlay.className = 'terminal-page-transition';
+        overlay.setAttribute('aria-hidden', 'true');
+        overlay.innerHTML = '<span class="transition-prompt">$</span><span class="transition-command"></span><span class="transition-cursor"></span>';
+        document.body.appendChild(overlay);
+        const commandOutput = overlay.querySelector('.transition-command');
+        let navigating = false;
+
+        const directoryForUrl = url => {
+            const file = url.pathname.split('/').filter(Boolean).pop() || '';
+            if (!file || file === 'index.html') return '/home/';
+            if (file.endsWith('.html')) return `/${file.replace('.html', '')}/`;
+            return `/${file.replace(/^\/+|\/+$/g, '')}/`;
+        };
+
+        document.addEventListener('click', event => {
+            if (navigating || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+            const link = event.target.closest('a[href]');
+            if (!link || link.hasAttribute('download') || link.target === '_blank') return;
+
+            const rawHref = link.getAttribute('href');
+            if (!rawHref || rawHref.startsWith('#') || rawHref.startsWith('mailto:') || rawHref.startsWith('tel:') || rawHref.startsWith('javascript:')) return;
+
+            let url;
+            try { url = new URL(link.href, window.location.href); } catch (_) { return; }
+            if (url.origin !== window.location.origin) return;
+
+            const sameDocument = url.pathname === window.location.pathname && url.search === window.location.search;
+            if (sameDocument && url.hash) return;
+            if (sameDocument && !url.hash) return;
+
+            event.preventDefault();
+            navigating = true;
+
+            const directory = directoryForUrl(url);
+            commandOutput.textContent = `cd ${directory}`;
+            overlay.classList.add('show');
+            document.body.classList.add('page-transitioning');
+
+            const homepageTarget = document.getElementById('directoryTarget');
+            if (homepageTarget) homepageTarget.textContent = directory;
+
+            window.setTimeout(() => {
+                window.location.href = url.href;
+            }, reducedMotion ? 0 : 230);
+        });
+    };
+
     const glowSelectors = [
         '.directory-link', '.cd-terminal', '.content-card', '.detail-item', '.project-card',
         '.about-stat', '.about-mini-terminal', '.about-photo-frame', '.story-panel',
         '.bring-card', '.career-step', '.contact-card', '.training-card',
-        '.education-feature', '.credential-empty', '.manager-feature', '.manager-card',
+        '.credential-card', '.training-platform-card', '.manager-feature', '.manager-card',
         '.review-card', '.review-shot', '.log-entry-card'
     ].join(',');
 
@@ -291,11 +462,14 @@
 
     document.addEventListener('DOMContentLoaded', () => {
         addHeadIdentity();
+        addInteractiveStyles();
         setupBoot();
         normaliseNavigation();
         repairLegacyLinks();
         setupScrollProgress();
         setupPointerGlow();
+        setupTerminalUptime();
+        setupPageTransitions();
         decorateGlowSurfaces();
         setupRevealMotion();
         setupDirectoryPreview();
