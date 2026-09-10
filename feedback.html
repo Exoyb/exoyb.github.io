@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="src/css/main.css?v=20260910-6">
   <link rel="stylesheet" href="src/css/animations.css?v=20260910-6">
   <link rel="stylesheet" href="src/css/pages.css?v=20260910-8">
-  <link rel="stylesheet" href="src/css/feedback.css?v=20260910-6">
+  <link rel="stylesheet" href="src/css/feedback.css?v=20260910-7">
 </head>
 <body>
 <nav>
@@ -66,14 +66,54 @@
 
     <div class="feedback-section-head" style="margin-top:2.5rem;">
       <div class="page-kicker">// caseware/client_csat.log</div>
-      <h3>Selected Caseware client feedback</h3>
-      <p><strong>4.90 / 5 average CSAT</strong> across 29 responses from six monthly summaries, including 26 five-star scores. Selected comments below show the themes that appear most often: clear explanations, patience, ownership and persistence.</p>
+      <h3>Caseware client CSAT</h3>
+      <p><strong>4.90 / 5 average CSAT</strong> across 29 responses from six monthly summaries, including 26 five-star scores. Scroll through the full evidence log below rather than just a few selected highlights.</p>
     </div>
 
-    <div class="review-grid">
-      <article class="review-card"><div class="review-topline"><span class="review-author">Caseware client</span><span class="review-stars">★★★★★</span></div><div class="review-location">Caseware UK · Aug 2026</div><p>“Dan was really nice and very helpful in assisting me with the CaseWare issues I was experiencing. He was clear and thorough in his explanations, walking me through the things I need to do. I also learnt something new which will save on efficiencies going forward... <span class="review-highlight">Overall super satisfied with todays service!</span>”</p></article>
-      <article class="review-card"><div class="review-topline"><span class="review-author">Caseware client</span><span class="review-stars">★★★★★</span></div><div class="review-location">Caseware UK · Jan 2026</div><p>“Dan was really helpful and definitely <span class="review-highlight">went the extra mile</span> to help me. He explained things very clearly and took the time to go through all of my issues on the call.”</p></article>
-      <article class="review-card"><div class="review-topline"><span class="review-author">Caseware client</span><span class="review-stars">★★★★★</span></div><div class="review-location">Caseware UK · Jul 2026</div><p>“Dan kept going until the solution, which was not at all obvious, presented itself. Thank you.”</p></article>
+    <div class="csat-table-shell">
+      <div class="csat-table-bar"><span>$ cat client_csat.log --all</span><span>29 records // Jan–Aug 2026</span></div>
+      <div class="csat-scroll" tabindex="0">
+        <table class="csat-table">
+          <thead><tr><th>Month</th><th>CSAT</th><th>Client comment</th></tr></thead>
+          <tbody>
+            <tr><td>Aug 2026</td><td>5 / 5</td><td>Resolved issue swiftly.</td></tr>
+            <tr><td>Aug 2026</td><td>5 / 5</td><td>Dan was really nice and very helpful in assisting me with the CaseWare issues I was experiencing. He was clear and thorough in his explanations, walking me through the things I need to do. I also learnt something new which will save on efficiencies going forward which I'm excited to share with the team. Overall super satisfied with todays service! :)</td></tr>
+            <tr><td>Aug 2026</td><td>5 / 5</td><td>Great thank you Dan :-)</td></tr>
+            <tr><td>Aug 2026</td><td>5 / 5</td><td>really helpful fixed the issues with seconds and walked me through the cloud and helped me with understanding the system better</td></tr>
+            <tr><td>Aug 2026</td><td>5 / 5</td><td>Thank you</td></tr>
+
+            <tr><td>Jul 2026</td><td>5 / 5</td><td>Honestly the support you provide is always class. However some of the quirks in your system are so irritating. All the best!</td></tr>
+            <tr><td>Jul 2026</td><td>5 / 5</td><td>Very thorough and patient - thank you</td></tr>
+            <tr><td>Jul 2026</td><td>5 / 5</td><td>The Caseware support team were extremely patient, professional, and knowledgeable throughout the process. I really appreciate their support and would be happy to give them a very positive review.</td></tr>
+            <tr><td>Jul 2026</td><td>5 / 5</td><td>Dan clearly explained the issue and the ways to resolve it</td></tr>
+            <tr><td>Jul 2026</td><td>5 / 5</td><td>Dan kept going until the solution, which was not at all obvious, presented itself. Thank you.</td></tr>
+
+            <tr><td>Jun 2026</td><td>5 / 5</td><td>Many thanks Dan for your patience and all of your help</td></tr>
+            <tr><td>Jun 2026</td><td>4 / 5</td><td>Yet to be resolved as I need to find some more info from the manager. Overall, satisfied so far.</td></tr>
+            <tr><td>Jun 2026</td><td>5 / 5</td><td>Problems sorted quickly and efficiently, thank you</td></tr>
+
+            <tr><td>May 2026</td><td>5 / 5</td><td>Amazing help and support.</td></tr>
+            <tr><td>May 2026</td><td>5 / 5</td><td>Advisor very helpful</td></tr>
+            <tr><td>May 2026</td><td>5 / 5</td><td>helpful adviser</td></tr>
+
+            <tr><td>Mar 2026</td><td>5 / 5</td><td>Support was excellent. Issue resolved</td></tr>
+            <tr><td>Mar 2026</td><td>5 / 5</td><td>great support by Dan and colleagues.</td></tr>
+            <tr><td>Mar 2026</td><td>4 / 5</td><td>Dan was really helpful and attentive.</td></tr>
+            <tr><td>Mar 2026</td><td>5 / 5</td><td>Always efficient, helped solve my (stupid!) problem quickly. Much appreciated.</td></tr>
+            <tr><td>Mar 2026</td><td>5 / 5</td><td>Dan was very helpful in his responses. We didnt know the answer but went to a 2nd liner to ask rather than waste everybodies time.</td></tr>
+
+            <tr><td>Jan 2026</td><td>5 / 5</td><td>Thank you for staying late to get me sorted</td></tr>
+            <tr><td>Jan 2026</td><td>5 / 5</td><td>Dan helped my issue very helpful!.</td></tr>
+            <tr><td>Jan 2026</td><td>5 / 5</td><td>Dan is great</td></tr>
+            <tr><td>Jan 2026</td><td>4 / 5</td><td>excellent suport</td></tr>
+            <tr><td>Jan 2026</td><td>5 / 5</td><td>Dan was great, very helpful and followed up when I didn't immediately answer. Thank you.</td></tr>
+            <tr><td>Jan 2026</td><td>5 / 5</td><td>Dan was very helpful and spoke through the changes and reasons certain changes could not be made.</td></tr>
+            <tr><td>Jan 2026</td><td>5 / 5</td><td>Excellent help as always</td></tr>
+            <tr><td>Jan 2026</td><td>5 / 5</td><td>Dan was really helpful and definitely went the extra mile to help me. He explained things very clearly and took the time to go through all of my issues on the call.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="csat-evidence-note">Source: six internal Caseware UK monthly client-feedback summaries covering January, March, May, June, July and August 2026. Comments are reproduced as supplied, including original spelling and grammar. Original source emails are retained privately and can be evidenced on request.</div>
     </div>
   </section>
 
