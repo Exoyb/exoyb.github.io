@@ -25,6 +25,34 @@
   line-height: 1.72;
 }
 
+.training-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .7rem;
+  margin-top: .9rem;
+}
+
+.training-profile-link,
+.credential-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .45rem;
+  width: fit-content;
+  color: var(--cyan);
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(0,217,255,.38);
+  transition: color .18s ease, border-color .18s ease, text-shadow .18s ease;
+}
+
+.training-profile-link:hover,
+.training-profile-link:focus-visible,
+.credential-link:hover,
+.credential-link:focus-visible {
+  color: var(--green);
+  border-bottom-color: rgba(0,255,140,.62);
+  text-shadow: 0 0 10px rgba(0,255,140,.24);
+}
+
 .training-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -33,7 +61,8 @@
 
 .training-card,
 .education-feature,
-.credential-empty {
+.credential-empty,
+.credential-card {
   position: relative;
   overflow: hidden;
   border: 1px solid var(--line);
@@ -41,7 +70,8 @@
   background: var(--surface);
 }
 
-.training-card::before {
+.training-card::before,
+.credential-card::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -52,7 +82,9 @@
 }
 
 .training-card:hover::before,
-.training-card:focus-within::before {
+.training-card:focus-within::before,
+.credential-card:hover::before,
+.credential-card:focus-within::before {
   transform: translateX(120%);
 }
 
@@ -142,6 +174,41 @@
   color: #7f8982;
   font-size: .86rem;
   line-height: 1.62;
+}
+
+.credential-card {
+  display: grid;
+  gap: .65rem;
+  padding: 1.45rem 1.5rem;
+}
+
+.credential-card-top {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.credential-card h3 {
+  position: relative;
+  z-index: 1;
+  color: var(--green);
+  font-size: 1.25rem;
+}
+
+.credential-id {
+  position: relative;
+  z-index: 1;
+  color: #8f9892;
+  font-size: .82rem;
+}
+
+.credential-link {
+  position: relative;
+  z-index: 1;
+  margin-top: .15rem;
 }
 
 @media (max-width: 800px) {
