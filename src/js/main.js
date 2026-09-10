@@ -89,25 +89,6 @@
         document.head.appendChild(style);
     };
 
-    const setupBoot = () => {
-        const bootScreen = document.getElementById('bootScreen');
-        if (!bootScreen) return;
-
-        let hidden = false;
-        const hideBoot = () => {
-            if (hidden) return;
-            hidden = true;
-            bootScreen.classList.add('fade-out');
-            window.setTimeout(() => {
-                bootScreen.hidden = true;
-            }, reducedMotion ? 0 : 380);
-        };
-
-        window.setTimeout(hideBoot, reducedMotion ? 500 : 11600);
-        document.addEventListener('keydown', hideBoot, { once: true });
-        bootScreen.addEventListener('click', hideBoot, { once: true });
-    };
-
     const normaliseNavigation = () => {
         const navLinksContainer = document.getElementById('navLinks');
         if (!navLinksContainer) return;
@@ -454,7 +435,6 @@
     document.addEventListener('DOMContentLoaded', () => {
         addHeadIdentity();
         addInteractiveStyles();
-        setupBoot();
         normaliseNavigation();
         normaliseTerminalIdentity();
         repairLegacyLinks();
