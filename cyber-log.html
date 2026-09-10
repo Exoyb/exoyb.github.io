@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="src/css/animations.css?v=20260910-6">
   <link rel="stylesheet" href="src/css/pages.css?v=20260910-8">
   <link rel="stylesheet" href="src/css/cyber-log.css?v=20260910-4">
+  <link rel="stylesheet" href="src/css/easter-egg.css?v=20260910-1">
 </head>
 <body>
 <nav>
@@ -65,6 +66,18 @@
       </div>
     </section>
 
+    <section class="fade-in" aria-label="Encrypted transmission">
+      <div id="cipherTransmission" class="cipher-transmission" tabindex="0">
+        <div class="cipher-meta"><span>// intercepted_transmission.dat</span><span>ciphertext detected</span></div>
+        <div class="cipher-line">
+          <span class="cipher-prefix">ENC://</span>
+          <span id="cipherPayload" class="cipher-payload" data-cipher="7A19 4F2D C881 03E7 6B42 91AF D0C3 55E8" data-plain="HOME:// ↑ ↑ ↓ ↓ ← ← → →">7A19 4F2D C881 03E7 6B42 91AF D0C3 55E8</span>
+          <span class="cipher-cursor" aria-hidden="true"></span>
+        </div>
+        <p class="cipher-hint">// hover or focus to attempt decode</p>
+      </div>
+    </section>
+
     <div class="page-actions">
       <a class="btn btn-primary" href="feedback.html">cd /feedback/ →</a>
       <a class="btn btn-secondary" href="index.html">cd /home/</a>
@@ -73,7 +86,9 @@
 </main>
 
 <footer class="site-footer">Exoyb // Cyber Log</footer>
+<script src="src/js/audio.js?v=20260910-1"></script>
 <script src="src/js/main.js?v=20260910-7"></script>
+<script src="src/js/easter-egg.js?v=20260910-2"></script>
 <script src="src/js/cyber-log.js?v=20260910-3"></script>
 </body>
 </html>
