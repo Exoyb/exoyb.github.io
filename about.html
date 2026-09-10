@@ -4,10 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Exoyb | About</title>
-  <link rel="stylesheet" href="src/css/main.css">
-  <link rel="stylesheet" href="src/css/animations.css">
-  <link rel="stylesheet" href="src/css/pages.css?v=20260909-3">
-  <link rel="stylesheet" href="src/css/about.css?v=20260910-1">
+  <link rel="icon" href="src/assets/favicon.svg" type="image/svg+xml">
+  <meta name="theme-color" content="#0d100f">
+  <link rel="stylesheet" href="src/css/main.css?v=20260910-6">
+  <link rel="stylesheet" href="src/css/animations.css?v=20260910-6">
+  <link rel="stylesheet" href="src/css/pages.css?v=20260910-6">
+  <link rel="stylesheet" href="src/css/about.css?v=20260910-6">
 </head>
 <body>
 <nav><div class="nav-content"><div class="logo"><a href="index.html">#!/bin/bash Exoyb.sh</a></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div><div class="nav-links" id="navLinks"><a class="active" href="about.html">About</a><a href="training.html">Training</a><a href="projects.html">Projects</a><a href="cyber-log.html">Cyber Log</a><a href="feedback.html">Feedback</a></div></div></nav>
@@ -40,6 +42,11 @@
       <div class="about-photo-header"><span class="cd-dot red"></span><span class="cd-dot yellow"></span><span class="cd-dot green"></span><span class="about-photo-title">dan_ridout.png</span></div>
       <div class="about-photo-body">
         <img class="about-photo" src="src/assets/images/dan-ridout-profile.png" alt="Portrait of Dan Ridout" onerror="this.closest('.about-photo-body').classList.add('photo-unavailable'); this.remove();">
+        <div class="photo-hud" aria-hidden="true">
+          <span class="hud-corner tl"></span><span class="hud-corner tr"></span><span class="hud-corner bl"></span><span class="hud-corner br"></span>
+          <span class="hud-label">SYS://PROFILE_01</span>
+          <div class="hud-meta"><span>USER: DAN_RIDOUT</span><span class="hud-status">MODE: LEARNING</span></div>
+        </div>
         <div class="about-photo-fallback"><span class="fallback-command">$ locate dan_ridout.png</span><span class="fallback-text">Profile image slot ready.</span></div>
       </div>
       <div class="about-photo-caption">Maidstone, Kent // Curious by default // Calm under pressure</div>
@@ -99,6 +106,6 @@
   <div class="page-actions about-actions"><a class="btn btn-primary" href="training.html">cd /training →</a><a class="btn btn-secondary" href="index.html">cd /home</a></div>
 </div></main>
 <footer class="site-footer">Exoyb // About</footer>
-<script src="src/js/main.js?v=20260910-4"></script>
+<script src="src/js/main.js?v=20260910-6"></script>
 </body>
 </html>
