@@ -1,0 +1,161 @@
+/* Client CSAT evidence section */
+#feedback {
+    padding-top: 5rem;
+}
+
+.csat-shell {
+    margin-top: 3rem;
+    background: rgba(10, 15, 14, 0.88);
+    border: 1px solid rgba(0, 255, 140, 0.35);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 255, 140, 0.12);
+}
+
+.csat-terminal-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgba(0, 255, 140, 0.2);
+    background: rgba(0, 0, 0, 0.35);
+}
+
+.csat-terminal-title {
+    margin-left: 0.6rem;
+    color: #aaa;
+    font-size: 0.82rem;
+}
+
+.csat-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    border-bottom: 1px solid rgba(0, 255, 140, 0.2);
+}
+
+.csat-metric {
+    padding: 1.4rem 1.2rem;
+    text-align: center;
+    border-right: 1px solid rgba(0, 255, 140, 0.16);
+}
+
+.csat-metric:last-child {
+    border-right: 0;
+}
+
+.csat-metric-value {
+    color: #00FF8C;
+    font-size: 1.8rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.45rem;
+}
+
+.csat-metric-label {
+    color: #9d9d9d;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+
+.csat-source {
+    padding: 1rem 1.2rem;
+    color: #aaa;
+    border-bottom: 1px solid rgba(0, 255, 140, 0.2);
+    line-height: 1.6;
+    font-size: 0.88rem;
+}
+
+.csat-source strong {
+    color: #00D9FF;
+}
+
+.csat-source .source-status {
+    color: #00FF8C;
+}
+
+.csat-table-wrap {
+    max-height: 580px;
+    overflow: auto;
+}
+
+.csat-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.csat-table th,
+.csat-table td {
+    padding: 0.95rem 1rem;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.csat-table th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background: #111716;
+    color: #00D9FF;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    font-size: 0.76rem;
+}
+
+.csat-table tbody tr:hover {
+    background: rgba(0, 255, 140, 0.045);
+}
+
+.csat-month {
+    color: #aaa;
+    white-space: nowrap;
+}
+
+.csat-score {
+    color: #00FF8C;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.csat-comment {
+    color: #ddd;
+    line-height: 1.55;
+}
+
+.csat-footer-note {
+    padding: 1rem 1.2rem 1.15rem;
+    color: #777;
+    font-size: 0.78rem;
+    line-height: 1.55;
+}
+
+@media (max-width: 760px) {
+    .csat-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .csat-metric {
+        border-right: 0;
+        border-bottom: 1px solid rgba(0, 255, 140, 0.12);
+    }
+
+    .csat-metric:last-child {
+        border-bottom: 0;
+    }
+
+    .csat-table th,
+    .csat-table td {
+        padding: 0.8rem 0.7rem;
+    }
+
+    .csat-table th:first-child,
+    .csat-table td:first-child {
+        display: none;
+    }
+
+    .csat-table {
+        font-size: 0.82rem;
+    }
+}
