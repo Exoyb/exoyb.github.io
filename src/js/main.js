@@ -31,20 +31,6 @@
                 font-size: .82rem;
                 white-space: nowrap;
             }
-            .terminal-uptime {
-                margin-left: auto;
-                padding-left: .9rem;
-                color: #686d69;
-                font-size: .67rem;
-                font-weight: 500;
-                letter-spacing: .07em;
-                white-space: nowrap;
-                user-select: none;
-            }
-            .directory-shell:hover .terminal-uptime,
-            .cd-terminal:hover .terminal-uptime {
-                color: #8e9690;
-            }
             .terminal-page-transition {
                 position: fixed;
                 left: 50%;
@@ -91,7 +77,6 @@
                 79%, 100% { opacity: 1; }
             }
             @media (max-width: 560px) {
-                .terminal-uptime { display: none; }
                 .terminal-page-transition { bottom: .8rem; font-size: .76rem; }
             }
             @media (prefers-reduced-motion: reduce) {
@@ -176,8 +161,7 @@
             if (!title) {
                 title = document.createElement('span');
                 title.className = 'terminal-session-title';
-                const uptime = header.querySelector('.terminal-uptime');
-                header.insertBefore(title, uptime || null);
+                header.appendChild(title);
             }
 
             title.textContent = 'exoyb@portfolio: ~';
@@ -264,49 +248,6 @@
                 frame = 0;
             });
         }, { passive: true });
-    };
-
-    const setupTerminalUptime = () => {
-        const headers = [...document.querySelectorAll('.directory-shell-header, .cd-terminal-header')];
-        if (!headers.length) return;
-
-        const storageKey = 'exoyb-session-started-at';
-        let startedAt = Date.now();
-
-        try {
-            const stored = Number(window.sessionStorage.getItem(storageKey));
-            if (Number.isFinite(stored) && stored > 0 && stored <= Date.now()) {
-                startedAt = stored;
-            } else {
-                window.sessionStorage.setItem(storageKey, String(startedAt));
-            }
-        } catch (_) {
-            // Storage can be unavailable in hardened/private browser contexts; uptime still works for this page.
-        }
-
-        const readouts = headers.map(header => {
-            let readout = header.querySelector('.terminal-uptime');
-            if (!readout) {
-                readout = document.createElement('span');
-                readout.className = 'terminal-uptime';
-                readout.setAttribute('aria-label', 'Session uptime');
-                header.appendChild(readout);
-            }
-            return readout;
-        });
-
-        const format = value => String(value).padStart(2, '0');
-        const update = () => {
-            const elapsed = Math.max(0, Math.floor((Date.now() - startedAt) / 1000));
-            const hours = Math.floor(elapsed / 3600);
-            const minutes = Math.floor((elapsed % 3600) / 60);
-            const seconds = elapsed % 60;
-            const label = `UPTIME ${format(hours)}:${format(minutes)}:${format(seconds)}`;
-            readouts.forEach(readout => { readout.textContent = label; });
-        };
-
-        update();
-        window.setInterval(update, 1000);
     };
 
     const setupPageTransitions = () => {
@@ -519,7 +460,6 @@
         repairLegacyLinks();
         setupScrollProgress();
         setupPointerGlow();
-        setupTerminalUptime();
         setupPageTransitions();
         decorateGlowSurfaces();
         setupRevealMotion();
