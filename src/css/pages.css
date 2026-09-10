@@ -52,6 +52,29 @@
 
 .page-hero h1 { margin-bottom: 1rem; }
 
+/*
+ * Training, Projects, Cyber Log and Feedback use a centred page identity,
+ * while the useful copy underneath stays left-aligned and can use the full
+ * content width. About keeps its asymmetric portrait layout.
+ */
+.page-hero > .page-kicker,
+.cyber-log-hero > .page-kicker,
+.feedback-hero > .page-kicker,
+.page-hero > h1,
+.cyber-log-hero > h1,
+.feedback-hero > h1 {
+    width: 100%;
+    text-align: center;
+}
+
+.page-hero > .page-intro,
+.cyber-log-hero > .page-intro,
+.feedback-hero > .page-intro {
+    width: 100%;
+    max-width: none;
+    text-align: left;
+}
+
 .page-kicker {
     margin-bottom: .9rem;
     color: var(--green);
