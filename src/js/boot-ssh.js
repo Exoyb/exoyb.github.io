@@ -130,6 +130,14 @@
         const statusLine = ssh.querySelector('.boot-ssh-status-line');
         const loginLine = ssh.querySelector('.boot-ssh-login-line');
 
+        const finishBoot = () => {
+            if (bootScreen.hidden || bootScreen.classList.contains('fade-out')) return;
+            bootScreen.classList.add('fade-out');
+            window.setTimeout(() => {
+                bootScreen.hidden = true;
+            }, 380);
+        };
+
         const revealEverything = () => {
             lines.forEach(item => {
                 if (item.prompt) item.prompt.textContent = item.promptText;
@@ -167,6 +175,16 @@
             }
         };
 
+        const typeHuman = async (element, value) => {
+            for (const character of value) {
+                element.textContent += character;
+                let delay = 82 + Math.random() * 82;
+                if (character === ' ') delay += 95;
+                if (character === '@') delay += 70;
+                await sleep(delay);
+            }
+        };
+
         const run = async () => {
             await sleep(250);
 
@@ -184,6 +202,7 @@
                 cursor.remove();
                 if (item.status) item.status.textContent = item.statusText;
                 item.line.classList.add('boot-line-complete');
+                window.ExoybAudio?.play('boot');
                 await sleep(70);
             }
 
@@ -195,24 +214,24 @@
             await sleep(220);
 
             ssh.classList.add('visible');
-            const commandText = 'ssh exoyb@portfolio';
-            for (const character of commandText) {
-                if (bootScreen.classList.contains('fade-out')) return;
-                sshCommand.textContent += character;
-                await sleep(70);
-            }
+            await typeHuman(sshCommand, 'ssh exoyb@portfolio');
 
-            await sleep(420);
+            await sleep(260);
             sshCommandCursor?.remove();
             passwordLine.classList.add('visible');
 
             // Real SSH does not echo password characters; the pause is the "typing".
-            await sleep(1200);
+            await sleep(1100);
             passwordLine.querySelector('.boot-ssh-cursor')?.remove();
             statusLine.classList.add('visible');
+            window.ExoybAudio?.play('auth');
 
-            await sleep(450);
+            await sleep(300);
             loginLine.classList.add('visible');
+
+            // Enough time to read the successful login without leaving a long dead hang.
+            await sleep(650);
+            finishBoot();
         };
 
         run().catch(revealEverything);
