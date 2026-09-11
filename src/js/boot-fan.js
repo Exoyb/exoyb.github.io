@@ -9,21 +9,33 @@
 
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        const fanArt = `⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
+        // Keep the fan housing and screw mounts completely static. Only the inner
+        // rotor spins, avoiding the wobble created by rotating the whole Unicode block.
+        const fanShellArt = `⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣀⣀⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⣿⣿⡆⠀⠀⢀⣤⠶⠟⠛⠉⠉⠉⠉⠉⠉⠛⠻⠶⣤⡀⠀⠀⠰⣿⣿⠀⠀
-⠀⠀⠀⠁⠀⣠⠞⢋⣠⣶⣿⣿⣿⡄⠀⠀⠀⢻⣿⣿⣶⣄⡙⠳⣄⠀⠈⠁⠀⠀
-⠀⠀⠀⢀⡾⠁⢰⣿⣿⣿⣿⣿⣿⣷⠀⠀⠀⢸⣿⣿⣿⣿⣿⠄⠈⢷⡀⠀⠀⠀
-⠀⠀⢠⡟⠀⠀⠀⠈⠉⠛⢿⣿⣿⣿⡇⠀⠀⢸⣿⣿⣿⣿⠋⠀⠀⠀⢻⡄⠀⠀
-⠀⢀⣿⠁⢀⣀⣀⡀⠀⠀⠀⠈⠻⠟⠛⠀⠀⢿⣿⣿⠟⠁⠀⠀⠀⣀⠈⣿⡀⠀
-⠀⢸⡇⢰⣿⣿⣿⣿⣿⣷⣶⠀⣀⠘⢉⡀⠳⡄⠉⠁⠀⠀⣠⣴⣿⣿⡇⢸⡇⠀
-⠀⢸⡇⢸⣿⣿⣿⣿⣿⡿⠿⠀⠇⠰⣿⣿⠆⢰⠀⣶⣾⣿⣿⣿⣿⣿⡇⢸⡇⠀
-⠀⢸⡇⢸⣿⣿⠟⠋⠀⠀⢀⣀⠘⢦⠈⣁⡄⠉⠀⠿⢿⣿⣿⣿⣿⣿⠇⢸⡇⠀
-⠀⠈⣿⡀⠉⠀⠀⠀⢀⣴⣿⣿⣷⠀⠀⣤⣴⣦⡀⠀⠀⠀⠈⠉⠉⠁⢀⣿⠁⠀
-⠀⠀⠘⣧⠀⠀⠀⣠⣿⣿⣿⣿⡇⠀⠀⢸⣿⣿⣿⣷⣤⣀⡀⠀⠀⠀⣼⠃⠀⠀
-⠀⠀⠀⠈⢷⡀⠐⣿⣿⣿⣿⣿⡇⠀⠀⠀⢿⣿⣿⣿⣿⣿⣿⠇⢀⡾⠁⠀⠀⠀
-⠀⠀⢀⡀⠀⠙⢦⣌⠙⠿⣿⣿⣇⠀⠀⠀⠘⣿⣿⣿⠿⠋⣡⡴⠋⠀⢀⡀⠀⠀
+⠀⠀⠀⠁⠀⣠⠞⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠳⣄⠀⠈⠁⠀⠀
+⠀⠀⠀⢀⡾⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⢷⡀⠀⠀⠀
+⠀⠀⢠⡟⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢻⡄⠀⠀
+⠀⢀⣿⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⣿⡀⠀
+⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀
+⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀
+⠀⢸⡇⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⡇⠀
+⠀⠈⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⣿⠁⠀
+⠀⠀⠘⣧⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣼⠃⠀⠀
+⠀⠀⠀⠈⢷⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡾⠁⠀⠀⠀
+⠀⠀⢀⡀⠀⠙⢦⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⡴⠋⠀⢀⡀⠀⠀
 ⠀⠀⣿⣿⠀⠀⠀⠈⠛⠶⣦⣤⣀⣀⣀⣀⣀⣀⣤⣴⠶⠛⠁⠀⠀⠐⣿⣿⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠉⠉⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀`;
+
+        // A square-ish crop of the original blades. Character width and line height
+        // are balanced separately so rotation does not squash the rotor into an oval.
+        const fanRotorArt = `⠛⢿⣿⣿⣿⡇⠀⠀⢸⣿⣿⣿
+⠀⠀⠈⠻⠟⠛⠀⠀⢿⣿⣿⠟
+⣷⣶⠀⣀⠘⢉⡀⠳⡄⠉⠁⠀
+⡿⠿⠀⠇⠰⣿⣿⠆⢰⠀⣶⣾
+⠀⢀⣀⠘⢦⠈⣁⡄⠉⠀⠿⢿
+⣴⣿⣿⣷⠀⠀⣤⣴⣦⡀⠀⠀
+⣿⣿⣿⡇⠀⠀⢸⣿⣿⣿⣷⣤`;
 
         const style = document.createElement('style');
         style.id = 'exoyb-boot-fan-styles';
@@ -43,7 +55,6 @@
                 transform: translateY(calc(-50% + 8px));
                 transition: opacity .22s linear, transform .28s ease, border-color .22s linear;
                 pointer-events: none;
-                overflow: visible;
             }
             .boot-fan-monitor.visible {
                 opacity: .84;
@@ -63,33 +74,55 @@
                 letter-spacing: .08em;
                 text-transform: uppercase;
             }
-            .boot-fan-head { margin-bottom: .45rem; }
-            .boot-fan-foot { margin-top: .45rem; }
+            .boot-fan-head { margin-bottom: .35rem; }
+            .boot-fan-foot { margin-top: .35rem; }
             .boot-fan-status,
             .boot-fan-rpm { color: var(--green, #00ff8c); }
             .boot-fan-stage {
-                display: grid;
-                place-items: center;
-                min-height: 168px;
-                overflow: visible;
+                position: relative;
+                min-height: 154px;
+                overflow: hidden;
             }
-            .boot-fan-art {
-                display: inline-block;
+            .boot-fan-shell,
+            .boot-fan-rotor {
                 margin: 0;
                 color: #8affba;
                 font-family: "IBM Plex Mono", "Cascadia Mono", "Segoe UI Symbol", monospace;
-                font-size: 5.25px;
                 font-weight: 500;
-                line-height: 1;
                 white-space: pre;
-                transform-origin: 50% 50%;
+                user-select: none;
+            }
+            .boot-fan-shell {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                font-size: 6px;
+                line-height: 1.2;
+                transform: translate(-50%, -50%);
                 filter: drop-shadow(0 0 5px rgba(0,255,140,.18));
+            }
+            .boot-fan-rotor-wrap {
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                width: 62px;
+                height: 62px;
+                display: grid;
+                place-items: center;
+            }
+            .boot-fan-rotor {
+                display: block;
+                font-size: 8px;
+                line-height: 1;
+                transform-origin: 50% 50%;
+                filter: drop-shadow(0 0 6px rgba(0,255,140,.22));
                 will-change: transform;
             }
-            .boot-fan-art.fan-slow { animation: bootFanSpin 1.55s linear infinite; }
-            .boot-fan-art.fan-medium { animation: bootFanSpin .88s linear infinite; }
-            .boot-fan-art.fan-fast { animation: bootFanSpin .48s linear infinite; }
-            @keyframes bootFanSpin {
+            .boot-fan-rotor.fan-slow { animation: bootFanRotor 1.55s linear infinite; }
+            .boot-fan-rotor.fan-medium { animation: bootFanRotor .88s linear infinite; }
+            .boot-fan-rotor.fan-fast { animation: bootFanRotor .48s linear infinite; }
+            @keyframes bootFanRotor {
                 from { transform: rotate(0deg); }
                 to { transform: rotate(360deg); }
             }
@@ -100,14 +133,16 @@
                     opacity: 0;
                 }
                 .boot-fan-monitor.visible { opacity: .68; }
-                .boot-fan-stage { min-height: 140px; }
-                .boot-fan-art { font-size: 4.25px; }
+                .boot-fan-stage { min-height: 136px; }
+                .boot-fan-shell { font-size: 5.2px; }
+                .boot-fan-rotor-wrap { width: 54px; height: 54px; }
+                .boot-fan-rotor { font-size: 7px; }
             }
             @media (max-width: 900px) {
                 .boot-fan-monitor { display: none; }
             }
             @media (prefers-reduced-motion: reduce) {
-                .boot-fan-art { animation: none !important; }
+                .boot-fan-rotor { animation: none !important; }
                 .boot-fan-monitor { transition: none; }
             }
         `;
@@ -118,18 +153,23 @@
         panel.setAttribute('aria-hidden', 'true');
         panel.innerHTML = `
             <div class="boot-fan-head"><span>SYS_FAN_01</span><span class="boot-fan-status">IDLE</span></div>
-            <div class="boot-fan-stage"><pre class="boot-fan-art"></pre></div>
+            <div class="boot-fan-stage">
+                <pre class="boot-fan-shell"></pre>
+                <div class="boot-fan-rotor-wrap"><pre class="boot-fan-rotor"></pre></div>
+            </div>
             <div class="boot-fan-foot"><span>CHASSIS FAN</span><span>RPM: <span class="boot-fan-rpm">0000</span></span></div>`;
         bootScreen.appendChild(panel);
 
-        const art = panel.querySelector('.boot-fan-art');
+        const shell = panel.querySelector('.boot-fan-shell');
+        const rotor = panel.querySelector('.boot-fan-rotor');
         const status = panel.querySelector('.boot-fan-status');
         const rpm = panel.querySelector('.boot-fan-rpm');
-        art.textContent = fanArt;
+        shell.textContent = fanShellArt;
+        rotor.textContent = fanRotorArt;
 
         const setFan = (speed, nextStatus, nextRpm, stable = false) => {
-            art.classList.remove('fan-slow', 'fan-medium', 'fan-fast');
-            if (!reducedMotion && speed) art.classList.add(speed);
+            rotor.classList.remove('fan-slow', 'fan-medium', 'fan-fast');
+            if (!reducedMotion && speed) rotor.classList.add(speed);
             status.textContent = nextStatus;
             rpm.textContent = nextRpm;
             panel.classList.toggle('stable', stable);
