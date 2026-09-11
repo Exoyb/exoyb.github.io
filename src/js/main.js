@@ -476,7 +476,7 @@ function closeMenu() {
         const target = element.textContent || '';
         if (!target.trim() || reducedMotion) return;
 
-        const frames = 26;
+        const frames = 14;
         let frame = 0;
 
         const scramble = () => {
