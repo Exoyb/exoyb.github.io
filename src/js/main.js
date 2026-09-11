@@ -467,7 +467,7 @@ function closeMenu() {
     if (navLinks) navLinks.classList.remove('active');
 }
 
-/* One-shot page-title decode. Uses the same timing and glyph behaviour as the Home hacker-text scrambler. */
+/* One-shot page-title decode. All characters scramble together, then the full title snaps into place. */
 (() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*+-=/<>[]{}';
@@ -479,25 +479,25 @@ function closeMenu() {
         const frames = 26;
         let frame = 0;
 
-        element.textContent = [...target].map(character => {
-            if (character === ' ' || character === '|') return character;
-            return glyphs[Math.floor(Math.random() * glyphs.length)];
-        }).join('');
+        const scramble = () => {
+            element.textContent = [...target].map(character => {
+                if (character === ' ' || character === '|') return character;
+                return glyphs[Math.floor(Math.random() * glyphs.length)];
+            }).join('');
+        };
+
+        scramble();
 
         const timer = window.setInterval(() => {
             frame += 1;
-            const progress = Math.min(1, frame / frames);
-            const revealCount = Math.floor(target.length * progress);
 
-            element.textContent = [...target].map((character, index) => {
-                if (index < revealCount || character === ' ' || character === '|') return character;
-                return glyphs[Math.floor(Math.random() * glyphs.length)];
-            }).join('');
-
-            if (progress >= 1) {
+            if (frame >= frames) {
                 window.clearInterval(timer);
                 element.textContent = target;
+                return;
             }
+
+            scramble();
         }, 28);
     };
 
