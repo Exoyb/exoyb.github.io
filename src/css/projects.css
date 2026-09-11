@@ -430,22 +430,59 @@
   margin-top: 0;
 }
 
-.release-note-grid {
+.release-note-stack {
   display: grid;
-  grid-template-columns: minmax(0,1.35fr) minmax(240px,.65fr);
-  gap: 1rem;
+  gap: .65rem;
   margin-top: 1rem;
 }
 
 .release-note {
-  padding: .9rem;
-  border: 1px solid rgba(255,255,255,.055);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.065);
   border-radius: 7px;
   background: rgba(6,9,7,.52);
+  transition: border-color .18s ease, background .18s ease;
 }
 
-.release-note h4 {
-  margin: 0 0 .55rem;
+.release-note:hover,
+.release-note:focus-within,
+.release-note[open] {
+  border-color: rgba(0,217,255,.28);
+  background: rgba(7,11,9,.72);
+}
+
+.release-note > summary {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  min-height: 48px;
+  padding: .68rem .82rem;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.release-note > summary::-webkit-details-marker { display: none; }
+.release-note > summary::marker { content: ''; }
+
+.release-note > summary::before {
+  content: '+';
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 24px;
+  width: 24px;
+  height: 24px;
+  border: 1px solid #343735;
+  border-radius: 5px;
+  color: var(--cyan);
+  background: #0c0d0d;
+  font-size: .9rem;
+  line-height: 1;
+}
+
+.release-note[open] > summary::before { content: '−'; }
+
+.release-note-title {
   color: var(--cyan);
   font-size: .82rem;
   font-weight: 600;
@@ -453,8 +490,13 @@
   letter-spacing: .06em;
 }
 
+.release-note-body {
+  padding: .2rem .95rem .95rem 3.35rem;
+  border-top: 1px solid rgba(255,255,255,.045);
+}
+
 .release-note ul {
-  margin: 0;
+  margin: .7rem 0 0;
   padding-left: 1.1rem;
 }
 
@@ -468,6 +510,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .project-release,
+  .release-note,
   .project-release-toggle::before,
   .project-release-toggle::after { transition: none; }
 }
@@ -475,8 +518,7 @@
 @media (max-width: 860px) {
   .project-intro-grid,
   .project-detail-grid,
-  .project-evidence,
-  .release-note-grid {
+  .project-evidence {
     grid-template-columns: 1fr;
   }
 
@@ -511,4 +553,5 @@
   }
 
   .project-release-content { padding: .85rem .9rem 1rem; }
+  .release-note-body { padding: .15rem .8rem .85rem 1rem; }
 }
