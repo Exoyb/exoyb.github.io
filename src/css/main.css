@@ -305,6 +305,41 @@ strong { font-weight: 600; }
     filter: brightness(1.025);
 }
 
+/* Card/container typography: readable content is neutral; green/cyan remain accents outside cards, borders, LEDs and pseudo-elements. */
+:is(
+    .content-card,
+    .detail-item,
+    .project-card,
+    .project-accordion,
+    .version-accordion,
+    .about-stat,
+    .story-panel,
+    .bring-card,
+    .career-step,
+    .contact-card,
+    .proof-card,
+    .experience-entry,
+    .about-question,
+    .training-card,
+    .credential-card,
+    .training-platform-card,
+    .feedback-stat,
+    .feedback-accordion,
+    .manager-feature,
+    .manager-card,
+    .review-card,
+    .review-shot,
+    .log-entry-card
+) :is(h2, h3, h4, strong, p, li, a, span, blockquote, td, th) {
+    color: var(--text) !important;
+    -webkit-text-fill-color: currentColor;
+}
+
+/* Do not flatten actual terminal interfaces into the card typography rule. */
+:is(.cd-terminal, .directory-shell, .boot-screen, .about-mini-terminal) :is(h2, h3, h4, strong, p, li, a, span, blockquote, td, th) {
+    -webkit-text-fill-color: initial;
+}
+
 /* Review lightbox */
 .review-lightbox {
     position: fixed;
