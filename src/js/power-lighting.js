@@ -69,6 +69,31 @@
             }
             .power-gate .power-icon { text-shadow: none !important; }
 
+            /* First stage after the click: the board has power, but is still stabilising. */
+            .power-gate.system-starting {
+                background:
+                    radial-gradient(circle at 50% 42%, rgba(0,255,140,.035), transparent 34rem),
+                    #070908 !important;
+            }
+            .power-gate.system-starting::before { opacity: .09 !important; }
+            .power-gate.system-starting .power-title::before {
+                background: var(--green, #00ff8c);
+                box-shadow: 0 0 7px rgba(0,255,140,.9), 0 0 16px rgba(0,255,140,.45);
+                animation: startupLedRamp 1.55s linear both;
+            }
+            .power-gate.system-starting .power-button {
+                color: var(--green, #00ff8c) !important;
+                border-color: rgba(0,255,140,.7) !important;
+                background: #0b0f0d !important;
+                animation: startupPowerFlicker 1.55s linear both;
+            }
+            .power-gate.system-starting .power-icon {
+                text-shadow: 0 0 14px rgba(0,255,140,.58) !important;
+            }
+            .power-gate.system-starting .power-panel {
+                animation: startupChassisFlicker 1.55s linear both !important;
+            }
+
             .power-gate.system-powered {
                 background:
                     radial-gradient(circle at 50% 42%, rgba(0,255,140,.075), transparent 34rem),
@@ -79,37 +104,35 @@
                 border-color: rgba(0,255,140,.42) !important;
                 background: rgba(13,15,14,.96) !important;
                 box-shadow: 0 0 48px rgba(0,255,140,.11), inset 0 0 30px rgba(0,0,0,.45) !important;
-                animation: chassisWake .52s ease both !important;
+                animation: chassisWake .22s ease both !important;
             }
             .power-gate.system-powered .power-kicker {
                 color: #78847d !important;
-                animation: indicatorFlicker .46s steps(2,end) both;
             }
             .power-gate.system-powered .power-title {
                 color: #dce7e1 !important;
                 text-shadow: 0 0 12px rgba(0,255,140,.08) !important;
-                animation: indicatorFlicker .38s .06s steps(2,end) both;
             }
             .power-gate.system-powered .power-title::before {
                 background: var(--green, #00ff8c);
-                box-shadow: 0 0 7px rgba(0,255,140,.9), 0 0 16px rgba(0,255,140,.45);
+                box-shadow: 0 0 8px rgba(0,255,140,.95), 0 0 18px rgba(0,255,140,.5);
+                opacity: 1;
+                filter: brightness(1.15);
                 animation: none;
             }
             .power-gate.system-powered .power-label {
                 color: var(--green, #00ff8c) !important;
                 text-shadow: 0 0 10px rgba(0,255,140,.42) !important;
-                animation: indicatorFlicker .34s .11s steps(2,end) both;
             }
             .power-gate.system-powered .power-hint {
                 color: #68736d !important;
-                animation: indicatorFlicker .30s .16s steps(2,end) both;
             }
             .power-gate.system-powered .power-button {
                 color: var(--green, #00ff8c) !important;
                 border-color: rgba(0,255,140,.88) !important;
                 background: #0c100e !important;
                 box-shadow: 0 0 0 8px rgba(0,255,140,.045), 0 0 38px rgba(0,255,140,.30), inset 0 0 22px rgba(0,255,140,.08) !important;
-                animation: powerLedSnap .42s ease both;
+                animation: none;
             }
             .power-gate.system-powered .power-icon {
                 text-shadow: 0 0 16px rgba(0,255,140,.72) !important;
@@ -119,34 +142,54 @@
                 0%, 44% { opacity: 1; filter: brightness(1.08); }
                 45%, 100% { opacity: .2; filter: brightness(.45); }
             }
-            @keyframes powerLedSnap {
-                0% { filter: brightness(.35); }
-                22% { filter: brightness(2.35); }
-                38% { filter: brightness(.75); }
-                62% { filter: brightness(1.65); }
-                100% { filter: brightness(1); }
+            /* Long pulses at first, then increasingly rapid flashes before locking solid. */
+            @keyframes startupLedRamp {
+                0%, 13% { opacity: 1; filter: brightness(1.15); }
+                14%, 29% { opacity: .12; filter: brightness(.35); }
+                30%, 43% { opacity: 1; filter: brightness(1.22); }
+                44%, 54% { opacity: .16; filter: brightness(.42); }
+                55%, 64% { opacity: 1; filter: brightness(1.3); }
+                65%, 72% { opacity: .18; filter: brightness(.45); }
+                73%, 79% { opacity: 1; filter: brightness(1.36); }
+                80%, 84% { opacity: .2; filter: brightness(.5); }
+                85%, 88% { opacity: 1; filter: brightness(1.42); }
+                89%, 91% { opacity: .22; filter: brightness(.52); }
+                92%, 94% { opacity: 1; filter: brightness(1.48); }
+                95%, 96% { opacity: .25; filter: brightness(.58); }
+                97%, 100% { opacity: 1; filter: brightness(1.15); }
+            }
+            @keyframes startupPowerFlicker {
+                0%, 13%, 30%, 43%, 55%, 64%, 73%, 79%, 85%, 88%, 92%, 94%, 97%, 100% {
+                    box-shadow: 0 0 0 7px rgba(0,255,140,.035), 0 0 32px rgba(0,255,140,.25), inset 0 0 21px rgba(0,255,140,.07);
+                    filter: brightness(1.08);
+                }
+                14%, 29%, 44%, 54%, 65%, 72%, 80%, 84%, 89%, 91%, 95%, 96% {
+                    box-shadow: 0 0 0 4px rgba(0,255,140,.012), 0 0 8px rgba(0,255,140,.08), inset 0 0 18px rgba(0,0,0,.68);
+                    filter: brightness(.62);
+                }
+            }
+            @keyframes startupChassisFlicker {
+                0%, 13%, 30%, 43%, 55%, 64%, 73%, 79%, 85%, 88%, 92%, 94%, 97%, 100% {
+                    border-color: rgba(0,255,140,.32);
+                    box-shadow: 0 0 34px rgba(0,255,140,.07), inset 0 0 30px rgba(0,0,0,.52);
+                }
+                14%, 29%, 44%, 54%, 65%, 72%, 80%, 84%, 89%, 91%, 95%, 96% {
+                    border-color: rgba(110,118,114,.2);
+                    box-shadow: inset 0 0 34px rgba(0,0,0,.82);
+                }
             }
             @keyframes chassisWake {
-                0% { filter: brightness(.45); transform: scale(.998); }
-                24% { filter: brightness(1.45); transform: scale(1.004); }
-                42% { filter: brightness(.82); }
+                0% { filter: brightness(.82); transform: scale(.999); }
+                55% { filter: brightness(1.16); transform: scale(1.002); }
                 100% { filter: brightness(1); transform: scale(1); }
-            }
-            @keyframes indicatorFlicker {
-                0% { opacity: .18; }
-                30% { opacity: 1; }
-                52% { opacity: .38; }
-                72%, 100% { opacity: 1; }
             }
 
             @media (prefers-reduced-motion: reduce) {
                 .power-gate .power-title::before,
-                .power-gate.system-powered .power-panel,
-                .power-gate.system-powered .power-button,
-                .power-gate.system-powered .power-kicker,
-                .power-gate.system-powered .power-title,
-                .power-gate.system-powered .power-label,
-                .power-gate.system-powered .power-hint { animation: none !important; }
+                .power-gate.system-starting .power-panel,
+                .power-gate.system-starting .power-button,
+                .power-gate.system-starting .power-title::before,
+                .power-gate.system-powered .power-panel { animation: none !important; }
             }
         `;
         document.head.appendChild(style);
@@ -155,7 +198,27 @@
             // The POST screen is kept invisible by critical inline CSS until the
             // power gesture, preventing a one-frame green flash during page load.
             if (bootContent) bootContent.style.visibility = 'visible';
-            gate.classList.add('system-powered');
+
+            const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            gate.classList.add('system-starting');
+
+            const finishPowerRamp = () => {
+                gate.classList.remove('system-starting');
+                gate.classList.add('system-powered');
+                gate.dataset.powerReady = 'true';
+
+                // Hold the solid-green state briefly before POST takes over.
+                window.setTimeout(() => {
+                    window.dispatchEvent(new CustomEvent('exoyb:power-ready'));
+                }, reducedMotion ? 0 : 180);
+            };
+
+            if (reducedMotion) {
+                finishPowerRamp();
+                return;
+            }
+
+            window.setTimeout(finishPowerRamp, 1550);
         }, { once: true, capture: true });
     });
 })();
