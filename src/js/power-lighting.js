@@ -9,7 +9,6 @@
 
         // Make the initial state read as an intentional hardware prompt rather than an error state.
         if (title) title.textContent = 'PRESS TO POWER ON';
-        gate.querySelector('.power-hint')?.remove();
 
         const style = document.createElement('style');
         style.id = 'exoyb-power-lighting-styles';
@@ -94,6 +93,17 @@
             .power-gate.system-starting .power-panel {
                 animation: startupChassisFlicker 1.55s linear both !important;
             }
+            .power-gate.system-starting .power-panel::after {
+                content: '';
+                position: absolute;
+                inset: -1px;
+                z-index: 2;
+                pointer-events: none;
+                border: 1px solid rgba(0,255,140,.72);
+                border-radius: inherit;
+                box-shadow: 0 0 16px rgba(0,255,140,.12);
+                animation: startupPanelBorderFlicker 1.55s linear both;
+            }
 
             .power-gate.system-powered {
                 background:
@@ -169,13 +179,21 @@
                     filter: brightness(.62);
                 }
             }
+            @keyframes startupPanelBorderFlicker {
+                0%, 13%, 30%, 43%, 55%, 64%, 73%, 79%, 85%, 88%, 92%, 94%, 97%, 100% {
+                    opacity: 1;
+                    filter: brightness(1.08);
+                }
+                14%, 29%, 44%, 54%, 65%, 72%, 80%, 84%, 89%, 91%, 95%, 96% {
+                    opacity: .08;
+                    filter: brightness(.55);
+                }
+            }
             @keyframes startupChassisFlicker {
                 0%, 13%, 30%, 43%, 55%, 64%, 73%, 79%, 85%, 88%, 92%, 94%, 97%, 100% {
-                    border-color: rgba(0,255,140,.32);
                     box-shadow: 0 0 34px rgba(0,255,140,.07), inset 0 0 30px rgba(0,0,0,.52);
                 }
                 14%, 29%, 44%, 54%, 65%, 72%, 80%, 84%, 89%, 91%, 95%, 96% {
-                    border-color: rgba(110,118,114,.2);
                     box-shadow: inset 0 0 34px rgba(0,0,0,.82);
                 }
             }
@@ -188,6 +206,7 @@
             @media (prefers-reduced-motion: reduce) {
                 .power-gate .power-title::before,
                 .power-gate.system-starting .power-panel,
+                .power-gate.system-starting .power-panel::after,
                 .power-gate.system-starting .power-button,
                 .power-gate.system-starting .power-title::before,
                 .power-gate.system-powered .power-panel { animation: none !important; }
