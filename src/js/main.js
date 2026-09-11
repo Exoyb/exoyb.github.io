@@ -467,90 +467,86 @@ function closeMenu() {
     if (navLinks) navLinks.classList.remove('active');
 }
 
-/* Fast, site-wide decrypt effect for expandable headings. */
+/* Fast, site-wide decrypt effect for newly expanded content. */
 (() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@$#%&*?<>[]{}';
-    const activeTimers = new WeakMap();
+    const activeRuns = new WeakMap();
 
-    const addDecryptStyle = () => {
-        if (document.getElementById('exoyb-decrypt-styles')) return;
-        const style = document.createElement('style');
-        style.id = 'exoyb-decrypt-styles';
-        style.textContent = `
-            .decrypting-text {
-                text-shadow: 0 0 10px rgba(0,255,140,.28), 0 0 4px rgba(0,217,255,.16);
+    const collectContentText = details => {
+        const nodes = [];
+        const walker = document.createTreeWalker(details, NodeFilter.SHOW_TEXT, {
+            acceptNode(node) {
+                const parent = node.parentElement;
+                if (!parent || !node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+                if (parent.closest('summary')) return NodeFilter.FILTER_REJECT;
+                if (parent.closest('details') !== details) return NodeFilter.FILTER_REJECT;
+                if (parent.closest('script,style,noscript,textarea,select,option')) return NodeFilter.FILTER_REJECT;
+                return NodeFilter.FILTER_ACCEPT;
             }
-        `;
-        document.head.appendChild(style);
-    };
-
-    const titleTargets = summary => {
-        const explicit = [...summary.querySelectorAll('[data-decrypt-title]')];
-        if (explicit.length) return explicit;
-
-        const named = [...summary.querySelectorAll('*')].filter(element => {
-            if (element.children.length) return false;
-            const className = typeof element.className === 'string' ? element.className : '';
-            if (!/(title|name|company|version)/i.test(className)) return false;
-            if (/(wrap|meta|status|date|command|index|teaser|subtitle|toggle|icon)/i.test(className)) return false;
-            const text = element.textContent.trim();
-            return text.length >= 2 && text.length <= 120;
         });
 
-        if (named.length) return [...new Set(named)];
-
-        return [...summary.querySelectorAll('strong,h2,h3,h4')].filter(element => {
-            const text = element.textContent.trim();
-            return !element.children.length && text.length >= 2 && text.length <= 120;
-        });
+        while (walker.nextNode()) nodes.push(walker.currentNode);
+        return nodes;
     };
 
-    const decrypt = element => {
-        const original = element.dataset.decryptOriginal || element.textContent;
-        if (!original.trim()) return;
-        element.dataset.decryptOriginal = original;
+    const decryptExpandedContent = details => {
+        const previous = activeRuns.get(details);
+        if (previous) {
+            clearTimeout(previous.timer);
+            previous.entries.forEach(({ node, original }) => {
+                if (node.isConnected) node.nodeValue = original;
+            });
+        }
 
-        const existing = activeTimers.get(element);
-        if (existing) clearTimeout(existing);
+        const entries = collectContentText(details).map(node => ({
+            node,
+            original: node.nodeValue,
+            chars: [...node.nodeValue]
+        }));
+        if (!entries.length) return;
 
-        const chars = [...original];
+        const eligibleTotal = entries.reduce((sum, entry) =>
+            sum + entry.chars.filter(char => /[A-Za-z0-9]/.test(char)).length, 0);
+        if (!eligibleTotal) return;
+
         const totalFrames = 6;
         let frame = 0;
 
         const tick = () => {
-            const progress = frame / totalFrames;
-            element.classList.add('decrypting-text');
-            element.textContent = chars.map((char, index) => {
-                if (!/[A-Za-z0-9]/.test(char)) return char;
-                const position = chars.length <= 1 ? 1 : index / (chars.length - 1);
-                if (position < progress) return char;
-                return glyphs[Math.floor(Math.random() * glyphs.length)];
-            }).join('');
+            const revealCount = Math.floor((frame / totalFrames) * eligibleTotal);
+            let eligibleIndex = 0;
+
+            entries.forEach(entry => {
+                if (!entry.node.isConnected) return;
+                entry.node.nodeValue = entry.chars.map(char => {
+                    if (!/[A-Za-z0-9]/.test(char)) return char;
+                    const reveal = eligibleIndex < revealCount;
+                    eligibleIndex += 1;
+                    return reveal ? char : glyphs[Math.floor(Math.random() * glyphs.length)];
+                }).join('');
+            });
 
             if (frame >= totalFrames) {
-                element.textContent = original;
-                element.classList.remove('decrypting-text');
-                activeTimers.delete(element);
+                entries.forEach(({ node, original }) => {
+                    if (node.isConnected) node.nodeValue = original;
+                });
+                activeRuns.delete(details);
                 return;
             }
 
             frame += 1;
-            const timer = setTimeout(tick, 32);
-            activeTimers.set(element, timer);
+            const timer = setTimeout(tick, 30);
+            activeRuns.set(details, { timer, entries });
         };
 
         tick();
     };
 
-    addDecryptStyle();
-
     document.addEventListener('toggle', event => {
         const details = event.target;
         if (!(details instanceof HTMLDetailsElement) || !details.open) return;
-        const summary = details.querySelector(':scope > summary');
-        if (!summary) return;
-        titleTargets(summary).forEach(decrypt);
+        decryptExpandedContent(details);
     }, true);
 })();
