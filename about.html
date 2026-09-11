@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="src/css/animations.css?v=20260911-1">
   <link rel="stylesheet" href="src/css/pages.css?v=20260911-1">
   <link rel="stylesheet" href="src/css/about.css?v=20260910-9">
+  <link rel="stylesheet" href="src/css/about-experience.css?v=20260911-1">
 </head>
 <body>
 <nav><div class="nav-content"><div class="logo"><a href="index.html">#!/bin/bash Exoyb.sh</a></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div><div class="nav-links" id="navLinks"><a class="active" href="about.html">About</a><a href="training.html">Training</a><a href="projects.html">Projects</a><a href="cyber-log.html">Cyber Log</a><a href="feedback.html">Feedback</a></div></div></nav>
@@ -37,7 +38,7 @@
         <img class="about-photo" src="src/assets/images/dan-ridout-profile.png" alt="Portrait of Dan Ridout" onerror="this.closest('.about-photo-body').classList.add('photo-unavailable'); this.remove();">
         <div class="photo-hud" aria-hidden="true">
           <span class="hud-corner tl"></span><span class="hud-corner tr"></span><span class="hud-corner bl"></span><span class="hud-corner br"></span>
-          <div class="hud-meta"><span>USER: EXOYB</span>
+          <div class="hud-meta"><span>USER: EXOYB</span></div>
         </div>
         <div class="about-photo-fallback"><span class="fallback-command">$ locate dan_ridout.png</span><span class="fallback-text">Profile image slot ready.</span></div>
       </div>
@@ -51,26 +52,131 @@
       <h2 id="current-role-title">What I do now</h2>
       <p>From retail to SaaS support...</p>
     </div>
-    <div class="about-now-grid">
-      <article class="now-card">
-        <span class="now-command">$ ps aux | grep caseware</span>
-        <h3>Software Support Technician</h3>
-        <p>I troubleshoot Caseware software across phone, email and the support portal. I triage issues, reproduce faults, write up technical documentation and resolution details, own cases and escalate with detailed notes and useful context when deeper investigation is required.</p>
-        <p>A day-to-day will consist of a selection of various issues from licensing, to script errors, to “How do I add bullet points”, to application and license deployment on servers, to rounding issues and taxation problems. I specialise in Cloud Financials and the Cloud platform, where I will help with technical troubles, coaching, setting up groups and permissions, and more.</p>
-        <p>I also write technical documentation for our Fin AI agent, as well as it being publicly facing for clients to engage with.</p>
-        <p>Some articles I’ve written are:</p>
+
+    <div class="current-process">
+      <div class="process-statusbar">
+        <span>PID 0425 &nbsp; USER dan &nbsp; COMMAND caseware_support</span>
+        <strong>ACTIVE // APR 2025 — PRESENT</strong>
+      </div>
+
+      <div class="process-body">
+        <div class="process-main">
+          <span class="process-command">$ ps aux | grep caseware</span>
+          <h3>Software Support Technician</h3>
+          <ul class="process-lines">
+            <li>Triage and troubleshoot Caseware software across phone, email and the support portal.</li>
+            <li>Reproduce faults, narrow down root cause, document what has already been tried and own cases through to resolution or escalation.</li>
+            <li>Support licensing, software and licence deployment, Cloud Financials, Cloud platform permissions, user groups, 2FA, script errors and the occasional “how do I add bullet points?”</li>
+            <li>Write technical documentation used publicly by clients and as knowledge for the Fin AI agent.</li>
+          </ul>
+        </div>
+
+        <aside class="process-overlap">
+          <span class="process-command">$ grep -i transferable_skills</span>
+          <h3>The security overlap</h3>
+          <p class="overlap-line">Triage · Root cause · Troubleshooting · Problem replicating · Permissions · 2FA · Escalation · Documentation</p>
+          <p>Different tools, familiar habits: gather evidence, narrow the problem, understand impact, communicate clearly and know when to escalate.</p>
+        </aside>
+      </div>
+
+      <div class="process-evidence">
+        <span class="process-evidence-label">// published_docs</span>
         <div class="link-stack">
-          <a class="inline-link" href="https://my.caseware.com/s/article/Context-llp-partner-active-period-does-not--reference-a-valid-explicit-dimension?language=en_US" target="_blank" rel="noopener noreferrer">LLP partner active period article ↗</a>
-          <a class="inline-link" href="https://my.caseware.com/s/article/On-Saving-script-failed-Error-message?language=en_US" target="_blank" rel="noopener noreferrer">On Saving script failed article ↗</a>
+          <a class="inline-link" href="https://my.caseware.com/s/article/Context-llp-partner-active-period-does-not--reference-a-valid-explicit-dimension?language=en_US" target="_blank" rel="noopener noreferrer">LLP partner active period ↗</a>
+          <a class="inline-link" href="https://my.caseware.com/s/article/On-Saving-script-failed-Error-message?language=en_US" target="_blank" rel="noopener noreferrer">On Saving script failed ↗</a>
           <a class="inline-link" href="https://my.caseware.com/s/article/How-to-manually-tag-custom-content-in-Cloud-Engagements?language=en_US" target="_blank" rel="noopener noreferrer">Manual tagging in Cloud Engagements ↗</a>
         </div>
-      </article>
-      <article class="now-card">
-        <span class="now-command">$ grep -i transferable_skills</span>
-        <h3>The security overlap</h3>
-        <p class="overlap-line">Triage · Root cause · Troubleshooting · Problem replicating · Permissions · 2FA · Escalation · Documentation</p>
-        <p>Different tools, familiar habits: gather evidence, narrow the problem, understand impact, communicate clearly and know when to escalate.</p>
-      </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-experience fade-in" aria-labelledby="experience-title">
+    <div class="section-head about-section-intro">
+      <div class="page-kicker">// cat employment.log</div>
+      <h2 id="experience-title">Experience</h2>
+      <p>The job titles changed. The troubleshooting habit didn’t.</p>
+    </div>
+
+    <div class="experience-log">
+      <details class="experience-entry" open>
+        <summary>
+          <time class="experience-date" datetime="2025-04">APR 2025 — NOW</time>
+          <span class="experience-heading"><span class="experience-company">Caseware UK</span><span class="experience-role">Software Support Technician · First Line</span></span>
+          <span class="experience-state current">CURRENT</span>
+          <span class="experience-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="experience-content">
+          <div class="experience-content-inner">
+            <span class="experience-command">$ cat caseware.log</span>
+            <ul class="experience-lines">
+              <li>Support Working Papers installations across standalone and network environments, plus Cloud integration and platform issues.</li>
+              <li>Work with firm administration, users, groups, permissions, licences, engagements, external reviewers and authentication issues.</li>
+              <li>Troubleshoot Cloud Financials and UK/ROI Audit issues, reproduce faults and provide detailed escalation context where deeper investigation is needed.</li>
+              <li>Write public knowledge-base documentation and internal material used by the Fin AI agent, alongside onboarding, coaching and peer support.</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <details class="experience-entry">
+        <summary>
+          <span class="experience-date">2021–2023 / 2024–2025</span>
+          <span class="experience-heading"><span class="experience-company">Cash Converters</span><span class="experience-role">Store Manager</span></span>
+          <span class="experience-state">PREVIOUS</span>
+          <span class="experience-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="experience-content">
+          <div class="experience-content-inner">
+            <span class="experience-command">$ cat cash_converters.log</span>
+            <ul class="experience-lines">
+              <li>Ran day-to-day store operations, commercial performance and customer escalations.</li>
+              <li>Led, coached and developed staff while balancing service, compliance and operational targets.</li>
+              <li>Tested and authenticated a wide range of consumer electronics before purchase and resale.</li>
+              <li>Built the habit of making decisions quickly with incomplete information while still documenting and communicating the reasoning clearly.</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <details class="experience-entry">
+        <summary>
+          <time class="experience-date" datetime="2023">2023 — 2024</time>
+          <span class="experience-heading"><span class="experience-company">Kwik Fit</span><span class="experience-role">Trainee Centre Manager</span></span>
+          <span class="experience-state">PREVIOUS</span>
+          <span class="experience-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="experience-content">
+          <div class="experience-content-inner">
+            <span class="experience-command">$ cat kwik_fit.log</span>
+            <ul class="experience-lines">
+              <li>Managed workflow across an 11-person workshop, balancing customers, jobs, commercial accounts and day-to-day site operations.</li>
+              <li>Helped diagnose vehicle faults, prepare quotes and keep work moving when the workshop became busy.</li>
+              <li>Worked in an environment where prioritisation mattered because delays affected customers, technicians and the rest of the job queue.</li>
+              <li>Learned to keep people informed while coordinating several moving parts at once.</li>
+            </ul>
+          </div>
+        </div>
+      </details>
+
+      <details class="experience-entry">
+        <summary>
+          <time class="experience-date" datetime="2018">2018 — 2021</time>
+          <span class="experience-heading"><span class="experience-company">Mobile Street</span><span class="experience-role">Store Manager &amp; Lead Technical Specialist</span></span>
+          <span class="experience-state">PREVIOUS</span>
+          <span class="experience-toggle" aria-hidden="true"></span>
+        </summary>
+        <div class="experience-content">
+          <div class="experience-content-inner">
+            <span class="experience-command">$ cat mobile_street.log</span>
+            <ul class="experience-lines">
+              <li>Diagnosed faults across desktops, laptops and mobile devices, including POST and boot failures, component faults and board-level issues.</li>
+              <li>Completed hardware repairs including micro-soldering, IC replacement and trace repair where appropriate.</li>
+              <li>Combined hands-on technical work with store leadership, customer communication and explaining faults in plain English.</li>
+              <li>Built the technical troubleshooting foundation I still use now: observe, test, isolate, repair, verify.</li>
+            </ul>
+          </div>
+        </div>
+      </details>
     </div>
   </section>
 
@@ -122,7 +228,7 @@
         <div class="question-content">
           <div class="career-steps">
             <div class="career-step"><span class="career-step-label">Mobile Street</span><p>Hands-on diagnosis across desktops, laptops and mobile devices, including board-level micro-soldering, IC replacement and trace repair.</p></div>
-            <div class="career-step"><span class="career-step-label">Cash Converters</span><p>Store leadership alongside electronics testing and authentication, fraud prevention, customer escalation and staff development.</p></div>
+            <div class="career-step"><span class="career-step-label">Cash Converters</span><p>Store leadership alongside electronics testing and authentication, customer escalation and staff development.</p></div>
             <div class="career-step"><span class="career-step-label">Kwik Fit</span><p>Managed the workflow for an 11-person workshop, balancing customers, jobs, commercial accounts and day-to-day site operations. I wasn’t a full mechanic, but I always enjoyed getting involved where I could, helping diagnose faults, putting quotes together and jumping in with repairs when the workshop was swamped.</p></div>
           </div>
         </div>
