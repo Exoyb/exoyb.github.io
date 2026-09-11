@@ -305,39 +305,34 @@ strong { font-weight: 600; }
     filter: brightness(1.025);
 }
 
-/* Card/container typography: readable content is neutral; green/cyan remain accents outside cards, borders, LEDs and pseudo-elements. */
+/* Only primary green titles/figures inside cards become neutral. Accent/status/link colours stay intact. */
 :is(
-    .content-card,
-    .detail-item,
-    .project-card,
-    .project-accordion,
-    .version-accordion,
-    .about-stat,
-    .story-panel,
-    .bring-card,
-    .career-step,
-    .contact-card,
-    .proof-card,
-    .experience-entry,
-    .about-question,
-    .training-card,
-    .credential-card,
-    .training-platform-card,
-    .feedback-stat,
-    .feedback-accordion,
-    .manager-feature,
-    .manager-card,
-    .review-card,
-    .review-shot,
-    .log-entry-card
-) :is(h2, h3, h4, strong, p, li, a, span, blockquote, td, th) {
+    .content-card h2,
+    .content-card h3,
+    .about-stat-value,
+    .career-step-label,
+    .proof-card strong,
+    .contact-card strong,
+    .experience-company,
+    .project-title,
+    .project-content h2,
+    .project-release-version,
+    .training-platform-copy strong,
+    .training-card h3,
+    .credential-card h3,
+    .feedback-stat strong,
+    .feedback-accordion .feedback-section-head h2,
+    .feedback-accordion .feedback-section-head h3,
+    .manager-card h3,
+    .log-entry-title,
+    .log-empty-state h2
+) {
     color: var(--text) !important;
     -webkit-text-fill-color: currentColor;
 }
 
-/* Do not flatten actual terminal interfaces into the card typography rule. */
-:is(.cd-terminal, .directory-shell, .boot-screen, .about-mini-terminal) :is(h2, h3, h4, strong, p, li, a, span, blockquote, td, th) {
-    -webkit-text-fill-color: initial;
+.experience-entry:first-child .experience-content-inner::after {
+    color: var(--text) !important;
 }
 
 /* Review lightbox */
