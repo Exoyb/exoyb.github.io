@@ -223,7 +223,7 @@ const cyberLogEntries = [
         : '';
 
       const versions = Array.isArray(entry.versions) && entry.versions.length
-        ? `<div class="log-folds">${entry.versions.map(renderVersion).join('')}</div>`
+        ? `<div class="log-folds">${[...entry.versions].sort((a, b) => String(b.date || '').localeCompare(String(a.date || ''))).map(renderVersion).join('')}</div>`
         : '';
 
       const folds = [
