@@ -305,6 +305,114 @@ strong { font-weight: 600; }
     filter: brightness(1.025);
 }
 
+/* Shared card identity: same phosphor edge and restrained glow across every page. */
+:is(
+    .content-card,
+    .detail-item,
+    .about-stat,
+    .career-step,
+    .proof-card,
+    .contact-card,
+    .experience-entry,
+    .about-question,
+    .bring-card,
+    .project-accordion,
+    .project-release,
+    .project-detail,
+    .audit-priority,
+    .training-platform-card,
+    .training-card,
+    .credential-card,
+    .feedback-stat,
+    .feedback-accordion,
+    .manager-feature,
+    .manager-card,
+    .review-card,
+    .review-shot,
+    .log-entry-card,
+    .log-fold
+) {
+    border-color: rgba(0,255,140,.26) !important;
+    box-shadow: 0 0 0 1px rgba(0,255,140,.012) inset, 0 0 11px rgba(0,255,140,.025) !important;
+}
+
+:is(
+    .proof-card,
+    .contact-card,
+    .experience-entry,
+    .about-question,
+    .bring-card,
+    .project-accordion,
+    .project-release,
+    .training-platform-card,
+    .training-card,
+    .credential-card,
+    .feedback-stat,
+    .feedback-accordion,
+    .manager-card,
+    .review-card,
+    .review-shot,
+    .log-entry-card,
+    .log-fold
+):hover,
+:is(
+    .proof-card,
+    .contact-card,
+    .experience-entry,
+    .about-question,
+    .bring-card,
+    .project-accordion,
+    .project-release,
+    .training-platform-card,
+    .training-card,
+    .credential-card,
+    .feedback-stat,
+    .feedback-accordion,
+    .manager-card,
+    .review-card,
+    .review-shot,
+    .log-entry-card,
+    .log-fold
+):focus-within {
+    border-color: rgba(0,255,140,.72) !important;
+    box-shadow: 0 12px 32px rgba(0,0,0,.28), 0 0 18px rgba(0,255,140,.11), 0 0 36px rgba(0,255,140,.04) !important;
+}
+
+/* Stat cards use the same restrained glass sweep as the larger interactive cards. */
+.about-stat,
+.feedback-stat {
+    position: relative;
+    overflow: hidden;
+}
+
+.about-stat::before,
+.feedback-stat::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -42%;
+    width: 34%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    background: linear-gradient(110deg,
+        transparent 0%,
+        rgba(255,255,255,.018) 33%,
+        rgba(255,255,255,.055) 48%,
+        rgba(0,217,255,.028) 54%,
+        transparent 72%);
+    transform: skewX(-16deg);
+    transition: left .58s ease, opacity .18s ease;
+}
+
+.about-stat:hover::before,
+.feedback-stat:hover::before,
+.about-stat:focus-within::before,
+.feedback-stat:focus-within::before {
+    left: 114%;
+    opacity: 1;
+}
+
 /* Page-level section titles on the bare page background stay green. */
 .project-browser-head > h2,
 .training-section-head > h2,
