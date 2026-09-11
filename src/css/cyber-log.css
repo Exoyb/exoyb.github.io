@@ -68,12 +68,14 @@
 
 .log-filters {
   display: flex;
+  flex: 1 1 auto;
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: .6rem;
 }
 
-.log-filter {
+.log-filter,
+.log-sort-option {
   appearance: none;
   border: 0;
   background: transparent;
@@ -89,10 +91,41 @@
 .log-filter[data-filter="all"]::before { content: '*/'; color: var(--green); margin-right: .2rem; }
 
 .log-filter:hover,
-.log-filter.active {
+.log-filter.active,
+.log-sort-option:hover,
+.log-sort-option.active {
   color: #f3f3f3;
   text-shadow: 0 0 14px rgba(0,255,140,.3);
 }
+
+.log-sort {
+  display: flex;
+  align-items: center;
+  gap: .55rem;
+  flex: 0 0 auto;
+  padding-left: 1rem;
+  border-left: 1px solid #262626;
+}
+
+.log-sort-label {
+  color: var(--green);
+  font-size: .86rem;
+}
+
+.log-sort-option::before {
+  content: '[';
+  color: #5d6862;
+  margin-right: .08rem;
+}
+
+.log-sort-option::after {
+  content: ']';
+  color: #5d6862;
+  margin-left: .08rem;
+}
+
+.log-sort-option.active::before,
+.log-sort-option.active::after { color: var(--cyan); }
 
 .log-stream { position: relative; }
 
@@ -396,6 +429,11 @@
   }
 
   .log-filters { justify-content: flex-start; }
+
+  .log-sort {
+    padding-left: 0;
+    border-left: 0;
+  }
 }
 
 @media (max-width: 560px) {
