@@ -229,6 +229,49 @@
   display: block;
 }
 
+/* README-style overview: scan like terminal output instead of prose. */
+.project-readme-lines {
+  display: grid;
+  gap: .5rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.project-readme-lines li {
+  position: relative;
+  margin: 0;
+  padding-left: 1.55rem;
+  color: #c4cbc6;
+  font-size: .98rem;
+  line-height: 1.72;
+}
+
+.project-readme-lines li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--cyan);
+  font-weight: 700;
+  text-shadow: 0 0 9px rgba(0,217,255,.18);
+}
+
+.project-readme-lines li:last-child::after {
+  content: '_';
+  display: inline-block;
+  margin-left: .35rem;
+  color: #f5f5f5;
+  font-weight: 700;
+  text-shadow: 0 0 7px rgba(255,255,255,.22);
+  animation: readmeCursorBlink .82s steps(1,end) infinite;
+}
+
+@keyframes readmeCursorBlink {
+  0%, 47% { opacity: 1; }
+  48%, 100% { opacity: 0; }
+}
+
 .project-stack {
   display: flex;
   flex-wrap: wrap;
@@ -565,6 +608,8 @@
 
   .project-accordion::before,
   .project-release::before { display: none; }
+
+  .project-readme-lines li:last-child::after { animation: none; opacity: 1; }
 }
 
 @media (max-width: 860px) {
