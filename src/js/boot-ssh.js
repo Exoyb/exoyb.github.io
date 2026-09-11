@@ -11,6 +11,7 @@
 
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const sleep = ms => new Promise(resolve => window.setTimeout(resolve, ms));
+        let skipRequested = false;
 
         // Use the boot sequence as a hidden loading window for likely next pages.
         // Prefetches are deliberately skipped for data-saver and very slow connections.
@@ -272,6 +273,21 @@
         const statusLine = ssh.querySelector('.boot-ssh-status-line');
         const loginLine = ssh.querySelector('.boot-ssh-login-line');
 
+        // Reuse the old audio-toggle position/style, but replace the control entirely.
+        // cloneNode removes audio.js event listeners from the old button.
+        const audioToggle = bootContent.querySelector('[data-audio-toggle]');
+        const skipButton = audioToggle ? audioToggle.cloneNode(true) : document.createElement('button');
+        if (audioToggle) audioToggle.replaceWith(skipButton);
+        else bootContent.appendChild(skipButton);
+        skipButton.type = 'button';
+        skipButton.className = 'boot-audio-toggle boot-skip-button';
+        skipButton.removeAttribute('data-audio-toggle');
+        skipButton.removeAttribute('aria-pressed');
+        skipButton.setAttribute('aria-label', 'Skip boot sequence');
+        skipButton.textContent = '[ SKIP BOOT SEQUENCE ]';
+
+        const shouldAbort = () => skipRequested || bootScreen.hidden || bootScreen.classList.contains('fade-out');
+
         const finishBoot = () => {
             if (bootScreen.hidden || bootScreen.classList.contains('fade-out')) return;
             bootScreen.classList.add('fade-out');
@@ -279,6 +295,13 @@
                 bootScreen.hidden = true;
             }, 380);
         };
+
+        skipButton.addEventListener('click', event => {
+            event.preventDefault();
+            event.stopPropagation();
+            skipRequested = true;
+            finishBoot();
+        });
 
         const revealEverything = () => {
             lines.forEach(item => {
@@ -305,21 +328,25 @@
         });
 
         const typeInto = async (element, value, delay) => {
-            if (!element) return;
+            if (!element) return !shouldAbort();
             for (const character of value) {
+                if (shouldAbort()) return false;
                 element.textContent += character;
                 await sleep(delay);
             }
+            return !shouldAbort();
         };
 
         const typeHuman = async (element, value) => {
             for (const character of value) {
+                if (shouldAbort()) return false;
                 element.textContent += character;
                 let delay = 95 + Math.random() * 55;
                 if (character === ' ') delay += 95;
                 if (character === '@') delay += 70;
                 await sleep(delay);
             }
+            return !shouldAbort();
         };
 
         let bootStarted = false;
@@ -327,50 +354,66 @@
             if (bootStarted) return;
             bootStarted = true;
             await sleep(250);
+            if (shouldAbort()) return;
 
             for (const item of lines) {
-                if (bootScreen.classList.contains('fade-out')) return;
+                if (shouldAbort()) return;
 
                 item.line.classList.add('boot-line-visible');
                 const cursor = document.createElement('span');
                 cursor.className = 'boot-type-cursor';
                 item.text?.after(cursor);
 
-                await typeInto(item.prompt, item.promptText, 12);
-                await typeInto(item.text, item.bodyText, 8);
+                if (!await typeInto(item.prompt, item.promptText, 12)) {
+                    cursor.remove();
+                    return;
+                }
+                if (!await typeInto(item.text, item.bodyText, 8)) {
+                    cursor.remove();
+                    return;
+                }
 
                 cursor.remove();
+                if (shouldAbort()) return;
                 if (item.status) item.status.textContent = item.statusText;
                 item.line.classList.add('boot-line-complete');
                 window.ExoybAudio?.play('boot');
                 await sleep(70);
             }
 
+            if (shouldAbort()) return;
             bootProgress.classList.add('boot-progress-visible');
             await sleep(80);
+            if (shouldAbort()) return;
             bootProgress.classList.add('boot-progress-active');
             await sleep(950);
+            if (shouldAbort()) return;
             bootFooter.classList.add('boot-footer-visible');
             await sleep(220);
+            if (shouldAbort()) return;
 
             ssh.classList.add('visible');
-            await typeHuman(sshCommand, 'ssh exoyb@portfolio');
+            if (!await typeHuman(sshCommand, 'ssh exoyb@portfolio')) return;
 
             await sleep(260);
+            if (shouldAbort()) return;
             sshCommandCursor?.remove();
             passwordLine.classList.add('visible');
 
             // Real SSH does not echo password characters; the pause is the "typing".
             await sleep(1100);
+            if (shouldAbort()) return;
             passwordLine.querySelector('.boot-ssh-cursor')?.remove();
             statusLine.classList.add('visible');
             window.ExoybAudio?.play('auth');
 
             await sleep(300);
+            if (shouldAbort()) return;
             loginLine.classList.add('visible');
 
             // Hold the completed SSH session long enough to actually read the final login line.
             await sleep(1500);
+            if (shouldAbort()) return;
             finishBoot();
         };
 
