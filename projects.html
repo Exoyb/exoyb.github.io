@@ -120,6 +120,16 @@
         <div class="page-kicker">// project_001/readme</div>
         <h2>Exoyb Cybersecurity Portfolio</h2>
         <p>My first GitHub project. I took a single-page HTML template, restructured it into a multi-page portfolio, removed the bits I didn’t want, built the terminal-style landing page and have been changing it ever since.</p>
+
+        <div class="project-detail-grid">
+          <article class="project-detail">
+            <span class="detail-command">$ cat performance-optimisation.log</span>
+            <h3>Performance optimisation</h3>
+            <p>I asked family to test the site and they reported that swapping between pages felt slow. I investigated the navigation path, removed an unnecessary 230ms delay, researched browser prefetching and added low-priority prefetching for the main portfolio pages during the 12-second boot sequence. This uses otherwise hidden boot time to warm the browser cache before the visitor starts navigating.</p>
+            <p>I also standardised cache-busting versions for shared CSS and JavaScript so the browser can reuse the same cached files between pages instead of treating them as new requests. Expected result: potentially removes most of the post-click network wait for destination HTML/CSS when prefetching completes. The exact percentage improvement depends on connection, browser and cache state, so I have not claimed a fixed benchmark without measuring it.</p>
+          </article>
+        </div>
+
         <div class="project-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span><span>Git</span></div>
         <div class="project-actions"><a class="project-link" href="https://github.com/Exoyb/exoyb.github.io" target="_blank" rel="noopener noreferrer">view source ↗</a><a class="project-link" href="index.html">launch project →</a><a class="project-link" href="cyber-log.html">development log →</a></div>
       </div>
