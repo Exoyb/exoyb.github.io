@@ -275,9 +275,7 @@
             const homepageTarget = document.getElementById('directoryTarget');
             if (homepageTarget) homepageTarget.textContent = directory;
 
-            window.setTimeout(() => {
-                window.location.href = url.href;
-            }, reducedMotion ? 0 : 230);
+            window.location.href = url.href;
         });
     };
 
