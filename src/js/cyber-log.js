@@ -4,15 +4,15 @@
  * Each entry becomes a compact expandable card. The closed view deliberately
  * shows the entry number, date and title. Supporting context, tags and evidence
  * appear once the entry is opened so the feed stays easy to scan as it grows.
- * Newest dates are shown first. Any optional field can be omitted.
+ * Newest dates are shown first by default. Any optional field can be omitted.
  */
 
 const cyberLogEntries = [
   {
-    date: '2026-09-11',
+    date: '2026-09-09',
     type: 'Portfolio Development // Version History',
-    title: 'Building the portfolio — V1 to V1.2',
-    summary: 'My first GitHub project, tracked by version as I keep building, testing and changing it.',
+    title: 'Portfolio Development + Updates',
+    summary: 'Here I track the updates and revisions I make to the portfolio.',
     tags: ['portfolio', 'github', 'html', 'css', 'javascript', 'ui', 'performance', 'testing'],
     versions: [
       {
@@ -100,6 +100,7 @@ const cyberLogEntries = [
   const entriesRoot = document.getElementById('cyberLogEntries');
   const emptyState = document.getElementById('logEmptyState');
   const filtersRoot = document.getElementById('logFilters');
+  const sortRoot = document.getElementById('logSort');
   const entryCount = document.getElementById('entryCount');
   const topicCount = document.getElementById('topicCount');
   const latestEntry = document.getElementById('latestEntry');
@@ -158,10 +159,11 @@ const cyberLogEntries = [
     return `
       <details class="log-fold did version">
         <summary>
-          <span class="log-fold-label">${escapeHTML(release.version || 'Version')} // ${escapeHTML(release.title || 'Update')}</span>
+          <span class="log-fold-label">${escapeHTML(release.version || 'Version')}</span>
           <span class="log-fold-count">${escapeHTML(formatDate(release.date || ''))}</span>
         </summary>
         <div class="log-fold-body">
+          ${release.title ? `<p><strong>${escapeHTML(release.title)}</strong></p>` : ''}
           ${release.summary ? `<p>${escapeHTML(release.summary)}</p>` : ''}
           ${changes}
           ${learned}
@@ -169,18 +171,25 @@ const cyberLogEntries = [
       </details>`;
   };
 
-  const sortedEntries = [...cyberLogEntries].sort((a, b) =>
-    String(b.date || '').localeCompare(String(a.date || ''))
+  const chronologicalEntries = [...cyberLogEntries].sort((a, b) =>
+    String(a.date || '').localeCompare(String(b.date || ''))
+  );
+  const serialByEntry = new Map(
+    chronologicalEntries.map((entry, index) => [entry, String(index + 1).padStart(3, '0')])
   );
 
-  const allTags = [...new Set(sortedEntries.flatMap(entry => entry.tags || []))]
+  const allTags = [...new Set(cyberLogEntries.flatMap(entry => entry.tags || []))]
     .map(tag => String(tag).trim().toLowerCase())
     .filter(Boolean)
     .sort();
 
-  entryCount.textContent = sortedEntries.length;
+  const newestEntry = [...cyberLogEntries].sort((a, b) =>
+    String(b.date || '').localeCompare(String(a.date || ''))
+  )[0];
+
+  entryCount.textContent = cyberLogEntries.length;
   topicCount.textContent = allTags.length;
-  latestEntry.textContent = sortedEntries.length ? formatDate(sortedEntries[0].date) : '--';
+  latestEntry.textContent = newestEntry ? formatDate(newestEntry.date) : '--';
 
   allTags.forEach(tag => {
     const button = document.createElement('button');
@@ -191,68 +200,81 @@ const cyberLogEntries = [
     filtersRoot.appendChild(button);
   });
 
-  if (!sortedEntries.length) {
+  if (!cyberLogEntries.length) {
     emptyState.hidden = false;
     return;
   }
 
   emptyState.hidden = true;
 
-  entriesRoot.innerHTML = sortedEntries.map((entry, index) => {
-    const tags = (entry.tags || []).map(tag => String(tag).trim().toLowerCase()).filter(Boolean);
-    const tagMarkup = tags.length
-      ? `<div class="log-tags">${tags.map(tag => `<span class="log-tag">${escapeHTML(tag)}</span>`).join('')}</div>`
-      : '';
+  let currentFilter = 'all';
+  let currentSort = 'newest';
 
-    const versions = Array.isArray(entry.versions) && entry.versions.length
-      ? `<div class="log-folds">${entry.versions.map(renderVersion).join('')}</div>`
-      : '';
+  const renderEntries = () => {
+    const displayEntries = [...cyberLogEntries].sort((a, b) => {
+      const comparison = String(a.date || '').localeCompare(String(b.date || ''));
+      return currentSort === 'oldest' ? comparison : -comparison;
+    });
 
-    const folds = [
-      renderFold('did', 'what I did', entry.did),
-      renderFold('learned', 'what I learned', entry.learned),
-      renderFold('tools', 'tools used', entry.tools, 'tools'),
-      renderFold('issue', 'issue / blocker', entry.stuck),
-      renderFold('next', 'next steps', entry.next)
-    ].filter(Boolean).join('');
+    entriesRoot.innerHTML = displayEntries.map(entry => {
+      const tags = (entry.tags || []).map(tag => String(tag).trim().toLowerCase()).filter(Boolean);
+      const tagMarkup = tags.length
+        ? `<div class="log-tags">${tags.map(tag => `<span class="log-tag">${escapeHTML(tag)}</span>`).join('')}</div>`
+        : '';
 
-    const detailMarkup = [
-      versions,
-      folds ? `<div class="log-folds">${folds}</div>` : ''
-    ].filter(Boolean).join('');
+      const versions = Array.isArray(entry.versions) && entry.versions.length
+        ? `<div class="log-folds">${entry.versions.map(renderVersion).join('')}</div>`
+        : '';
 
-    const links = Array.isArray(entry.links) && entry.links.length
-      ? `<div class="log-links">${entry.links.map(link => `<a class="log-link" href="${escapeHTML(link.url || '#')}"${/^https?:\/\//.test(link.url || '') ? ' target="_blank" rel="noopener noreferrer"' : ''}>${escapeHTML(link.label || 'Related link')} ↗</a>`).join('')}</div>`
-      : '';
+      const folds = [
+        renderFold('did', 'what I did', entry.did),
+        renderFold('learned', 'what I learned', entry.learned),
+        renderFold('tools', 'tools used', entry.tools, 'tools'),
+        renderFold('issue', 'issue / blocker', entry.stuck),
+        renderFold('next', 'next steps', entry.next)
+      ].filter(Boolean).join('');
 
-    const serial = String(sortedEntries.length - index).padStart(3, '0');
+      const detailMarkup = [
+        versions,
+        folds ? `<div class="log-folds">${folds}</div>` : ''
+      ].filter(Boolean).join('');
 
-    return `
-      <article class="log-entry" data-tags="${escapeHTML(tags.join(' '))}">
-        <details class="log-entry-card">
-          <summary class="log-entry-toggle">
-            <span class="log-entry-switch" aria-hidden="true"></span>
-            <span class="log-entry-preview">
-              <span class="log-entry-preview-meta">
-                <span class="log-index">entry_${serial}.log</span>
-                <time class="log-date" datetime="${escapeHTML(entry.date || '')}">${escapeHTML(formatDate(entry.date || ''))}</time>
+      const links = Array.isArray(entry.links) && entry.links.length
+        ? `<div class="log-links">${entry.links.map(link => `<a class="log-link" href="${escapeHTML(link.url || '#')}"${/^https?:\/\//.test(link.url || '') ? ' target="_blank" rel="noopener noreferrer"' : ''}>${escapeHTML(link.label || 'Related link')} ↗</a>`).join('')}</div>`
+        : '';
+
+      const serial = serialByEntry.get(entry) || '---';
+      const hidden = currentFilter !== 'all' && !tags.includes(currentFilter);
+
+      return `
+        <article class="log-entry" data-tags="${escapeHTML(tags.join(' '))}"${hidden ? ' hidden' : ''}>
+          <details class="log-entry-card">
+            <summary class="log-entry-toggle">
+              <span class="log-entry-switch" aria-hidden="true"></span>
+              <span class="log-entry-preview">
+                <span class="log-entry-preview-meta">
+                  <span class="log-index">entry_${serial}.log</span>
+                  <time class="log-date" datetime="${escapeHTML(entry.date || '')}">${escapeHTML(formatDate(entry.date || ''))}</time>
+                </span>
+                <span class="log-entry-title">${escapeHTML(entry.title || 'Untitled entry')}</span>
               </span>
-              <span class="log-entry-title">${escapeHTML(entry.title || 'Untitled entry')}</span>
-            </span>
-          </summary>
+            </summary>
 
-          <div class="log-entry-content">
-            <div class="log-entry-expanded-meta">
-              <span class="log-entry-type">${escapeHTML(entry.type || 'Log')}</span>
+            <div class="log-entry-content">
+              <div class="log-entry-expanded-meta">
+                <span class="log-entry-type">${escapeHTML(entry.type || 'Log')}</span>
+              </div>
+              ${entry.summary ? `<p class="log-entry-summary">${escapeHTML(entry.summary)}</p>` : ''}
+              ${tagMarkup}
+              ${detailMarkup || '<p class="log-no-detail">No additional notes for this entry yet.</p>'}
+              ${links}
             </div>
-            ${entry.summary ? `<p class="log-entry-summary">${escapeHTML(entry.summary)}</p>` : ''}
-            ${tagMarkup}
-            ${detailMarkup || '<p class="log-no-detail">No additional notes for this entry yet.</p>'}
-            ${links}
-          </div>
-        </details>
-      </article>`;
-  }).join('');
+          </details>
+        </article>`;
+    }).join('');
+  };
+
+  renderEntries();
 
   filtersRoot.addEventListener('click', (event) => {
     const button = event.target.closest('.log-filter');
@@ -260,11 +282,17 @@ const cyberLogEntries = [
 
     filtersRoot.querySelectorAll('.log-filter').forEach(filter => filter.classList.remove('active'));
     button.classList.add('active');
+    currentFilter = button.dataset.filter || 'all';
+    renderEntries();
+  });
 
-    const selected = button.dataset.filter;
-    entriesRoot.querySelectorAll('.log-entry').forEach(entry => {
-      const tags = (entry.dataset.tags || '').split(' ');
-      entry.hidden = selected !== 'all' && !tags.includes(selected);
-    });
+  sortRoot?.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-sort]');
+    if (!button) return;
+
+    sortRoot.querySelectorAll('[data-sort]').forEach(option => option.classList.remove('active'));
+    button.classList.add('active');
+    currentSort = button.dataset.sort === 'oldest' ? 'oldest' : 'newest';
+    renderEntries();
   });
 })();
