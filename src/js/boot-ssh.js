@@ -12,6 +12,44 @@
         const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const sleep = ms => new Promise(resolve => window.setTimeout(resolve, ms));
 
+        // Use the boot sequence as a hidden loading window for likely next pages.
+        // Prefetches are deliberately skipped for data-saver and very slow connections.
+        const queuePortfolioPrefetch = () => {
+            const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+            if (connection?.saveData || ['slow-2g', '2g'].includes(connection?.effectiveType)) return;
+
+            const targets = [
+                'about.html',
+                'training.html',
+                'projects.html',
+                'cyber-log.html',
+                'feedback.html',
+                'src/css/about.css?v=20260910-9',
+                'src/css/training.css?v=20260910-10',
+                'src/css/projects.css?v=20260910-3',
+                'src/css/cyber-log.css?v=20260910-8',
+                'src/css/easter-egg.css?v=20260910-1',
+                'src/css/feedback.css?v=20260910-9',
+                'src/js/cyber-log.js?v=20260910-7'
+            ];
+
+            const prefetch = () => {
+                targets.forEach(href => {
+                    if (document.head.querySelector(`link[rel="prefetch"][href="${href}"]`)) return;
+                    const link = document.createElement('link');
+                    link.rel = 'prefetch';
+                    link.href = href;
+                    document.head.appendChild(link);
+                });
+            };
+
+            if ('requestIdleCallback' in window) {
+                window.requestIdleCallback(prefetch, { timeout: 1500 });
+            } else {
+                window.setTimeout(prefetch, 250);
+            }
+        };
+
         const style = document.createElement('style');
         style.textContent = `
             .boot-terminal p {
@@ -360,6 +398,7 @@
             gate.classList.add('powering');
             powerTitle.textContent = 'INITIALISING...';
             powerLabel.textContent = '[ SYSTEM POWER: ON ]';
+            queuePortfolioPrefetch();
 
             // This call happens directly inside the trusted button click, which gives
             // browsers the user gesture they require before Web Audio can run.
