@@ -128,6 +128,13 @@
             <p>I asked family to test the site and they reported that swapping between pages felt slow. I investigated the navigation path, removed an unnecessary 230ms delay, researched browser prefetching and added low-priority prefetching for the main portfolio pages during the 12-second boot sequence. This uses otherwise hidden boot time to warm the browser cache before the visitor starts navigating.</p>
             <p>I also standardised cache-busting versions for shared CSS and JavaScript so the browser can reuse the same cached files between pages instead of treating them as new requests. Expected result: potentially removes most of the post-click network wait for destination HTML/CSS when prefetching completes. The exact percentage improvement depends on connection, browser and cache state, so I have not claimed a fixed benchmark without measuring it.</p>
           </article>
+
+          <article class="project-detail">
+            <span class="detail-command">$ cat usability-testing.log</span>
+            <h3>Power-screen usability update</h3>
+            <p>Further family testing highlighted confusion around the first-load power screen. The initial “SYSTEM OFFLINE” wording was being interpreted as an error or failed page rather than a deliberate, interactive part of the portfolio.</p>
+            <p>I updated the wording to “PRESS TO POWER ON” and added a blinking red LED to make the screen read more clearly as a powered-off workstation waiting for user input. When the power button is pressed, the LED changes to solid green before the normal boot sequence begins. This made the intended interaction clearer without removing the terminal-style experience.</p>
+          </article>
         </div>
 
         <div class="project-stack"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub Pages</span><span>Git</span></div>
