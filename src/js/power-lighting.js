@@ -9,6 +9,7 @@
 
         // Make the initial state read as an intentional hardware prompt rather than an error state.
         if (title) title.textContent = 'PRESS TO POWER ON';
+        gate.querySelector('.power-hint')?.remove();
 
         const style = document.createElement('style');
         style.id = 'exoyb-power-lighting-styles';
