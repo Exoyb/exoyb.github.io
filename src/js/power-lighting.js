@@ -194,31 +194,40 @@
         `;
         document.head.appendChild(style);
 
-        button.addEventListener('click', () => {
-            // The POST screen is kept invisible by critical inline CSS until the
-            // power gesture, preventing a one-frame green flash during page load.
+        button.addEventListener('click', event => {
+            // The real click is reserved for the staged power-up. Prevent the boot
+            // handler from running until the light has ramped and settled solid green.
+            event.preventDefault();
+            event.stopImmediatePropagation();
+
+            // Unlock audio from the genuine user gesture before we delay POST.
+            try {
+                window.ExoybAudio?.unlock?.();
+            } catch (_) {
+                // Power animation and POST do not depend on sound support.
+            }
+
             if (bootContent) bootContent.style.visibility = 'visible';
 
             const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
             gate.classList.add('system-starting');
 
-            const finishPowerRamp = () => {
+            const releaseBoot = () => {
                 gate.classList.remove('system-starting');
                 gate.classList.add('system-powered');
-                gate.dataset.powerReady = 'true';
 
-                // Hold the solid-green state briefly before POST takes over.
-                window.setTimeout(() => {
-                    window.dispatchEvent(new CustomEvent('exoyb:power-ready'));
-                }, reducedMotion ? 0 : 180);
+                // Give the solid-green state a readable beat, then hand the same
+                // power button to boot-ssh.js. This second click is synthetic by design;
+                // Web Audio was already unlocked by the real click above.
+                window.setTimeout(() => button.click(), reducedMotion ? 0 : 180);
             };
 
             if (reducedMotion) {
-                finishPowerRamp();
+                releaseBoot();
                 return;
             }
 
-            window.setTimeout(finishPowerRamp, 1550);
+            window.setTimeout(releaseBoot, 1550);
         }, { once: true, capture: true });
     });
 })();
