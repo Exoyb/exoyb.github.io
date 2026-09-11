@@ -305,6 +305,17 @@ strong { font-weight: 600; }
     filter: brightness(1.025);
 }
 
+/* Page-level section titles on the bare page background stay green. */
+.project-browser-head > h2,
+.training-section-head > h2,
+.feedback-browser-head > h2,
+.about-section-intro > h2,
+.section-head > h2,
+.log-stream-title {
+    color: var(--green) !important;
+    -webkit-text-fill-color: currentColor;
+}
+
 /* Only primary green titles/figures inside cards become neutral. Accent/status/link colours stay intact. */
 :is(
     .content-card h2,
