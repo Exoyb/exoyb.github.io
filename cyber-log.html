@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="src/css/main.css?v=20260911-1">
   <link rel="stylesheet" href="src/css/animations.css?v=20260911-1">
   <link rel="stylesheet" href="src/css/pages.css?v=20260911-1">
-  <link rel="stylesheet" href="src/css/cyber-log.css?v=20260910-8">
+  <link rel="stylesheet" href="src/css/cyber-log.css?v=20260911-1">
   <link rel="stylesheet" href="src/css/easter-egg.css?v=20260910-1">
 </head>
 <body>
@@ -51,9 +51,14 @@
       </div>
     </div>
 
-    <section class="log-controls fade-in" aria-label="Filter Cyber Log entries">
+    <section class="log-controls fade-in" aria-label="Filter and sort Cyber Log entries">
       <div class="filter-heading"><span>// filter</span><span class="filter-hint">select a topic</span></div>
       <div id="logFilters" class="log-filters"><button class="log-filter active" type="button" data-filter="all">all</button></div>
+      <div id="logSort" class="log-sort" aria-label="Sort entries">
+        <span class="log-sort-label">// sort</span>
+        <button class="log-sort-option active" type="button" data-sort="newest">newest</button>
+        <button class="log-sort-option" type="button" data-sort="oldest">oldest</button>
+      </div>
     </section>
 
     <section class="log-stream fade-in" aria-labelledby="log-entries-title">
@@ -90,6 +95,6 @@
 <script src="src/js/audio.js?v=20260911-1"></script>
 <script src="src/js/main.js?v=20260911-1"></script>
 <script src="src/js/easter-egg.js?v=20260910-3"></script>
-<script src="src/js/cyber-log.js?v=20260911-1"></script>
+<script src="src/js/cyber-log.js?v=20260911-2"></script>
 </body>
 </html>
