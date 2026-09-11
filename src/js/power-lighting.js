@@ -1,10 +1,14 @@
-// Exoyb power gate lighting — visually dark while offline, then wakes like a PC chassis.
+// Exoyb power gate lighting — visually dark while waiting for the user, then wakes like a PC chassis.
 (() => {
     document.addEventListener('DOMContentLoaded', () => {
         const gate = document.querySelector('.power-gate');
         const button = gate?.querySelector('.power-button');
+        const title = gate?.querySelector('.power-title');
         const bootContent = document.querySelector('#bootScreen .boot-content');
         if (!gate || !button) return;
+
+        // Make the initial state read as an intentional hardware prompt rather than an error state.
+        if (title) title.textContent = 'PRESS TO POWER ON';
 
         const style = document.createElement('style');
         style.id = 'exoyb-power-lighting-styles';
@@ -24,12 +28,31 @@
                 transition: border-color .36s ease, box-shadow .46s ease, background .36s ease, filter .36s ease;
             }
             .power-gate .power-kicker,
-            .power-gate .power-title,
             .power-gate .power-label,
             .power-gate .power-hint {
                 color: #454b48 !important;
                 text-shadow: none !important;
                 transition: color .28s ease, text-shadow .35s ease, opacity .28s ease;
+            }
+            .power-gate .power-title {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: .62rem;
+                color: #c6cfca !important;
+                text-shadow: none !important;
+                transition: color .28s ease, text-shadow .35s ease, opacity .28s ease;
+            }
+            .power-gate .power-title::before {
+                content: '';
+                display: inline-block;
+                width: 9px;
+                height: 9px;
+                flex: 0 0 9px;
+                border-radius: 50%;
+                background: #ef4545;
+                box-shadow: 0 0 5px rgba(239,69,69,.7), 0 0 12px rgba(239,69,69,.28);
+                animation: standbyLedBlink 1.05s steps(1,end) infinite;
             }
             .power-gate .power-button {
                 border-color: rgba(105,112,109,.34) !important;
@@ -67,6 +90,11 @@
                 text-shadow: 0 0 12px rgba(0,255,140,.08) !important;
                 animation: indicatorFlicker .38s .06s steps(2,end) both;
             }
+            .power-gate.system-powered .power-title::before {
+                background: var(--green, #00ff8c);
+                box-shadow: 0 0 7px rgba(0,255,140,.9), 0 0 16px rgba(0,255,140,.45);
+                animation: none;
+            }
             .power-gate.system-powered .power-label {
                 color: var(--green, #00ff8c) !important;
                 text-shadow: 0 0 10px rgba(0,255,140,.42) !important;
@@ -87,6 +115,10 @@
                 text-shadow: 0 0 16px rgba(0,255,140,.72) !important;
             }
 
+            @keyframes standbyLedBlink {
+                0%, 44% { opacity: 1; filter: brightness(1.08); }
+                45%, 100% { opacity: .2; filter: brightness(.45); }
+            }
             @keyframes powerLedSnap {
                 0% { filter: brightness(.35); }
                 22% { filter: brightness(2.35); }
@@ -108,6 +140,7 @@
             }
 
             @media (prefers-reduced-motion: reduce) {
+                .power-gate .power-title::before,
                 .power-gate.system-powered .power-panel,
                 .power-gate.system-powered .power-button,
                 .power-gate.system-powered .power-kicker,
