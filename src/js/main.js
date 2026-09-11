@@ -467,86 +467,49 @@ function closeMenu() {
     if (navLinks) navLinks.classList.remove('active');
 }
 
-/* Fast, site-wide decrypt effect for newly expanded content. */
+/* One-shot page-title decode. Uses the same timing and glyph behaviour as the Home hacker-text scrambler. */
 (() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*+-=/<>[]{}';
 
-    const glyphs = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@$#%&*?<>[]{}';
-    const activeRuns = new WeakMap();
+    const decodeTitle = element => {
+        const target = element.textContent || '';
+        if (!target.trim() || reducedMotion) return;
 
-    const collectContentText = details => {
-        const nodes = [];
-        const walker = document.createTreeWalker(details, NodeFilter.SHOW_TEXT, {
-            acceptNode(node) {
-                const parent = node.parentElement;
-                if (!parent || !node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
-                if (parent.closest('summary')) return NodeFilter.FILTER_REJECT;
-                if (parent.closest('details') !== details) return NodeFilter.FILTER_REJECT;
-                if (parent.closest('script,style,noscript,textarea,select,option')) return NodeFilter.FILTER_REJECT;
-                return NodeFilter.FILTER_ACCEPT;
-            }
-        });
-
-        while (walker.nextNode()) nodes.push(walker.currentNode);
-        return nodes;
-    };
-
-    const decryptExpandedContent = details => {
-        const previous = activeRuns.get(details);
-        if (previous) {
-            clearTimeout(previous.timer);
-            previous.entries.forEach(({ node, original }) => {
-                if (node.isConnected) node.nodeValue = original;
-            });
-        }
-
-        const entries = collectContentText(details).map(node => ({
-            node,
-            original: node.nodeValue,
-            chars: [...node.nodeValue]
-        }));
-        if (!entries.length) return;
-
-        const eligibleTotal = entries.reduce((sum, entry) =>
-            sum + entry.chars.filter(char => /[A-Za-z0-9]/.test(char)).length, 0);
-        if (!eligibleTotal) return;
-
-        const totalFrames = 6;
+        const frames = 26;
         let frame = 0;
 
-        const tick = () => {
-            const revealCount = Math.floor((frame / totalFrames) * eligibleTotal);
-            let eligibleIndex = 0;
+        element.textContent = [...target].map(character => {
+            if (character === ' ' || character === '|') return character;
+            return glyphs[Math.floor(Math.random() * glyphs.length)];
+        }).join('');
 
-            entries.forEach(entry => {
-                if (!entry.node.isConnected) return;
-                entry.node.nodeValue = entry.chars.map(char => {
-                    if (!/[A-Za-z0-9]/.test(char)) return char;
-                    const reveal = eligibleIndex < revealCount;
-                    eligibleIndex += 1;
-                    return reveal ? char : glyphs[Math.floor(Math.random() * glyphs.length)];
-                }).join('');
-            });
-
-            if (frame >= totalFrames) {
-                entries.forEach(({ node, original }) => {
-                    if (node.isConnected) node.nodeValue = original;
-                });
-                activeRuns.delete(details);
-                return;
-            }
-
+        const timer = window.setInterval(() => {
             frame += 1;
-            const timer = setTimeout(tick, 30);
-            activeRuns.set(details, { timer, entries });
-        };
+            const progress = Math.min(1, frame / frames);
+            const revealCount = Math.floor(target.length * progress);
 
-        tick();
+            element.textContent = [...target].map((character, index) => {
+                if (index < revealCount || character === ' ' || character === '|') return character;
+                return glyphs[Math.floor(Math.random() * glyphs.length)];
+            }).join('');
+
+            if (progress >= 1) {
+                window.clearInterval(timer);
+                element.textContent = target;
+            }
+        }, 28);
     };
 
-    document.addEventListener('toggle', event => {
-        const details = event.target;
-        if (!(details instanceof HTMLDetailsElement) || !details.open) return;
-        decryptExpandedContent(details);
-    }, true);
+    const setupPageTitleDecode = () => {
+        /* Home keeps its existing hover-decrypt identity treatment. */
+        if (document.querySelector('.home-hero')) return;
+        document.querySelectorAll('main h1').forEach(decodeTitle);
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', () => window.setTimeout(setupPageTitleDecode, 90), { once: true });
+    } else {
+        window.setTimeout(setupPageTitleDecode, 90);
+    }
 })();
