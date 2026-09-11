@@ -220,7 +220,7 @@
 }
 
 .project-content p {
-  max-width: 900px;
+  max-width: none;
   color: #c4cbc6;
   line-height: 1.76;
 }
