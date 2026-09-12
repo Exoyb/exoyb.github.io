@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exoyb | Asteroid Miner</title>
+  <meta name="description" content="Play Asteroid Miner, an ongoing Godot project by Exoyb, directly in the browser and follow its patch history.">
+  <meta name="theme-color" content="#0d100f">
+  <link rel="icon" href="src/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="src/css/main.css?v=20260912-2">
+  <link rel="stylesheet" href="src/css/animations.css?v=20260911-1">
+  <link rel="stylesheet" href="src/css/pages.css?v=20260911-1">
+  <link rel="stylesheet" href="src/css/projects.css?v=20260912-1">
+  <link rel="stylesheet" href="src/css/asteroid-miner.css?v=20260912-1">
+</head>
+<body>
+<nav><div class="nav-content"><div class="logo"><a href="index.html">#!/bin/bash Exoyb.sh</a></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div><div class="nav-links" id="navLinks"><a href="about.html">About</a><a href="training.html">Training</a><a href="projects.html">Projects</a><a href="cyber-log.html">Cyber Log</a><a href="feedback.html">Feedback</a></div></div></nav>
+
+<main class="page-shell"><div class="page-container asteroid-page">
+  <header class="page-hero asteroid-hero fade-in">
+    <div class="page-kicker" style="width:100%; text-align:center;">// games/asteroid-miner/</div>
+    <h1>ASTEROID MINER</h1>
+    <p class="page-intro">A top-down space mining game built in Godot. Mine asteroids, haul ore, survive the day cycle and keep the run alive while the systems around you keep moving.</p>
+    <div class="asteroid-meta" aria-label="Project metadata">
+      <span class="asteroid-live">● V1 LIVE</span>
+      <span>Godot 4</span>
+      <span>GDScript</span>
+      <span>WebAssembly</span>
+      <span>Ongoing project</span>
+    </div>
+  </header>
+
+  <section class="game-launcher fade-in" data-game-launcher data-game-src="games/asteroid-miner/AsteroidMiner.html" aria-labelledby="asteroid-launch-title">
+    <div class="game-launcher-header">
+      <div>
+        <span class="detail-command">$ ./AsteroidMiner</span>
+        <h3 id="asteroid-launch-title">Playable Web Build</h3>
+      </div>
+      <span class="game-build-tag">V1 // WEB</span>
+    </div>
+
+    <div class="game-standby" data-game-standby>
+      <div class="game-standby-copy">
+        <p>Ready when you are.</p>
+        <small>~48 MB · Desktop + keyboard recommended</small>
+      </div>
+      <button class="game-control game-launch-control" type="button" data-game-launch>&gt; LAUNCH ASTEROID MINER</button>
+    </div>
+
+    <div class="game-runtime" data-game-runtime hidden>
+      <div class="game-runtime-toolbar">
+        <span class="game-runtime-state" data-game-state>runtime: offline</span>
+        <div class="game-runtime-controls">
+          <button class="game-control" type="button" data-game-restart>RESTART</button>
+          <button class="game-control" type="button" data-game-fullscreen>FULLSCREEN</button>
+          <button class="game-control game-exit-control" type="button" data-game-exit>EXIT</button>
+        </div>
+      </div>
+      <div class="game-viewport">
+        <iframe data-game-frame title="Asteroid Miner playable browser build" allow="autoplay; fullscreen; gamepad" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="game-license-note">browser build only // source project remains private // personal-use licence applies</div>
+  </section>
+
+  <section class="asteroid-intro-card fade-in" aria-labelledby="asteroid-about-title">
+    <div class="page-kicker">// about-this-project</div>
+    <h2 id="asteroid-about-title">This one started before the portfolio did.</h2>
+    <p>Asteroid Miner has been an ongoing personal project for longer than this portfolio has existed. I was already building, changing and breaking it before I had somewhere public to document the work.</p>
+    <p>Putting it here did not mark the start of the game. It marked the point where I cleaned up the project, prepared a browser-compatible build and gave it a proper place to live. From here, the playable build and patch notes can grow together instead of the game being hidden away on my own PC.</p>
+  </section>
+
+  <section class="asteroid-intro-card fade-in" aria-labelledby="asteroid-game-title">
+    <div class="page-kicker">// what-is-it</div>
+    <h2 id="asteroid-game-title">The game</h2>
+    <p>Mine asteroids, haul ore and manage progression across runs. The current build includes ore unlocks, upgrades, perk drafting, persistent saves and meta progression, with the project still very much being something I intend to keep changing.</p>
+  </section>
+
+  <section class="asteroid-patch-notes fade-in" aria-labelledby="asteroid-release-title">
+    <div class="page-kicker">// patch-notes/</div>
+    <h2 id="asteroid-release-title">Patch notes</h2>
+    <p>The live browser build stays at one address. New versions replace it in place and get documented here.</p>
+
+    <div class="project-release-list">
+      <details class="project-release">
+        <summary>
+          <span class="project-release-toggle" aria-hidden="true"></span>
+          <span class="project-release-title-wrap">
+            <span class="project-release-version">V1</span>
+            <span class="project-release-name">Initial web release</span>
+          </span>
+          <span class="project-release-meta">
+            <time class="project-date" datetime="2026-09-12">12 SEP 2026</time>
+            <span class="project-status complete">RELEASED</span>
+          </span>
+        </summary>
+        <div class="project-release-content">
+          <section class="release-section release-context">
+            <span class="detail-command">$ cat context.txt</span>
+            <h4>Context</h4>
+            <p>Asteroid Miner already existed before I built this portfolio. V1 is not the first version of the game itself; it is the first version I have cleaned up, packaged and published as a playable browser project here. I wanted people to be able to actually play it rather than just read about it or look at screenshots.</p>
+          </section>
+          <section class="release-section">
+            <span class="detail-command">$ cat changes.log</span>
+            <h4>Release</h4>
+            <ul>
+              <li>Prepared the existing Godot project for a browser release using the Compatibility renderer.</li>
+              <li>Exported the game as a Godot Web/WebAssembly build for GitHub Pages.</li>
+              <li>Kept the editable Godot source project private and published only the compiled browser build.</li>
+              <li>Added an explicit launch step so the large runtime is not downloaded unless somebody actually chooses to play.</li>
+              <li>Added restart, fullscreen and exit controls around the embedded game.</li>
+              <li>Established this patch-note history so future game changes can be documented against the same live build.</li>
+            </ul>
+          </section>
+          <section class="release-section release-outcome">
+            <span class="detail-command">$ cat outcome.txt</span>
+            <h4>Outcome</h4>
+            <ul>
+              <li>Asteroid Miner now has a single live browser build that can be updated in place.</li>
+              <li>The rest of the portfolio stays lightweight until somebody actively chooses to launch the game.</li>
+              <li>Future releases can focus on new game content and patch notes instead of rebuilding the website integration each time.</li>
+            </ul>
+          </section>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <div class="page-actions"><a class="btn btn-primary" href="projects.html">← cd /projects/</a><a class="btn btn-secondary" href="index.html">cd /home/</a></div>
+</div></main>
+
+<footer class="site-footer">Exoyb // Asteroid Miner</footer>
+<script src="src/js/audio.js?v=20260911-1"></script>
+<script src="src/js/main.js?v=20260912-2"></script>
+<script src="src/js/projects-game.js?v=20260912-2"></script>
+</body>
+</html>
