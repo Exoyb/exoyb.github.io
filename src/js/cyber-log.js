@@ -7,6 +7,13 @@
 
 const cyberLogEntries = [
   {
+    date: '2026-09-12',
+    type: 'Project Update',
+    title: 'Added new project "Asteroid Miner" to projects, created new page for it, updated toolbar and created it its own page',
+    tags: ['asteroid-miner', 'projects'],
+    links: [{ label: 'Open Asteroid Miner', url: 'asteroid-miner.html' }]
+  },
+  {
     date: '2026-09-11',
     type: 'Portfolio Update',
     title: 'Released V1.2 of Exoyb Cybersecurity Portfolio',
