@@ -60,7 +60,7 @@
   <link rel="stylesheet" href="src/css/main.css?v=20260911-1">
   <link rel="stylesheet" href="src/css/animations.css?v=20260911-1">
   <link rel="stylesheet" href="src/css/pages.css?v=20260911-1">
-  <link rel="stylesheet" href="src/css/shell-fix.css?v=20260910-8">
+  <link rel="stylesheet" href="src/css/shell-fix.css?v=20260912-1">
 </head>
 <body>
   <div id="bootScreen" class="boot-screen">
@@ -124,11 +124,12 @@
             <a class="directory-link fade-in" data-directory="/projects/" href="projects.html"><span class="directory-command">&gt; cd /projects/</span><span class="directory-description">Labs, scripts, investigations and hands-on portfolio work.</span></a>
             <a class="directory-link fade-in" data-directory="/cyber-log/" href="cyber-log.html"><span class="directory-command">&gt; cd /cyber-log/</span><span class="directory-description">Dated learning notes, labs, discoveries and progress toward Security Operations.</span></a>
             <a class="directory-link fade-in" data-directory="/feedback/" href="feedback.html"><span class="directory-command">&gt; cd /feedback/</span><span class="directory-description">Customer reviews and manager feedback showing how I work with people.</span></a>
+            <a class="directory-link fade-in" data-shell-command="./Asteroid_Miner.exe" href="asteroid-miner.html"><span class="directory-command">&gt; ./Asteroid_Miner.exe</span><span class="directory-description">Play the browser build of my ongoing Godot space mining project.</span></a>
           </div>
 
           <div class="live-shell-prompt" aria-live="polite">
             <span class="shell-user">exoyb@portfolio</span><span class="shell-separator">:</span><span class="shell-path">~</span><span class="shell-prompt">$</span>
-            <span class="shell-command">cd&nbsp;</span><span id="directoryTarget" class="shell-target">[choose-directory]</span><span class="shell-cursor" aria-hidden="true"></span>
+            <span id="directoryVerb" class="shell-command">cd&nbsp;</span><span id="directoryTarget" class="shell-target">[choose-directory]</span><span class="shell-cursor" aria-hidden="true"></span>
           </div>
           <p class="shell-hint">// hover or tab to preview · click to enter</p>
         </div>
@@ -141,7 +142,7 @@
   <script src="src/js/crt-power.js?v=20260910-1"></script>
   <script src="src/js/boot-ssh.js?v=20260911-2"></script>
   <script src="src/js/power-lighting.js?v=20260911-4"></script>
-  <script src="src/js/main.js?v=20260911-1"></script>
+  <script src="src/js/main.js?v=20260912-3"></script>
   <script src="src/js/easter-egg.js?v=20260910-3"></script>
 </body>
 </html>
