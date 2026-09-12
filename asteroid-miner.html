@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="src/css/animations.css?v=20260911-1">
   <link rel="stylesheet" href="src/css/pages.css?v=20260911-1">
   <link rel="stylesheet" href="src/css/projects.css?v=20260912-1">
-  <link rel="stylesheet" href="src/css/asteroid-miner.css?v=20260912-1">
+  <link rel="stylesheet" href="src/css/asteroid-miner.css?v=20260912-2">
 </head>
 <body>
 <nav><div class="nav-content"><div class="logo"><a href="index.html">#!/bin/bash Exoyb.sh</a></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div><div class="nav-links" id="navLinks"><a href="about.html">About</a><a href="training.html">Training</a><a href="projects.html">Projects</a><a href="cyber-log.html">Cyber Log</a><a href="feedback.html">Feedback</a></div></div></nav>
@@ -67,14 +67,78 @@
   <section class="asteroid-intro-card fade-in" aria-labelledby="asteroid-about-title">
     <div class="page-kicker">// about-this-project</div>
     <h2 id="asteroid-about-title">This one started before the portfolio did.</h2>
-    <p>Asteroid Miner has been an ongoing personal project for longer than this portfolio has existed. I was already building, changing and breaking it before I had somewhere public to document the work.</p>
-    <p>Putting it here did not mark the start of the game. It marked the point where I cleaned up the project, prepared a browser-compatible build and gave it a proper place to live. From here, the playable build and patch notes can grow together instead of the game being hidden away on my own PC.</p>
+    <p>Asteroid Miner is a WIP pet project of mine for fun. It predates my portfolio here, and it has been both challenging and rewarding to build.</p>
+    <p>I understand this isn't cybersecurity, far from it, but it's still an accomplishment I'm proud of.</p>
+    <div class="asteroid-callout">
+      <p>Is the balancing good? <strong>No.</strong></p>
+      <p>Is the gameplay addictive? <strong>Probably not.</strong></p>
+      <p>Most importantly though... is it <strong>FUN?</strong></p>
+      <p>Because... that's also a <strong>No...</strong></p>
+      <p>But!... is it <strong>MINE?</strong> <strong>Abso-bloody-lutely it is.</strong></p>
+    </div>
+    <p>I hope you enjoy it. It's far from finished. Please give it a go.</p>
   </section>
 
   <section class="asteroid-intro-card fade-in" aria-labelledby="asteroid-game-title">
-    <div class="page-kicker">// what-is-it</div>
-    <h2 id="asteroid-game-title">The game</h2>
-    <p>Mine asteroids, haul ore and manage progression across runs. The current build includes ore unlocks, upgrades, perk drafting, persistent saves and meta progression, with the project still very much being something I intend to keep changing.</p>
+    <div class="page-kicker">// about-the-game</div>
+    <h2 id="asteroid-game-title">About the game</h2>
+    <p><strong>Asteroid Miner</strong> (working title btw) is a game where you enter a dystopian world trying to make a living. You have leased a spaceship off of <strong>EverGrowth Dynamics™</strong>, a dystopian corporate entity that is fleecing you with ever-increasing lease and rental payments.</p>
+    <p>Destroy asteroids, collect minerals, upgrade your ship and see if you can pay off your ever-growing debt to EverGrowth Dynamics™. Each time you pay a bill, you'll get a reward to buff your ship for that run!</p>
+    <ul class="asteroid-terminal-list">
+      <li>Unlock the Black Market</li>
+      <li>Unlock new ores like Iron, Unobtainium and more</li>
+      <li>Unlock thrusters and abilities</li>
+      <li>Explore different colour palettes with F6</li>
+      <li>Earn post-game currency for permanent upgrades</li>
+      <li>If you have some spare money, visit the Skill Tree to see if you can afford some upgrades</li>
+    </ul>
+  </section>
+
+  <section class="asteroid-intro-card fade-in" aria-labelledby="asteroid-future-title">
+    <div class="page-kicker">// future-ideas</div>
+    <h2 id="asteroid-future-title">Future ideas</h2>
+    <ul class="asteroid-terminal-list">
+      <li><strong>Space Pirates!</strong> Yarr, ye' need to be payin' a fine otherwise prepare to be boarded! - Pay a fine, or fight to the death</li>
+      <li>Character portraits</li>
+      <li>New ships and weapons</li>
+      <li>Additional ores</li>
+      <li>Buy different colour palettes, perhaps the colour palettes unlock additional ores you couldn't see before?</li>
+    </ul>
+  </section>
+
+  <section class="asteroid-intro-card fade-in" aria-labelledby="asteroid-issues-title">
+    <div class="page-kicker">// known-issues</div>
+    <h2 id="asteroid-issues-title">Issues</h2>
+    <ul class="asteroid-terminal-list asteroid-issues-list">
+      <li><strong>Balancing</strong> - the game is far too easy. I'm still trying to work out the maths and the overall 'feel' - challenging &amp; addictive vs cosy &amp; satisfying.</li>
+      <li><strong>UI scaling</strong> - the UI scales poorly and is lacking assets. It's mainly made up of placeholders at the moment.</li>
+      <li><strong>Colour palettes</strong> - the UI doesn't correctly swap colour palettes.</li>
+      <li><strong>Visual bugs</strong> - flickering asteroid textures and shading issues with certain colour palettes on asteroids and background space junk.</li>
+    </ul>
+  </section>
+
+  <section class="asteroid-intro-card fade-in" aria-labelledby="asteroid-learning-title">
+    <div class="page-kicker">// what-did-i-learn</div>
+    <h2 id="asteroid-learning-title">What did I learn?</h2>
+    <ul class="asteroid-terminal-list">
+      <li>Some GDScript</li>
+      <li>Godot 4</li>
+      <li>Troubleshooting... lots and lots and lots of troubleshooting and debugging</li>
+      <li>More troubleshooting. Especially around performance and optimisation.</li>
+      <li>The importance of backups, as my laptop died and I lost about 40-60 hours of work</li>
+      <li>Pixel art in Aseprite</li>
+      <li>Ableton and Serum 2 for sound design, mixing, EQ and sound effects</li>
+      <li>GitHub + Godot + Web exports</li>
+      <li>Save states, permanent / temporary / session memory</li>
+    </ul>
+  </section>
+
+  <section class="asteroid-intro-card asteroid-licence-card fade-in" aria-labelledby="asteroid-licence-title">
+    <div class="page-kicker">// licensing-and-agreement</div>
+    <h2 id="asteroid-licence-title">Licensing and agreement</h2>
+    <p>I genuinely would like you to have a go of this game and enjoy it. It's far from finished, but I have spent a lot of time making things in here.</p>
+    <p>So please feel free to play it and give me some feedback, but please do not redistribute, repackage or sell it.</p>
+    <p class="asteroid-licence-signoff"><strong>Play it. Enjoy it. Tell me it's broken. Just don't nick it.</strong></p>
   </section>
 
   <section class="asteroid-patch-notes fade-in" aria-labelledby="asteroid-release-title">
