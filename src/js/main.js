@@ -101,12 +101,11 @@
                 border-radius: 50%;
                 background: var(--red, #ff625d);
                 box-shadow: 0 0 8px rgba(255,98,93,.78);
-                animation: navAppLedBlink 1.15s steps(1,end) infinite;
+                opacity: 1;
             }
             .nav-links .nav-app-link.active::before {
                 background: var(--green, #00ff8c);
                 box-shadow: 0 0 8px rgba(0,255,140,.72);
-                animation: none;
                 opacity: 1;
             }
             .nav-links .nav-app-link:hover,
@@ -124,10 +123,6 @@
                 0%, 42% { opacity: 1; }
                 43%, 78% { opacity: 0; }
                 79%, 100% { opacity: 1; }
-            }
-            @keyframes navAppLedBlink {
-                0%, 46% { opacity: 1; }
-                47%, 100% { opacity: .16; }
             }
             @media (max-width: 820px) {
                 .nav-app-separator {
@@ -148,8 +143,7 @@
                 .terminal-page-transition,
                 body.page-transitioning main,
                 body.page-transitioning .hero { transition: none; }
-                .transition-cursor,
-                .nav-links .nav-app-link::before { animation: none; }
+                .transition-cursor { animation: none; }
                 .nav-links .nav-app-link:hover,
                 .nav-links .nav-app-link:focus-visible,
                 .nav-links .nav-app-link.active { transform: none; }
@@ -358,12 +352,21 @@
             navigating = true;
 
             const directory = directoryForUrl(url);
-            commandOutput.textContent = `cd ${directory}`;
+            commandOutput.textContent = link.dataset.shellCommand || `cd ${directory}`;
             overlay.classList.add('show');
             document.body.classList.add('page-transitioning');
 
             const homepageTarget = document.getElementById('directoryTarget');
-            if (homepageTarget) homepageTarget.textContent = directory;
+            const homepageVerb = document.getElementById('directoryVerb');
+            if (homepageTarget) {
+                if (link.dataset.shellCommand) {
+                    if (homepageVerb) homepageVerb.textContent = '';
+                    homepageTarget.textContent = link.dataset.shellCommand;
+                } else {
+                    if (homepageVerb) homepageVerb.innerHTML = 'cd&nbsp;';
+                    homepageTarget.textContent = directory;
+                }
+            }
 
             window.location.href = url.href;
         });
@@ -421,13 +424,27 @@
     };
 
     const setupDirectoryPreview = () => {
+        const verb = document.getElementById('directoryVerb');
         const target = document.getElementById('directoryTarget');
-        const links = document.querySelectorAll('[data-directory]');
+        const links = document.querySelectorAll('[data-directory], [data-shell-command]');
         if (!target || !links.length) return;
 
-        const reset = () => { target.textContent = '[choose-directory]'; };
+        const reset = () => {
+            if (verb) verb.innerHTML = 'cd&nbsp;';
+            target.textContent = '[choose-directory]';
+        };
+
         links.forEach(link => {
-            const show = () => { target.textContent = link.dataset.directory || '[choose-directory]'; };
+            const show = () => {
+                if (link.dataset.shellCommand) {
+                    if (verb) verb.textContent = '';
+                    target.textContent = link.dataset.shellCommand;
+                    return;
+                }
+
+                if (verb) verb.innerHTML = 'cd&nbsp;';
+                target.textContent = link.dataset.directory || '[choose-directory]';
+            };
             link.addEventListener('mouseenter', show);
             link.addEventListener('focus', show);
             link.addEventListener('mouseleave', reset);
