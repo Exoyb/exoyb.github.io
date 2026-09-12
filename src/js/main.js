@@ -199,7 +199,7 @@
         }
 
         appLink.href = 'asteroid-miner.html';
-        appLink.textContent = './AsteroidMiner';
+        appLink.textContent = '>/asteroid-miner/';
         appLink.setAttribute('aria-label', 'Open Asteroid Miner');
         appLink.classList.toggle('active', currentPage === 'asteroid-miner.html');
         appLink.addEventListener('click', () => closeMenu());
