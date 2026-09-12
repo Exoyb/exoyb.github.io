@@ -8,6 +8,21 @@
 const cyberLogEntries = [
   {
     date: '2026-09-12',
+    sequence: 4,
+    type: 'Training Update',
+    title: 'Added New Certification',
+    summary: 'Added three completed certificates to the Training page:',
+    items: [
+      'Play It Safe: Manage Security Risks — Google · Coursera',
+      'Microsoft SC-900 Exam Preparation and Practice — Microsoft · Coursera',
+      'Foundations of Cybersecurity — Google · Coursera'
+    ],
+    tags: ['training', 'certifications', 'coursera'],
+    links: [{ label: 'Open Training', url: 'training.html' }]
+  },
+  {
+    date: '2026-09-12',
+    sequence: 3,
     type: 'Project Update',
     title: 'Added New Project: Asteroid Miner',
     summary: 'Added in old and ongoing project, "Asteroid Miner". Created new page for it, added a new toolbar icon that lights up and has a blinking red LED. As this is a game page, I have added some appropriate eye-candy pieces to the background like twinkling stars, and a comet or two.',
@@ -108,9 +123,14 @@ const cyberLogEntries = [
     entriesRoot.innerHTML = displayEntries.map(entry => {
       const tags = (entry.tags || []).map(tag => String(tag).trim().toLowerCase()).filter(Boolean);
       const hidden = currentFilter !== 'all' && !tags.includes(currentFilter);
-      const serial = serialByEntry.get(entry) || '---';
+      const serial = entry.sequence
+        ? String(entry.sequence).padStart(3, '0')
+        : serialByEntry.get(entry) || '---';
       const tagMarkup = tags.length
         ? `<div class="log-tags">${tags.map(tag => `<span class="log-tag">${escapeHTML(tag)}</span>`).join('')}</div>`
+        : '';
+      const itemMarkup = Array.isArray(entry.items) && entry.items.length
+        ? `<ul class="log-entry-list">${entry.items.map(item => `<li>${escapeHTML(item)}</li>`).join('')}</ul>`
         : '';
       const links = Array.isArray(entry.links) && entry.links.length
         ? `<div class="log-links">${entry.links.map(link => `<a class="log-link" href="${escapeHTML(link.url || '#')}">${escapeHTML(link.label || 'View project')} →</a>`).join('')}</div>`
@@ -135,6 +155,7 @@ const cyberLogEntries = [
                 <span class="log-entry-type">${escapeHTML(entry.type || 'Log')}</span>
               </div>
               ${entry.summary ? `<p class="log-entry-summary">${escapeHTML(entry.summary)}</p>` : ''}
+              ${itemMarkup}
               ${tagMarkup}
               ${links}
             </div>
