@@ -1,7 +1,7 @@
 /* Dedicated Asteroid Miner page */
 .asteroid-page {
   display: grid;
-  gap: 2.4rem;
+  gap: 2.2rem;
 }
 
 .asteroid-hero {
@@ -37,48 +37,53 @@
   box-shadow: 0 0 12px rgba(0,255,140,.05);
 }
 
-.asteroid-intro-card {
-  padding: 1.2rem 1.3rem;
-  border: 1px solid rgba(0,255,140,.26);
-  border-radius: 10px;
-  background: rgba(15,16,16,.94);
-  box-shadow: 0 0 0 1px rgba(0,255,140,.012) inset, 0 0 12px rgba(0,255,140,.03);
+/* Primary intro stays open. The rest of the project detail is intentionally collapsible. */
+.asteroid-primary-card {
+  position: relative;
+  overflow: hidden;
+  padding: 1.35rem 1.45rem;
+  border: 1px solid rgba(0,255,140,.34);
+  border-radius: 11px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.025), transparent 35%),
+    rgba(15,16,16,.88);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 0 0 1px rgba(0,255,140,.012),
+    0 0 20px rgba(0,255,140,.045),
+    0 14px 34px rgba(0,0,0,.16);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
 }
 
-.asteroid-intro-card h2 {
-  margin: .25rem 0 .7rem;
+.asteroid-primary-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 0 34%, rgba(255,255,255,.022) 45%, transparent 56%);
+  transform: translateX(-36%);
+}
+
+.asteroid-primary-card h2 {
+  margin: .25rem 0 .75rem;
   color: var(--text);
 }
 
-.asteroid-intro-card p {
-  max-width: 980px;
+.asteroid-primary-card p {
+  max-width: 1020px;
   margin: 0;
   color: #bcc4bf;
-  line-height: 1.75;
+  line-height: 1.76;
 }
 
-.asteroid-intro-card p + p {
+.asteroid-primary-card p + p {
   margin-top: .8rem;
 }
 
-.asteroid-intro-card strong {
+.asteroid-primary-card strong,
+.asteroid-panel-content strong {
   color: var(--text);
-}
-
-.asteroid-callout {
-  margin: 1rem 0;
-  padding: .9rem 1rem;
-  border-left: 2px solid rgba(0,255,140,.58);
-  background: rgba(0,255,140,.025);
-}
-
-.asteroid-callout p,
-.asteroid-callout p + p {
-  margin: 0;
-}
-
-.asteroid-callout p + p {
-  margin-top: .22rem;
 }
 
 .asteroid-terminal-list {
@@ -110,30 +115,75 @@
   color: #e4e9e6;
 }
 
-.asteroid-licence-card {
-  border-color: rgba(0,255,140,.34);
-}
-
-.asteroid-licence-signoff {
-  margin-top: 1rem !important;
-  color: var(--green) !important;
-  font-size: 1rem;
-}
-
-.asteroid-licence-signoff strong {
-  color: var(--green);
-  text-shadow: 0 0 11px rgba(0,255,140,.18);
-}
-
-/* Make the actual game the focal point rather than a small control buried in copy. */
+/* Terminal-style game launcher */
 .asteroid-page .game-launcher {
   margin-top: 0;
-  border-color: rgba(0,255,140,.42);
-  box-shadow: 0 0 0 1px rgba(0,255,140,.018) inset, 0 0 22px rgba(0,255,140,.055);
+  overflow: hidden;
+  border-color: rgba(0,255,140,.48);
+  border-radius: 11px;
+  background: rgba(8,10,9,.96);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.022),
+    0 0 0 1px rgba(0,255,140,.018),
+    0 0 24px rgba(0,255,140,.065),
+    0 18px 42px rgba(0,0,0,.18);
+}
+
+.game-terminal-topbar {
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  align-items: center;
+  gap: .8rem;
+  min-height: 45px;
+  padding: .62rem .9rem;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+  background: linear-gradient(180deg, #181919 0%, #121313 100%);
+}
+
+.game-terminal-dots {
+  display: flex;
+  align-items: center;
+  gap: .42rem;
+}
+
+.game-terminal-dots .cd-dot {
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 0 8px rgba(0,0,0,.24);
+}
+
+.game-terminal-title {
+  min-width: 0;
+  overflow: hidden;
+  color: #777f7a;
+  font-size: .72rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.asteroid-page .game-build-tag {
+  justify-self: end;
 }
 
 .asteroid-page .game-launcher-header {
   padding: 1rem 1.15rem;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.018), transparent),
+    #101111;
+}
+
+.asteroid-page .game-launcher-header .detail-command {
+  display: block;
+  margin-bottom: .22rem;
+  color: #d7ddd9;
+}
+
+.game-shell-prompt {
+  color: var(--green);
+}
+
+.asteroid-page .game-launcher-header h3 {
+  color: var(--text);
 }
 
 .asteroid-page .game-standby {
@@ -142,6 +192,10 @@
   justify-content: center;
   text-align: center;
   padding: 2rem 1.2rem;
+  background:
+    repeating-linear-gradient(0deg, rgba(255,255,255,.009) 0 1px, transparent 1px 4px),
+    radial-gradient(circle at 50% 42%, rgba(0,255,140,.025), transparent 42%),
+    rgba(5,7,6,.94);
 }
 
 .asteroid-page .game-standby-copy {
@@ -154,8 +208,8 @@
 }
 
 .asteroid-page .game-launch-control {
-  min-width: min(420px, 92%);
-  min-height: 66px;
+  min-width: min(440px, 92%);
+  min-height: 68px;
   padding: 1rem 1.8rem;
   font-size: 1rem;
   letter-spacing: .055em;
@@ -166,7 +220,7 @@
 
 .asteroid-page .game-launch-control:hover,
 .asteroid-page .game-launch-control:focus-visible {
-  box-shadow: 0 0 22px rgba(0,255,140,.16), 0 0 44px rgba(0,255,140,.055);
+  box-shadow: 0 0 24px rgba(0,255,140,.17), 0 0 48px rgba(0,255,140,.06);
 }
 
 .asteroid-page .game-runtime-state {
@@ -177,22 +231,236 @@
   text-align: center;
 }
 
-.asteroid-patch-notes {
-  padding-top: .2rem;
+/* Expandable glass panels */
+.asteroid-details {
+  display: grid;
+  gap: .8rem;
 }
 
-.asteroid-patch-notes > h2 {
-  margin: .2rem 0 .45rem;
+.asteroid-details-head {
+  margin-bottom: .25rem;
+}
+
+.asteroid-details-head h2 {
+  margin: .2rem 0 .35rem;
   color: var(--green);
 }
 
-.asteroid-patch-notes > p {
+.asteroid-details-head p {
   margin: 0;
-  color: #98a19b;
+  color: #929b95;
 }
 
-.asteroid-patch-notes .project-release-list {
-  margin-top: 1rem;
+.asteroid-panel {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(0,255,140,.30);
+  border-radius: 10px;
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.022), transparent 34%),
+    rgba(15,16,16,.82);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.022),
+    0 0 0 1px rgba(0,255,140,.012),
+    0 0 15px rgba(0,255,140,.035),
+    0 10px 26px rgba(0,0,0,.12);
+  backdrop-filter: blur(9px);
+  -webkit-backdrop-filter: blur(9px);
+  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease, background .18s ease;
+}
+
+.asteroid-panel::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, transparent 0 32%, rgba(255,255,255,.022) 44%, transparent 55%);
+  transform: translateX(-42%);
+  opacity: .55;
+  transition: transform .45s ease, opacity .2s ease;
+}
+
+.asteroid-panel:hover,
+.asteroid-panel:focus-within,
+.asteroid-panel[open] {
+  border-color: rgba(0,255,140,.58);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.026), transparent 34%),
+    rgba(14,17,15,.88);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.026),
+    0 0 0 1px rgba(0,255,140,.018),
+    0 0 22px rgba(0,255,140,.065),
+    0 14px 34px rgba(0,0,0,.16);
+}
+
+.asteroid-panel:hover,
+.asteroid-panel:focus-within {
+  transform: translateY(-1px);
+}
+
+.asteroid-panel:hover::before,
+.asteroid-panel:focus-within::before,
+.asteroid-panel[open]::before {
+  transform: translateX(42%);
+  opacity: .78;
+}
+
+.asteroid-panel > summary {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 32px minmax(0,1fr);
+  align-items: center;
+  gap: .9rem;
+  min-height: 76px;
+  padding: .95rem 1rem;
+  list-style: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.asteroid-panel > summary::-webkit-details-marker { display: none; }
+.asteroid-panel > summary::marker { content: ''; }
+
+.asteroid-panel[open] > summary {
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+.asteroid-panel-toggle {
+  position: relative;
+  display: block;
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgba(0,255,140,.28);
+  border-radius: 5px;
+  background: rgba(7,9,8,.92);
+  box-shadow: 0 0 10px rgba(0,255,140,.03);
+}
+
+.asteroid-panel-toggle::before,
+.asteroid-panel-toggle::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 11px;
+  height: 1px;
+  background: var(--green);
+  box-shadow: 0 0 7px rgba(0,255,140,.28);
+  transform: translate(-50%,-50%);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.asteroid-panel-toggle::after {
+  transform: translate(-50%,-50%) rotate(90deg);
+}
+
+.asteroid-panel[open] .asteroid-panel-toggle::after {
+  opacity: 0;
+  transform: translate(-50%,-50%);
+}
+
+.asteroid-panel-title-wrap {
+  display: grid;
+  gap: .16rem;
+  min-width: 0;
+}
+
+.asteroid-panel-path {
+  color: var(--cyan);
+  font-size: .72rem;
+  letter-spacing: .025em;
+}
+
+.asteroid-panel-title {
+  color: var(--text);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.asteroid-panel-content {
+  position: relative;
+  z-index: 1;
+  padding: 1.05rem 1.2rem 1.2rem 3.9rem;
+  background: rgba(8,10,9,.62);
+}
+
+.asteroid-panel-content p {
+  max-width: 1000px;
+  margin: 0;
+  color: #b9c1bc;
+  line-height: 1.74;
+}
+
+.asteroid-panel-content p + p {
+  margin-top: .78rem;
+}
+
+.asteroid-panel-content .asteroid-terminal-list {
+  margin-top: 0;
+}
+
+.asteroid-joke-block {
+  margin: .95rem 0;
+  padding: .1rem 0;
+}
+
+.asteroid-joke-block p,
+.asteroid-joke-block p + p {
+  margin: .2rem 0 0;
+}
+
+.asteroid-joke-block p:first-child {
+  margin-top: 0;
+}
+
+.asteroid-licence-signoff {
+  margin-top: 1rem !important;
+  font-size: 1rem;
+}
+
+.asteroid-licence-signoff strong {
+  color: var(--text);
+}
+
+.asteroid-panel-intro {
+  margin-bottom: .95rem !important;
+  color: #929b95 !important;
+}
+
+.asteroid-patch-content .project-release-list {
+  margin-top: .8rem;
+}
+
+/* Keep nested patch notes visually subordinate to the main project panels. */
+.asteroid-patch-content .project-release {
+  border-color: rgba(0,255,140,.20);
+  background: rgba(10,12,11,.88);
+}
+
+.asteroid-patch-content .project-release:hover,
+.asteroid-patch-content .project-release:focus-within,
+.asteroid-patch-content .project-release[open] {
+  border-color: rgba(0,255,140,.44);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .asteroid-panel,
+  .asteroid-panel::before,
+  .asteroid-panel-toggle::before,
+  .asteroid-panel-toggle::after {
+    transition: none;
+  }
+
+  .asteroid-panel:hover,
+  .asteroid-panel:focus-within {
+    transform: none;
+  }
+
+  .asteroid-panel::before {
+    display: none;
+  }
 }
 
 @media (max-width: 860px) {
@@ -200,12 +468,27 @@
 }
 
 @media (max-width: 680px) {
-  .asteroid-page { gap: 1.7rem; }
-  .asteroid-intro-card { padding: 1rem; }
+  .asteroid-page { gap: 1.6rem; }
+  .asteroid-primary-card { padding: 1.05rem; }
+
+  .game-terminal-topbar {
+    grid-template-columns: auto minmax(0,1fr);
+  }
+
+  .game-terminal-topbar .game-build-tag {
+    grid-column: 1 / -1;
+    justify-self: start;
+    margin-left: 0;
+  }
 
   .asteroid-page .game-launcher-header,
   .asteroid-page .game-runtime-toolbar {
     align-items: flex-start;
+  }
+
+  .asteroid-page .game-launcher-header .detail-command {
+    font-size: .72rem;
+    overflow-wrap: anywhere;
   }
 
   .asteroid-page .game-standby {
@@ -220,5 +503,16 @@
 
   .asteroid-page .game-viewport {
     min-height: 260px;
+  }
+
+  .asteroid-panel > summary {
+    grid-template-columns: 30px minmax(0,1fr);
+    gap: .75rem;
+    min-height: 72px;
+    padding: .88rem .9rem;
+  }
+
+  .asteroid-panel-content {
+    padding: 1rem;
   }
 }
