@@ -37,6 +37,90 @@
   box-shadow: 0 0 12px rgba(0,255,140,.05);
 }
 
+/* Page-only space ambience. It sits on the same plane as the matrix-dot background,
+   behind all actual page content. */
+.asteroid-space-fx {
+  position: fixed !important;
+  inset: 0;
+  z-index: 0 !important;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.asteroid-twinkle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 5px rgba(0,255,140,.58), 0 0 11px rgba(0,255,140,.22);
+  opacity: .04;
+  animation: asteroidTwinkle var(--twinkle-duration, 6s) ease-in-out var(--twinkle-delay, 0s) infinite;
+}
+
+.asteroid-twinkle.cyan {
+  background: var(--cyan);
+  box-shadow: 0 0 5px rgba(0,217,255,.58), 0 0 11px rgba(0,217,255,.2);
+}
+
+.asteroid-comet {
+  position: absolute;
+  left: -28vw;
+  top: var(--comet-y, 28vh);
+  width: var(--comet-length, 160px);
+  height: 2px;
+  opacity: 0;
+  transform: translate3d(0,0,0) rotate(var(--comet-angle, 9deg));
+  transform-origin: right center;
+  background: linear-gradient(90deg, transparent 0%, rgba(0,255,140,.04) 18%, rgba(0,255,140,.4) 74%, rgba(218,255,238,.95) 100%);
+  filter: drop-shadow(0 0 4px rgba(0,255,140,.36));
+  animation: asteroidComet var(--comet-duration, 1.15s) cubic-bezier(.2,.55,.28,1) forwards;
+}
+
+.asteroid-comet::after {
+  content: '';
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #eafff5;
+  box-shadow: 0 0 8px rgba(0,255,140,.9), 0 0 16px rgba(0,255,140,.36);
+  transform: translateY(-50%);
+}
+
+.asteroid-comet.cyan {
+  background: linear-gradient(90deg, transparent 0%, rgba(0,217,255,.035) 18%, rgba(0,217,255,.34) 74%, rgba(225,250,255,.95) 100%);
+  filter: drop-shadow(0 0 4px rgba(0,217,255,.34));
+}
+
+.asteroid-comet.cyan::after {
+  background: #e8fcff;
+  box-shadow: 0 0 8px rgba(0,217,255,.86), 0 0 16px rgba(0,217,255,.34);
+}
+
+@keyframes asteroidTwinkle {
+  0%, 78%, 100% { opacity: .035; transform: scale(.85); }
+  84% { opacity: .82; transform: scale(1.5); }
+  88% { opacity: .16; transform: scale(1); }
+  91% { opacity: .62; transform: scale(1.25); }
+  95% { opacity: .05; transform: scale(.9); }
+}
+
+@keyframes asteroidComet {
+  0% {
+    opacity: 0;
+    transform: translate3d(0,0,0) rotate(var(--comet-angle, 9deg)) scaleX(.7);
+  }
+  8% { opacity: .84; }
+  72% { opacity: .72; }
+  100% {
+    opacity: 0;
+    transform: translate3d(158vw, var(--comet-drift, 16vh), 0) rotate(var(--comet-angle, 9deg)) scaleX(1);
+  }
+}
+
 /* Primary intro stays open. The rest of the project detail is intentionally collapsible. */
 .asteroid-primary-card {
   position: relative;
@@ -54,6 +138,7 @@
     0 14px 34px rgba(0,0,0,.16);
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
+  transition: border-color .27s ease, box-shadow .27s ease, transform .27s ease, background .27s ease;
 }
 
 .asteroid-primary-card::after {
@@ -61,8 +146,30 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(115deg, transparent 0 34%, rgba(255,255,255,.022) 45%, transparent 56%);
-  transform: translateX(-36%);
+  background: linear-gradient(115deg, transparent 0 32%, rgba(255,255,255,.032) 44%, rgba(0,217,255,.014) 49%, transparent 58%);
+  transform: translateX(-42%);
+  opacity: .46;
+  transition: transform .68s ease, opacity .27s ease;
+}
+
+.asteroid-primary-card:hover,
+.asteroid-primary-card:focus-within {
+  border-color: rgba(0,255,140,.68);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.03), transparent 35%),
+    rgba(14,17,15,.92);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.03),
+    0 0 0 1px rgba(0,255,140,.018),
+    0 0 27px rgba(0,255,140,.095),
+    0 16px 38px rgba(0,0,0,.19);
+  transform: translateY(-1px);
+}
+
+.asteroid-primary-card:hover::after,
+.asteroid-primary-card:focus-within::after {
+  transform: translateX(42%);
+  opacity: .86;
 }
 
 .asteroid-primary-card h2 {
@@ -127,6 +234,19 @@
     0 0 0 1px rgba(0,255,140,.018),
     0 0 24px rgba(0,255,140,.065),
     0 18px 42px rgba(0,0,0,.18);
+  transition: border-color .27s ease, box-shadow .27s ease, transform .27s ease, filter .27s ease;
+}
+
+.asteroid-page .game-launcher:hover,
+.asteroid-page .game-launcher:focus-within {
+  border-color: rgba(0,255,140,.76);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.03),
+    0 0 0 1px rgba(0,255,140,.022),
+    0 0 30px rgba(0,255,140,.13),
+    0 18px 44px rgba(0,0,0,.22);
+  filter: brightness(1.02);
+  transform: translateY(-1px);
 }
 
 .game-terminal-topbar {
@@ -227,10 +347,6 @@
   font-size: .74rem;
 }
 
-.asteroid-page .game-license-note {
-  text-align: center;
-}
-
 /* Expandable glass panels */
 .asteroid-details {
   display: grid;
@@ -266,7 +382,7 @@
     0 10px 26px rgba(0,0,0,.12);
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
-  transition: border-color .18s ease, box-shadow .18s ease, transform .18s ease, background .18s ease;
+  transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease, background .22s ease;
 }
 
 .asteroid-panel::before {
@@ -274,23 +390,23 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(115deg, transparent 0 32%, rgba(255,255,255,.022) 44%, transparent 55%);
+  background: linear-gradient(115deg, transparent 0 30%, rgba(255,255,255,.032) 43%, rgba(0,217,255,.014) 48%, transparent 57%);
   transform: translateX(-42%);
-  opacity: .55;
-  transition: transform .45s ease, opacity .2s ease;
+  opacity: .62;
+  transition: transform .54s ease, opacity .24s ease;
 }
 
 .asteroid-panel:hover,
 .asteroid-panel:focus-within,
 .asteroid-panel[open] {
-  border-color: rgba(0,255,140,.58);
+  border-color: rgba(0,255,140,.62);
   background:
-    linear-gradient(135deg, rgba(255,255,255,.026), transparent 34%),
-    rgba(14,17,15,.88);
+    linear-gradient(135deg, rgba(255,255,255,.03), transparent 34%),
+    rgba(14,17,15,.90);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.026),
-    0 0 0 1px rgba(0,255,140,.018),
-    0 0 22px rgba(0,255,140,.065),
+    inset 0 1px 0 rgba(255,255,255,.03),
+    0 0 0 1px rgba(0,255,140,.02),
+    0 0 25px rgba(0,255,140,.085),
     0 14px 34px rgba(0,0,0,.16);
 }
 
@@ -303,7 +419,7 @@
 .asteroid-panel:focus-within::before,
 .asteroid-panel[open]::before {
   transform: translateX(42%);
-  opacity: .78;
+  opacity: .88;
 }
 
 .asteroid-panel > summary {
@@ -446,6 +562,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .asteroid-space-fx { display: none; }
+
+  .asteroid-primary-card,
+  .asteroid-primary-card::after,
+  .asteroid-page .game-launcher,
   .asteroid-panel,
   .asteroid-panel::before,
   .asteroid-panel-toggle::before,
@@ -453,11 +574,16 @@
     transition: none;
   }
 
+  .asteroid-primary-card:hover,
+  .asteroid-primary-card:focus-within,
+  .asteroid-page .game-launcher:hover,
+  .asteroid-page .game-launcher:focus-within,
   .asteroid-panel:hover,
   .asteroid-panel:focus-within {
     transform: none;
   }
 
+  .asteroid-primary-card::after,
   .asteroid-panel::before {
     display: none;
   }
