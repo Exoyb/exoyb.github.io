@@ -99,8 +99,15 @@
                 height: 7px;
                 flex: 0 0 auto;
                 border-radius: 50%;
+                background: var(--red, #ff625d);
+                box-shadow: 0 0 8px rgba(255,98,93,.78);
+                animation: navAppLedBlink 1.15s steps(1,end) infinite;
+            }
+            .nav-links .nav-app-link.active::before {
                 background: var(--green, #00ff8c);
                 box-shadow: 0 0 8px rgba(0,255,140,.72);
+                animation: none;
+                opacity: 1;
             }
             .nav-links .nav-app-link:hover,
             .nav-links .nav-app-link:focus-visible,
@@ -117,6 +124,10 @@
                 0%, 42% { opacity: 1; }
                 43%, 78% { opacity: 0; }
                 79%, 100% { opacity: 1; }
+            }
+            @keyframes navAppLedBlink {
+                0%, 46% { opacity: 1; }
+                47%, 100% { opacity: .16; }
             }
             @media (max-width: 820px) {
                 .nav-app-separator {
@@ -137,7 +148,8 @@
                 .terminal-page-transition,
                 body.page-transitioning main,
                 body.page-transitioning .hero { transition: none; }
-                .transition-cursor { animation: none; }
+                .transition-cursor,
+                .nav-links .nav-app-link::before { animation: none; }
                 .nav-links .nav-app-link:hover,
                 .nav-links .nav-app-link:focus-visible,
                 .nav-links .nav-app-link.active { transform: none; }
