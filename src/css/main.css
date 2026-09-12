@@ -16,7 +16,7 @@
     --amber: #ffca58;
     --red: #ff625d;
     --nav-height: 68px;
-    --glow: 0 0 14px rgba(0, 255, 140, .11), 0 0 30px rgba(0, 255, 140, .035);
+    --glow: 0 0 16px rgba(0, 255, 140, .14), 0 0 34px rgba(0, 255, 140, .05);
     --font-mono: 'IBM Plex Mono', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Liberation Mono', Menlo, monospace;
     --pointer-x: 50vw;
     --pointer-y: 50vh;
@@ -292,17 +292,17 @@ strong { font-weight: 600; }
     box-shadow: 0 0 16px rgba(0,255,140,.20), 0 0 30px rgba(0,255,140,.06);
 }
 
-/* Unified glow language. */
+/* Unified glow language. Slightly slower/brighter so the glass reads without becoming flashy. */
 .glow-surface {
     position: relative;
-    transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background-color .22s ease, filter .22s ease !important;
+    transition: transform .27s ease, border-color .27s ease, box-shadow .27s ease, background-color .27s ease, filter .27s ease !important;
 }
 
 .glow-surface:hover,
 .glow-surface:focus-within {
-    border-color: rgba(0,255,140,.74) !important;
-    box-shadow: 0 12px 32px rgba(0,0,0,.30), var(--glow) !important;
-    filter: brightness(1.025);
+    border-color: rgba(0,255,140,.78) !important;
+    box-shadow: 0 12px 34px rgba(0,0,0,.30), var(--glow) !important;
+    filter: brightness(1.03);
 }
 
 /* Shared card identity: same phosphor edge and restrained glow across every page. */
@@ -374,8 +374,8 @@ strong { font-weight: 600; }
     .log-entry-card,
     .log-fold
 ):focus-within {
-    border-color: rgba(0,255,140,.72) !important;
-    box-shadow: 0 12px 32px rgba(0,0,0,.28), 0 0 18px rgba(0,255,140,.11), 0 0 36px rgba(0,255,140,.04) !important;
+    border-color: rgba(0,255,140,.76) !important;
+    box-shadow: 0 12px 34px rgba(0,0,0,.28), 0 0 20px rgba(0,255,140,.14), 0 0 40px rgba(0,255,140,.055) !important;
 }
 
 /* Stat cards use the same restrained glass sweep as the larger interactive cards. */
@@ -397,12 +397,12 @@ strong { font-weight: 600; }
     opacity: 0;
     background: linear-gradient(110deg,
         transparent 0%,
-        rgba(255,255,255,.018) 33%,
-        rgba(255,255,255,.055) 48%,
-        rgba(0,217,255,.028) 54%,
+        rgba(255,255,255,.024) 33%,
+        rgba(255,255,255,.072) 48%,
+        rgba(0,217,255,.038) 54%,
         transparent 72%);
     transform: skewX(-16deg);
-    transition: left .58s ease, opacity .18s ease;
+    transition: left .70s ease, opacity .22s ease;
 }
 
 .about-stat:hover::before,
