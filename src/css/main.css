@@ -16,7 +16,7 @@
     --amber: #ffca58;
     --red: #ff625d;
     --nav-height: 68px;
-    --glow: 0 0 16px rgba(0, 255, 140, .14), 0 0 34px rgba(0, 255, 140, .05);
+    --glow: 0 0 14px rgba(255,255,255,.025), 0 0 30px rgba(0,0,0,.08);
     --font-mono: 'IBM Plex Mono', 'Cascadia Code', 'JetBrains Mono', Consolas, 'Liberation Mono', Menlo, monospace;
     --pointer-x: 50vw;
     --pointer-y: 50vh;
@@ -292,7 +292,7 @@ strong { font-weight: 600; }
     box-shadow: 0 0 16px rgba(0,255,140,.20), 0 0 30px rgba(0,255,140,.06);
 }
 
-/* Unified glow language. Slightly slower/brighter so the glass reads without becoming flashy. */
+/* Unified glass language. Keep the pane neutral; colour belongs to the edge, not the glass. */
 .glow-surface {
     position: relative;
     transition: transform .27s ease, border-color .27s ease, box-shadow .27s ease, background-color .27s ease, filter .27s ease !important;
@@ -302,10 +302,10 @@ strong { font-weight: 600; }
 .glow-surface:focus-within {
     border-color: rgba(0,255,140,.78) !important;
     box-shadow: 0 12px 34px rgba(0,0,0,.30), var(--glow) !important;
-    filter: brightness(1.03);
+    filter: brightness(1.018);
 }
 
-/* Shared card identity: same phosphor edge and restrained glow across every page. */
+/* Shared card identity: same phosphor edge and neutral glass across every page. */
 :is(
     .content-card,
     .detail-item,
@@ -333,7 +333,7 @@ strong { font-weight: 600; }
     .log-fold
 ) {
     border-color: rgba(0,255,140,.26) !important;
-    box-shadow: 0 0 0 1px rgba(0,255,140,.012) inset, 0 0 11px rgba(0,255,140,.025) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.018), 0 8px 22px rgba(0,0,0,.08) !important;
 }
 
 :is(
@@ -375,10 +375,10 @@ strong { font-weight: 600; }
     .log-fold
 ):focus-within {
     border-color: rgba(0,255,140,.76) !important;
-    box-shadow: 0 12px 34px rgba(0,0,0,.28), 0 0 20px rgba(0,255,140,.14), 0 0 40px rgba(0,255,140,.055) !important;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.025), 0 12px 34px rgba(0,0,0,.30), 0 0 18px rgba(255,255,255,.018) !important;
 }
 
-/* Stat cards use the same restrained glass sweep as the larger interactive cards. */
+/* Stat cards use the same restrained neutral-glass sweep as the larger interactive cards. */
 .about-stat,
 .feedback-stat {
     position: relative;
@@ -398,8 +398,8 @@ strong { font-weight: 600; }
     background: linear-gradient(110deg,
         transparent 0%,
         rgba(255,255,255,.024) 33%,
-        rgba(255,255,255,.072) 48%,
-        rgba(0,217,255,.038) 54%,
+        rgba(255,255,255,.075) 48%,
+        rgba(255,255,255,.028) 56%,
         transparent 72%);
     transform: skewX(-16deg);
     transition: left .70s ease, opacity .22s ease;
