@@ -7,13 +7,14 @@
   <meta name="description" content="Play Asteroid Miner, an ongoing Godot project by Exoyb, directly in the browser and follow its patch history.">
   <meta name="theme-color" content="#0d100f">
   <link rel="icon" href="src/assets/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="src/css/main.css?v=20260912-2">
+  <link rel="stylesheet" href="src/css/main.css?v=20260912-3">
   <link rel="stylesheet" href="src/css/animations.css?v=20260911-1">
   <link rel="stylesheet" href="src/css/pages.css?v=20260911-1">
   <link rel="stylesheet" href="src/css/projects.css?v=20260912-1">
-  <link rel="stylesheet" href="src/css/asteroid-miner.css?v=20260912-3">
+  <link rel="stylesheet" href="src/css/asteroid-miner.css?v=20260912-4">
 </head>
 <body>
+<div class="asteroid-space-fx" data-asteroid-space-fx aria-hidden="true"></div>
 <nav><div class="nav-content"><div class="logo"><a href="index.html">#!/bin/bash Exoyb.sh</a></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div><div class="nav-links" id="navLinks"><a href="about.html">About</a><a href="training.html">Training</a><a href="projects.html">Projects</a><a href="cyber-log.html">Cyber Log</a><a href="feedback.html">Feedback</a></div></div></nav>
 
 <main class="page-shell"><div class="page-container asteroid-page">
@@ -35,13 +36,13 @@
     <h2 id="asteroid-game-title">About the game</h2>
     <p><strong>Asteroid Miner</strong> (working title btw) is a game where you enter a dystopian world trying to make a living. You have leased a spaceship off of <strong>EverGrowth Dynamics™</strong>, a dystopian corporate entity that is fleecing you with ever-increasing lease and rental payments.</p>
     <p>Destroy asteroids, collect minerals, upgrade your ship and see if you can pay off your ever-growing debt to EverGrowth Dynamics™. Each time you pay a bill, you'll get a reward to buff your ship for that run!</p>
-    <ul class="asteroid-terminal-list">
+    <ul class="asteroid-terminal-list asteroid-feature-grid">
       <li>Unlock the Black Market</li>
       <li>Unlock new ores like Iron, Unobtainium and more</li>
       <li>Unlock thrusters and abilities</li>
       <li>Explore different colour palettes with F6</li>
       <li>Earn post-game currency for permanent upgrades</li>
-      <li>If you have some spare money, visit the Skill Tree to see if you can afford some upgrades</li>
+      <li>Visit the Skill Tree shop</li>
     </ul>
   </section>
 
@@ -242,5 +243,6 @@
 <script src="src/js/audio.js?v=20260911-1"></script>
 <script src="src/js/main.js?v=20260912-2"></script>
 <script src="src/js/projects-game.js?v=20260912-2"></script>
+<script src="src/js/asteroid-space.js?v=20260912-1"></script>
 </body>
 </html>
