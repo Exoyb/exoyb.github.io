@@ -25,7 +25,7 @@ const cyberLogEntries = [
     sequence: 3,
     type: 'Project Update',
     title: 'Added New Project: Asteroid Miner',
-    summary: 'Added in old and ongoing project, "Asteroid Miner". Created new page for it, added a new toolbar icon that lights up and has a blinking red LED. As this is a game page, I have added some appropriate eye-candy pieces to the background like twinkling stars, and a comet or two.',
+    summary: 'Added in old and ongoing project, "Asteroid Miner". Created new page for it, added a new toolbar icon with a static red LED when not on the Asteroid Miner page, which turns green when you are on it. As this is a game page, I have added some appropriate eye-candy pieces to the background like twinkling stars, and a comet or two.',
     tags: ['asteroid-miner', 'projects'],
     links: [{ label: 'Open Asteroid Miner', url: 'asteroid-miner.html' }]
   },
