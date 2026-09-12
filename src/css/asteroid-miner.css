@@ -61,6 +61,70 @@
   margin-top: .8rem;
 }
 
+.asteroid-intro-card strong {
+  color: var(--text);
+}
+
+.asteroid-callout {
+  margin: 1rem 0;
+  padding: .9rem 1rem;
+  border-left: 2px solid rgba(0,255,140,.58);
+  background: rgba(0,255,140,.025);
+}
+
+.asteroid-callout p,
+.asteroid-callout p + p {
+  margin: 0;
+}
+
+.asteroid-callout p + p {
+  margin-top: .22rem;
+}
+
+.asteroid-terminal-list {
+  display: grid;
+  gap: .48rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.asteroid-terminal-list li {
+  position: relative;
+  padding-left: 1.45rem;
+  color: #b9c1bc;
+  line-height: 1.68;
+}
+
+.asteroid-terminal-list li::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--cyan);
+  font-weight: 700;
+  text-shadow: 0 0 8px rgba(0,217,255,.18);
+}
+
+.asteroid-issues-list strong {
+  color: #e4e9e6;
+}
+
+.asteroid-licence-card {
+  border-color: rgba(0,255,140,.34);
+}
+
+.asteroid-licence-signoff {
+  margin-top: 1rem !important;
+  color: var(--green) !important;
+  font-size: 1rem;
+}
+
+.asteroid-licence-signoff strong {
+  color: var(--green);
+  text-shadow: 0 0 11px rgba(0,255,140,.18);
+}
+
 /* Make the actual game the focal point rather than a small control buried in copy. */
 .asteroid-page .game-launcher {
   margin-top: 0;
