@@ -71,10 +71,64 @@
                 filter: brightness(.94);
                 transition: opacity .18s linear, filter .18s linear;
             }
+            .nav-app-separator {
+                width: 1px;
+                height: 22px;
+                margin: 0 -.25rem 0 .05rem;
+                background: linear-gradient(180deg, transparent, rgba(0,255,140,.34), transparent);
+                box-shadow: 0 0 9px rgba(0,255,140,.08);
+            }
+            .nav-links .nav-app-link {
+                display: inline-flex;
+                align-items: center;
+                gap: .48rem;
+                padding: .34rem .62rem;
+                color: #d7ded9;
+                border: 1px solid rgba(0,255,140,.32);
+                border-radius: 5px;
+                background: linear-gradient(180deg, rgba(255,255,255,.025), rgba(0,255,140,.018));
+                box-shadow: inset 0 1px 0 rgba(255,255,255,.025), 0 0 10px rgba(0,255,140,.035);
+                font-size: .82rem;
+                letter-spacing: .01em;
+                white-space: nowrap;
+                transition: color .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease, transform .18s ease;
+            }
+            .nav-links .nav-app-link::before {
+                content: '';
+                width: 7px;
+                height: 7px;
+                flex: 0 0 auto;
+                border-radius: 50%;
+                background: var(--green, #00ff8c);
+                box-shadow: 0 0 8px rgba(0,255,140,.72);
+            }
+            .nav-links .nav-app-link:hover,
+            .nav-links .nav-app-link:focus-visible,
+            .nav-links .nav-app-link.active {
+                color: #f0f4f1;
+                border-color: rgba(0,255,140,.72);
+                background: rgba(0,255,140,.045);
+                box-shadow: 0 0 16px rgba(0,255,140,.11), 0 0 30px rgba(0,255,140,.035);
+                text-shadow: 0 0 10px rgba(0,255,140,.22);
+                transform: translateY(-1px);
+            }
+            .nav-links .nav-app-link.active::after { content: none; }
             @keyframes transitionCursorBlink {
                 0%, 42% { opacity: 1; }
                 43%, 78% { opacity: 0; }
                 79%, 100% { opacity: 1; }
+            }
+            @media (max-width: 820px) {
+                .nav-app-separator {
+                    width: 100%;
+                    height: 1px;
+                    margin: .35rem 0 .25rem;
+                    background: linear-gradient(90deg, rgba(0,255,140,.32), transparent 74%);
+                }
+                .nav-links .nav-app-link {
+                    width: max-content;
+                    margin: .2rem .4rem .1rem;
+                }
             }
             @media (max-width: 560px) {
                 .terminal-page-transition { bottom: .8rem; font-size: .76rem; }
@@ -84,6 +138,9 @@
                 body.page-transitioning main,
                 body.page-transitioning .hero { transition: none; }
                 .transition-cursor { animation: none; }
+                .nav-links .nav-app-link:hover,
+                .nav-links .nav-app-link:focus-visible,
+                .nav-links .nav-app-link.active { transform: none; }
             }
         `;
         document.head.appendChild(style);
@@ -118,6 +175,53 @@
             if (page) link.textContent = `>/${page.toLowerCase()}/`;
             link.classList.toggle('active', file === currentPage);
             link.addEventListener('click', () => closeMenu());
+        });
+
+        let separator = navLinksContainer.querySelector('.nav-app-separator');
+        if (!separator) {
+            separator = document.createElement('span');
+            separator.className = 'nav-app-separator';
+            separator.setAttribute('aria-hidden', 'true');
+            navLinksContainer.appendChild(separator);
+        }
+
+        let appLink = navLinksContainer.querySelector('.nav-app-link');
+        if (!appLink) {
+            appLink = document.createElement('a');
+            appLink.className = 'nav-app-link';
+            appLink.href = 'projects.html#project-game';
+            appLink.textContent = 'Asteroid_Miner.exe';
+            appLink.setAttribute('aria-label', 'Open Asteroid Miner playable project');
+            navLinksContainer.appendChild(appLink);
+        }
+
+        const revealAsteroidMiner = () => {
+            const project = document.getElementById('project-game');
+            if (!project) return;
+            project.open = true;
+            appLink.classList.add('active');
+            window.setTimeout(() => {
+                const top = project.getBoundingClientRect().top + window.scrollY - 88;
+                window.scrollTo({ top, behavior: reducedMotion ? 'auto' : 'smooth' });
+            }, 40);
+        };
+
+        appLink.classList.toggle('active', currentPage === 'projects.html' && window.location.hash === '#project-game');
+        appLink.addEventListener('click', event => {
+            closeMenu();
+            if (currentPage !== 'projects.html') return;
+            event.preventDefault();
+            history.replaceState(null, '', '#project-game');
+            revealAsteroidMiner();
+        });
+
+        if (currentPage === 'projects.html' && window.location.hash === '#project-game') {
+            window.setTimeout(revealAsteroidMiner, 110);
+        }
+
+        window.addEventListener('hashchange', () => {
+            if (window.location.hash === '#project-game') revealAsteroidMiner();
+            else appLink.classList.remove('active');
         });
     };
 
