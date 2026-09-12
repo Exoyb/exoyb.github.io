@@ -7,12 +7,14 @@
 
   const random = (min, max) => Math.random() * (max - min) + min;
 
-  // A small field of green/cyan points that briefly brighten like the existing matrix dots.
-  for (let i = 0; i < 22; i += 1) {
+  // Small white points that briefly brighten like stars against the existing matrix-dot background.
+  for (let i = 0; i < 28; i += 1) {
     const dot = document.createElement('span');
-    dot.className = `asteroid-twinkle${Math.random() < 0.28 ? ' cyan' : ''}`;
+    dot.className = 'asteroid-twinkle';
     dot.style.left = `${random(2, 98)}%`;
     dot.style.top = `${random(4, 96)}%`;
+    dot.style.background = '#f2f5f3';
+    dot.style.boxShadow = '0 0 5px rgba(255,255,255,.62), 0 0 12px rgba(255,255,255,.24)';
     dot.style.setProperty('--twinkle-duration', `${random(5.5, 10.5).toFixed(2)}s`);
     dot.style.setProperty('--twinkle-delay', `${random(-9, 0).toFixed(2)}s`);
     layer.appendChild(dot);
@@ -20,38 +22,38 @@
 
   let cometTimer;
 
-  const scheduleComet = () => {
-    cometTimer = window.setTimeout(() => {
-      if (document.hidden) {
-        scheduleComet();
-        return;
-      }
+  const createComet = (delay = 0) => {
+    window.setTimeout(() => {
+      if (document.hidden) return;
 
       const comet = document.createElement('span');
-      comet.className = `asteroid-comet${Math.random() < 0.32 ? ' cyan' : ''}`;
-      comet.style.setProperty('--comet-y', `${random(8, 72).toFixed(1)}vh`);
-      comet.style.setProperty('--comet-length', `${Math.round(random(120, 220))}px`);
-      comet.style.setProperty('--comet-angle', `${random(5, 13).toFixed(1)}deg`);
-      comet.style.setProperty('--comet-drift', `${random(8, 18).toFixed(1)}vh`);
-      comet.style.setProperty('--comet-duration', `${random(.95, 1.35).toFixed(2)}s`);
+      comet.className = `asteroid-comet${Math.random() < 0.28 ? ' cyan' : ''}`;
+      comet.style.setProperty('--comet-y', `${random(6, 66).toFixed(1)}vh`);
+      comet.style.setProperty('--comet-length', `${Math.round(random(140, 235))}px`);
+      comet.style.setProperty('--comet-angle', `${random(10, 17).toFixed(1)}deg`);
+      comet.style.setProperty('--comet-drift', `${random(16, 28).toFixed(1)}vh`);
+      comet.style.setProperty('--comet-duration', `${random(2.1, 3.0).toFixed(2)}s`);
       layer.appendChild(comet);
       comet.addEventListener('animationend', () => comet.remove(), { once: true });
-      scheduleComet();
-    }, random(8000, 15000));
+    }, delay);
   };
 
-  // Let the page settle before the first one appears.
+  const scheduleComet = () => {
+    cometTimer = window.setTimeout(() => {
+      if (!document.hidden) {
+        createComet();
+        if (Math.random() < 0.42) createComet(random(900, 1800));
+      }
+      scheduleComet();
+    }, random(5000, 9000));
+  };
+
+  // Let the page settle, then send a visible diagonal pair across the background.
   cometTimer = window.setTimeout(() => {
-    const first = document.createElement('span');
-    first.className = 'asteroid-comet';
-    first.style.setProperty('--comet-y', `${random(15, 55).toFixed(1)}vh`);
-    first.style.setProperty('--comet-length', `${Math.round(random(130, 190))}px`);
-    first.style.setProperty('--comet-angle', `${random(6, 11).toFixed(1)}deg`);
-    first.style.setProperty('--comet-drift', `${random(9, 15).toFixed(1)}vh`);
-    layer.appendChild(first);
-    first.addEventListener('animationend', () => first.remove(), { once: true });
+    createComet();
+    createComet(1400);
     scheduleComet();
-  }, random(2800, 5200));
+  }, random(2200, 3800));
 
   window.addEventListener('pagehide', () => window.clearTimeout(cometTimer), { once: true });
 })();
