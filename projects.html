@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="src/css/main.css?v=20260911-1">
   <link rel="stylesheet" href="src/css/animations.css?v=20260911-1">
   <link rel="stylesheet" href="src/css/pages.css?v=20260911-1">
-  <link rel="stylesheet" href="src/css/projects.css?v=20260911-6">
+  <link rel="stylesheet" href="src/css/projects.css?v=20260912-1">
 </head>
 <body>
 <nav><div class="nav-content"><div class="logo"><a href="index.html">#!/bin/bash Exoyb.sh</a></div><div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div><div class="nav-links" id="navLinks"><a href="about.html">About</a><a href="training.html">Training</a><a class="active" href="projects.html">Projects</a><a href="cyber-log.html">Cyber Log</a><a href="feedback.html">Feedback</a></div></div></nav>
@@ -26,7 +26,7 @@
     <div class="cd-terminal-header"><span class="cd-dot red"></span><span class="cd-dot yellow"></span><span class="cd-dot green"></span></div>
     <div class="cd-terminal-body">
       <p><span class="prompt">$</span> <span class="cd-command">ls -lah ~/projects/</span></p>
-      <p class="cd-output">portfolio/ &nbsp; security-audit/</p>
+      <p class="cd-output">asteroid-miner/ &nbsp; security-audit/ &nbsp; portfolio/</p>
       <p class="cd-joke">unfinished-projects have once again declined to comment.</p>
     </div>
   </div>
@@ -37,6 +37,119 @@
       <h2>Open a project</h2>
       <p>Please feel free to check out any of my work here!</p>
     </div>
+
+    <details id="project-game" class="project-accordion project-game">
+      <summary>
+        <span class="project-toggle" aria-hidden="true"></span>
+        <span class="project-title-wrap">
+          <span class="project-index">project_003 // game / godot</span>
+          <span class="project-title">Asteroid Miner</span>
+          <span class="project-subtitle">Godot 4 · GDScript · WebAssembly · Playable browser build</span>
+        </span>
+        <span class="project-meta">
+          <time class="project-date" datetime="2026-09-12">12 SEP 2026</time>
+          <span class="project-status active">ACTIVE</span>
+        </span>
+      </summary>
+
+      <div class="project-content">
+        <div class="page-kicker">// project_003/readme</div>
+        <h2>Asteroid Miner</h2>
+        <ul class="project-readme-lines">
+          <li>A top-down space mining game built in Godot.</li>
+          <li>Mine asteroids, haul ore, survive the day cycle and keep the run alive while bills and progression systems keep moving.</li>
+          <li>Includes ore unlocks, upgrades, perk drafting, persistent saves and meta progression between runs.</li>
+          <li>The live portfolio version is a compiled Web build; the editable Godot source project is not published.</li>
+        </ul>
+
+        <div class="project-stack"><span>Godot 4</span><span>GDScript</span><span>WebAssembly</span><span>Game Development</span><span>GitHub Pages</span></div>
+
+        <section class="game-launcher" data-game-launcher data-game-src="games/asteroid-miner/AsteroidMiner.html" aria-labelledby="asteroid-launch-title">
+          <div class="game-launcher-header">
+            <div>
+              <span class="detail-command">$ ./AsteroidMiner</span>
+              <h3 id="asteroid-launch-title">Playable Web Build</h3>
+            </div>
+            <span class="game-build-tag">V1 // WEB</span>
+          </div>
+
+          <div class="game-standby" data-game-standby>
+            <div class="game-standby-copy">
+              <span class="game-runtime-state">runtime: offline</span>
+              <p>The game stays unloaded until you launch it, so the Projects page does not pull down the full Godot/WebAssembly build in the background.</p>
+              <small>Desktop + keyboard recommended · browser build is roughly 48 MB</small>
+            </div>
+            <button class="game-control game-launch-control" type="button" data-game-launch>&gt; LAUNCH GAME</button>
+          </div>
+
+          <div class="game-runtime" data-game-runtime hidden>
+            <div class="game-runtime-toolbar">
+              <span class="game-runtime-state" data-game-state>runtime: offline</span>
+              <div class="game-runtime-controls">
+                <button class="game-control" type="button" data-game-restart>RESTART</button>
+                <button class="game-control" type="button" data-game-fullscreen>FULLSCREEN</button>
+                <button class="game-control game-exit-control" type="button" data-game-exit>EXIT</button>
+              </div>
+            </div>
+            <div class="game-viewport">
+              <iframe data-game-frame title="Asteroid Miner playable browser build" allow="autoplay; fullscreen; gamepad" allowfullscreen></iframe>
+            </div>
+          </div>
+
+          <div class="game-license-note">browser build only // source project remains private // personal-use licence applies</div>
+        </section>
+
+        <section class="project-release-history" aria-labelledby="asteroid-release-title">
+          <div class="page-kicker">// patch-notes/</div>
+          <h3 id="asteroid-release-title">Patch notes</h3>
+          <p>This is the live build history. Future releases will replace the same playable build rather than creating a new game page.</p>
+
+          <div class="project-release-list">
+            <details class="project-release">
+              <summary>
+                <span class="project-release-toggle" aria-hidden="true"></span>
+                <span class="project-release-title-wrap">
+                  <span class="project-release-version">V1</span>
+                  <span class="project-release-name">Initial web release</span>
+                </span>
+                <span class="project-release-meta">
+                  <time class="project-date" datetime="2026-09-12">12 SEP 2026</time>
+                  <span class="project-status complete">RELEASED</span>
+                </span>
+              </summary>
+              <div class="project-release-content">
+                <section class="release-section release-context">
+                  <span class="detail-command">$ cat context.txt</span>
+                  <h4>Context</h4>
+                  <p>I wanted the game to be something people could actually play from the portfolio instead of just showing screenshots or describing it.</p>
+                </section>
+                <section class="release-section">
+                  <span class="detail-command">$ cat changes.log</span>
+                  <h4>Release</h4>
+                  <ul>
+                    <li>Prepared the current Godot project for a browser release using the Compatibility renderer.</li>
+                    <li>Exported the game as a Godot Web/WebAssembly build for GitHub Pages.</li>
+                    <li>Kept the editable Godot source project private and published only the compiled browser build.</li>
+                    <li>Added the playable game to the portfolio behind an explicit launch control so the large runtime is not downloaded during a normal Projects page visit.</li>
+                    <li>Added restart, fullscreen and exit controls around the embedded game.</li>
+                    <li>Established this patch-note history so later game changes can be documented against the same live build.</li>
+                  </ul>
+                </section>
+                <section class="release-section release-outcome">
+                  <span class="detail-command">$ cat outcome.txt</span>
+                  <h4>Outcome</h4>
+                  <ul>
+                    <li>Asteroid Miner now has a single live browser build that can be updated in place.</li>
+                    <li>The rest of the portfolio remains lightweight until somebody actively chooses to launch the game.</li>
+                    <li>Future V1.x/V2 releases can focus on new game content and patch notes rather than rebuilding the portfolio integration.</li>
+                  </ul>
+                </section>
+              </div>
+            </details>
+          </div>
+        </section>
+      </div>
+    </details>
 
     <details id="project-security" class="project-accordion project-security">
       <summary>
@@ -291,5 +404,6 @@
 <footer class="site-footer">Exoyb // Projects</footer>
 <script src="src/js/audio.js?v=20260911-1"></script>
 <script src="src/js/main.js?v=20260911-1"></script>
+<script src="src/js/projects-game.js?v=20260912-1"></script>
 </body>
 </html>
