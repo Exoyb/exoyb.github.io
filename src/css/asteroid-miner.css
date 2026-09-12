@@ -27,7 +27,7 @@
   color: #939c96;
   border: 1px solid rgba(0,255,140,.18);
   border-radius: 999px;
-  background: rgba(7,10,8,.72);
+  background: rgba(14,14,15,.72);
   font-size: .72rem;
 }
 
@@ -130,12 +130,10 @@
   border-radius: 11px;
   background:
     linear-gradient(135deg, rgba(255,255,255,.025), transparent 35%),
-    rgba(15,16,16,.88);
+    rgba(15,15,16,.88);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.025),
-    0 0 0 1px rgba(0,255,140,.012),
-    0 0 20px rgba(0,255,140,.045),
-    0 14px 34px rgba(0,0,0,.16);
+    0 14px 34px rgba(0,0,0,.18);
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
   transition: border-color .27s ease, box-shadow .27s ease, transform .27s ease, background .27s ease;
@@ -146,7 +144,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(115deg, transparent 0 32%, rgba(255,255,255,.032) 44%, rgba(0,217,255,.014) 49%, transparent 58%);
+  background: linear-gradient(115deg, transparent 0 32%, rgba(255,255,255,.035) 44%, rgba(255,255,255,.018) 49%, transparent 58%);
   transform: translateX(-42%);
   opacity: .46;
   transition: transform .68s ease, opacity .27s ease;
@@ -154,15 +152,14 @@
 
 .asteroid-primary-card:hover,
 .asteroid-primary-card:focus-within {
-  border-color: rgba(0,255,140,.68);
+  border-color: rgba(0,255,140,.72);
   background:
     linear-gradient(135deg, rgba(255,255,255,.03), transparent 35%),
-    rgba(14,17,15,.92);
+    rgba(16,16,17,.92);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.03),
-    0 0 0 1px rgba(0,255,140,.018),
-    0 0 27px rgba(0,255,140,.095),
-    0 16px 38px rgba(0,0,0,.19);
+    inset 0 1px 0 rgba(255,255,255,.035),
+    0 16px 38px rgba(0,0,0,.22),
+    0 0 20px rgba(255,255,255,.018);
   transform: translateY(-1px);
 }
 
@@ -218,6 +215,17 @@
   text-shadow: 0 0 8px rgba(0,217,255,.18);
 }
 
+.asteroid-list-detail {
+  display: block;
+  margin-top: .08rem;
+  color: #aeb7b1;
+  font-weight: 400;
+}
+
+.asteroid-issues-list {
+  gap: .72rem;
+}
+
 .asteroid-issues-list strong {
   color: #e4e9e6;
 }
@@ -228,24 +236,21 @@
   overflow: hidden;
   border-color: rgba(0,255,140,.48);
   border-radius: 11px;
-  background: rgba(8,10,9,.96);
+  background: rgba(14,14,15,.97);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.022),
-    0 0 0 1px rgba(0,255,140,.018),
-    0 0 24px rgba(0,255,140,.065),
-    0 18px 42px rgba(0,0,0,.18);
+    inset 0 1px 0 rgba(255,255,255,.025),
+    0 18px 42px rgba(0,0,0,.22);
   transition: border-color .27s ease, box-shadow .27s ease, transform .27s ease, filter .27s ease;
 }
 
 .asteroid-page .game-launcher:hover,
 .asteroid-page .game-launcher:focus-within {
-  border-color: rgba(0,255,140,.76);
+  border-color: rgba(0,255,140,.78);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,.03),
-    0 0 0 1px rgba(0,255,140,.022),
-    0 0 30px rgba(0,255,140,.13),
-    0 18px 44px rgba(0,0,0,.22);
-  filter: brightness(1.02);
+    inset 0 1px 0 rgba(255,255,255,.035),
+    0 18px 44px rgba(0,0,0,.26),
+    0 0 20px rgba(255,255,255,.018);
+  filter: brightness(1.015);
   transform: translateY(-1px);
 }
 
@@ -257,7 +262,7 @@
   min-height: 45px;
   padding: .62rem .9rem;
   border-bottom: 1px solid rgba(255,255,255,.07);
-  background: linear-gradient(180deg, #181919 0%, #121313 100%);
+  background: linear-gradient(180deg, #1a1a1b 0%, #141415 100%);
 }
 
 .game-terminal-dots {
@@ -289,7 +294,7 @@
   padding: 1rem 1.15rem;
   background:
     linear-gradient(180deg, rgba(255,255,255,.018), transparent),
-    #101111;
+    #111112;
 }
 
 .asteroid-page .game-launcher-header .detail-command {
@@ -314,8 +319,8 @@
   padding: 2rem 1.2rem;
   background:
     repeating-linear-gradient(0deg, rgba(255,255,255,.009) 0 1px, transparent 1px 4px),
-    radial-gradient(circle at 50% 42%, rgba(0,255,140,.025), transparent 42%),
-    rgba(5,7,6,.94);
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,.018), transparent 42%),
+    rgba(10,10,11,.96);
 }
 
 .asteroid-page .game-standby-copy {
@@ -334,13 +339,14 @@
   font-size: 1rem;
   letter-spacing: .055em;
   border-color: rgba(0,255,140,.72);
-  background: rgba(0,255,140,.035);
-  box-shadow: 0 0 18px rgba(0,255,140,.075);
+  background: rgba(18,18,19,.72);
+  box-shadow: 0 0 18px rgba(0,0,0,.16);
 }
 
 .asteroid-page .game-launch-control:hover,
 .asteroid-page .game-launch-control:focus-visible {
-  box-shadow: 0 0 24px rgba(0,255,140,.17), 0 0 48px rgba(0,255,140,.06);
+  border-color: var(--green);
+  box-shadow: 0 0 22px rgba(0,255,140,.12), 0 0 44px rgba(0,0,0,.18);
 }
 
 .asteroid-page .game-runtime-state {
@@ -374,12 +380,10 @@
   border-radius: 10px;
   background:
     linear-gradient(135deg, rgba(255,255,255,.022), transparent 34%),
-    rgba(15,16,16,.82);
+    rgba(15,15,16,.84);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.022),
-    0 0 0 1px rgba(0,255,140,.012),
-    0 0 15px rgba(0,255,140,.035),
-    0 10px 26px rgba(0,0,0,.12);
+    0 10px 26px rgba(0,0,0,.14);
   backdrop-filter: blur(9px);
   -webkit-backdrop-filter: blur(9px);
   transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease, background .22s ease;
@@ -390,7 +394,7 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(115deg, transparent 0 30%, rgba(255,255,255,.032) 43%, rgba(0,217,255,.014) 48%, transparent 57%);
+  background: linear-gradient(115deg, transparent 0 30%, rgba(255,255,255,.036) 43%, rgba(255,255,255,.018) 48%, transparent 57%);
   transform: translateX(-42%);
   opacity: .62;
   transition: transform .54s ease, opacity .24s ease;
@@ -399,15 +403,14 @@
 .asteroid-panel:hover,
 .asteroid-panel:focus-within,
 .asteroid-panel[open] {
-  border-color: rgba(0,255,140,.62);
+  border-color: rgba(0,255,140,.66);
   background:
-    linear-gradient(135deg, rgba(255,255,255,.03), transparent 34%),
-    rgba(14,17,15,.90);
+    linear-gradient(135deg, rgba(255,255,255,.028), transparent 34%),
+    rgba(16,16,17,.90);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,.03),
-    0 0 0 1px rgba(0,255,140,.02),
-    0 0 25px rgba(0,255,140,.085),
-    0 14px 34px rgba(0,0,0,.16);
+    0 14px 34px rgba(0,0,0,.18),
+    0 0 18px rgba(255,255,255,.014);
 }
 
 .asteroid-panel:hover,
@@ -450,8 +453,8 @@
   height: 30px;
   border: 1px solid rgba(0,255,140,.28);
   border-radius: 5px;
-  background: rgba(7,9,8,.92);
-  box-shadow: 0 0 10px rgba(0,255,140,.03);
+  background: rgba(12,12,13,.94);
+  box-shadow: 0 0 10px rgba(0,0,0,.12);
 }
 
 .asteroid-panel-toggle::before,
@@ -499,7 +502,7 @@
   position: relative;
   z-index: 1;
   padding: 1.05rem 1.2rem 1.2rem 3.9rem;
-  background: rgba(8,10,9,.62);
+  background: rgba(10,10,11,.64);
 }
 
 .asteroid-panel-content p {
@@ -552,7 +555,7 @@
 /* Keep nested patch notes visually subordinate to the main project panels. */
 .asteroid-patch-content .project-release {
   border-color: rgba(0,255,140,.20);
-  background: rgba(10,12,11,.88);
+  background: rgba(12,12,13,.90);
 }
 
 .asteroid-patch-content .project-release:hover,
