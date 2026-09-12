@@ -189,40 +189,14 @@
         if (!appLink) {
             appLink = document.createElement('a');
             appLink.className = 'nav-app-link';
-            appLink.href = 'projects.html#project-game';
-            appLink.textContent = 'Asteroid_Miner.exe';
-            appLink.setAttribute('aria-label', 'Open Asteroid Miner playable project');
             navLinksContainer.appendChild(appLink);
         }
 
-        const revealAsteroidMiner = () => {
-            const project = document.getElementById('project-game');
-            if (!project) return;
-            project.open = true;
-            appLink.classList.add('active');
-            window.setTimeout(() => {
-                const top = project.getBoundingClientRect().top + window.scrollY - 88;
-                window.scrollTo({ top, behavior: reducedMotion ? 'auto' : 'smooth' });
-            }, 40);
-        };
-
-        appLink.classList.toggle('active', currentPage === 'projects.html' && window.location.hash === '#project-game');
-        appLink.addEventListener('click', event => {
-            closeMenu();
-            if (currentPage !== 'projects.html') return;
-            event.preventDefault();
-            history.replaceState(null, '', '#project-game');
-            revealAsteroidMiner();
-        });
-
-        if (currentPage === 'projects.html' && window.location.hash === '#project-game') {
-            window.setTimeout(revealAsteroidMiner, 110);
-        }
-
-        window.addEventListener('hashchange', () => {
-            if (window.location.hash === '#project-game') revealAsteroidMiner();
-            else appLink.classList.remove('active');
-        });
+        appLink.href = 'asteroid-miner.html';
+        appLink.textContent = 'Asteroid_Miner.exe';
+        appLink.setAttribute('aria-label', 'Open Asteroid Miner');
+        appLink.classList.toggle('active', currentPage === 'asteroid-miner.html');
+        appLink.addEventListener('click', () => closeMenu());
     };
 
     const normaliseTerminalIdentity = () => {
